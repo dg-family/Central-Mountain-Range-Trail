@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="styles/components.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://unpkg.com/leaflet-gpx@1.7.0/dist/leaflet-gpx.min.js" defer></script>
 </head>
 <body>
   <header>
@@ -686,46 +688,51 @@
           const isHidden = mapDiv.style.display === 'none';
           mapDiv.style.display = isHidden ? 'block' : 'none';
           if(!isHidden) return;
-          // Lazy-load Leaflet and GPX
-          await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
-          await loadScript('https://unpkg.com/leaflet-gpx@1.7.0/dist/leaflet-gpx.min.js');
+          // Initialize base map quickly
           if(!mapInstance){
             mapInstance = L.map(mapDiv, { zoomControl:true });
             const base = getBaseLayer();
             L.tileLayer(base.url, { attribution: base.attribution, maxZoom: 19 }).addTo(mapInstance);
+            mapInstance.setView([23.7, 121], 6); // Taiwan overview
           }
           const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
           const gpxPath = `assets/gpx/D${dayId}.gpx`;
-          fetch(gpxPath, { method:'HEAD' }).then(res => {
-            if(res.ok){
-              nameToMarker = {};
-              const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
-              g.on('loaded', () => { mapInstance.fitBounds(g.getBounds()); });
-              g.on('addpoint', (e) => {
-                const marker = e.marker;
-                const wp = e.point;
-                const nm = (wp?.name || '').trim();
-                if(nm){
-                  marker.bindPopup(nm);
-                  nameToMarker[nm.toLowerCase()] = marker;
-                }
-              });
-              g.addTo(mapInstance);
-
-              // 連結清單項目與地圖標記
-              const items = d.querySelectorAll('.segments li');
-              items.forEach(li => {
-                li.addEventListener('click', () => {
-                  const txt = li.textContent.trim().toLowerCase();
-                  const matchedName = Object.keys(nameToMarker).find(nm => txt.includes(nm));
-                  if(matchedName){
-                    const mk = nameToMarker[matchedName];
-                    mapInstance.setView(mk.getLatLng(), Math.max(mapInstance.getZoom(), 13));
-                    mk.openPopup();
-                  }
-                });
-              });
+          nameToMarker = {};
+          mapDiv.classList.add('loading');
+          mapDiv.textContent = '載入 GPX 中...';
+          const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
+          g.on('loaded', () => {
+            mapDiv.classList.remove('loading');
+            mapDiv.textContent = '';
+            mapInstance.fitBounds(g.getBounds());
+          });
+          g.on('addpoint', (e) => {
+            const marker = e.marker;
+            const wp = e.point;
+            const nm = (wp?.name || '').trim();
+            if(nm){
+              marker.bindPopup(nm);
+              nameToMarker[nm.toLowerCase()] = marker;
             }
+          });
+          g.on('error', () => {
+            mapDiv.classList.remove('loading');
+            mapDiv.textContent = '找不到 GPX 或載入失敗';
+          });
+          g.addTo(mapInstance);
+
+          // 連結清單項目與地圖標記
+          const items = d.querySelectorAll('.segments li');
+          items.forEach(li => {
+            li.addEventListener('click', () => {
+              const txt = li.textContent.trim().toLowerCase();
+              const matchedName = Object.keys(nameToMarker).find(nm => txt.includes(nm));
+              if(matchedName){
+                const mk = nameToMarker[matchedName];
+                mapInstance.setView(mk.getLatLng(), Math.max(mapInstance.getZoom(), 13));
+                mk.openPopup();
+              }
+            });
           });
           setTimeout(() => { mapInstance.invalidateSize(); }, 100);
         });
