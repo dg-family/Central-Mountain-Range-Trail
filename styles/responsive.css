@@ -1,0 +1,6 @@
+/* small screens */
+@media (max-width:640px){
+  .bar{width:52vw}
+  .meta{flex-wrap:wrap}
+  .segments{padding-left:16px}
+}

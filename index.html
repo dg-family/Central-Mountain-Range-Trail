@@ -4,69 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>中央山脈大縱走（北→南）行程表</title>
-  <style>
-    :root{
-      --bg:#0b0c10;--card:#111218;--ink:#e8eef2;--muted:#9aa7b0;
-      --ok:#36ba7a;--warn:#f0b429;--bad:#e25555;--accent:#6ab0ff;
-      --border:#1c2030;
-    }
-   *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;background:linear-gradient(180deg,#0a0b12 0%,#0c0f19 100%);
-      color:var(--ink);font:16px/1.6 system-ui, -apple-system, "Segoe UI",
-      "Noto Sans TC", Roboto, "PingFang TC", "Hiragino Sans", "Microsoft JhengHei", Arial, sans-serif;
-    }
-    .wrap{max-width:1000px;margin:auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,12,16,.75);backdrop-filter:saturate(140%) blur(8px);z-index:5;border-bottom:1px solid var(--border)}
-    header .bar{max-width:1000px;margin:auto;padding:12px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    h1{font-size:clamp(22px,3.2vw,32px);margin:10px 0}
-    .tools{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
-    button{
-      background:#182034;border:1px solid var(--border);color:var(--ink);
-      padding:8px 12px;border-radius:10px;cursor:pointer
-    }
-    button:hover{border-color:#2a3350}
-    .toc{display:flex;flex-wrap:wrap;gap:6px}
-    .toc a{
-      text-decoration:none;color:var(--muted);border:1px solid var(--border);
-      padding:4px 8px;border-radius:8px;font-size:13px
-    }
-    .toc a:hover{color:var(--ink);border-color:#2a3350}
-
-    .note{background:#101522;border:1px solid var(--border);padding:12px 14px;border-radius:12px;margin:16px 0;color:var(--muted)}
-    .legend{display:flex;gap:16px;align-items:center;font-size:14px}
-    .swatch{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:6px}
-
-    details.day{border:1px solid var(--border);background:var(--card);border-radius:14px;margin:14px 0;overflow:hidden}
-    details.day > summary{
-      list-style:none;cursor:pointer;padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center
-    }
-    details.day > summary::-webkit-details-marker{display:none}
-    .summary-title{display:flex;gap:10px;align-items:baseline}
-    .summary-title h2{margin:0;font-size:18px}
-    .meta{font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center}
-    .barbox{display:flex;align-items:center;gap:10px}
-    .bar{
-      width:min(42vw,360px);height:8px;background:#0e1320;border:1px solid #182036;border-radius:999px;overflow:hidden
-    }
-    .bar > i{display:block;height:100%;background:var(--ok);width:0%}
-    .min{font-variant-numeric:tabular-nums}
-    .content{padding:0 16px 16px}
-    .segments{margin:0;padding-left:18px}
-    .segments li{margin:2px 0}
-    .segments li span.km{color:var(--muted)}
-    .footer-line{margin-top:10px;color:var(--muted);font-size:13px}
-
-    /* small screens */
-    @media (max-width:640px){
-      .bar{width:52vw}
-      .meta{flex-wrap:wrap}
-      .segments{padding-left:16px}
-    }
-    /* anchor offset for sticky header */
-    .anchor{position:relative;top:-68px;visibility:hidden}
-  </style>
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
 </head>
 <body>
   <header>
