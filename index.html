@@ -691,8 +691,8 @@
           // Initialize base map quickly
           if(!mapInstance){
             mapInstance = L.map(mapDiv, { zoomControl:true });
-            const base = getBaseLayer();
-            L.tileLayer(base.url, { attribution: base.attribution, maxZoom: 19 }).addTo(mapInstance);
+            const layer = createBaseLayer();
+            layer.addTo(mapInstance);
             mapInstance.setView([23.7, 121], 6); // Taiwan overview
           }
           const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
@@ -746,14 +746,28 @@
         });
       }
 
-      // Tile layer config: prefer 魯地圖 if provided
+      // Tile layer config: prefer 魯地圖 (rudy.outdoors.tw) if not overridden
       function getBaseLayer(){
-        const rudyUrl = window.RUDY_TILE_URL || localStorage.getItem('RUDY_TILE_URL');
-        const rudyAttr = window.RUDY_TILE_ATTR || localStorage.getItem('RUDY_TILE_ATTR') || '魯地圖';
-        if(rudyUrl){
-          return { url: rudyUrl, attribution: rudyAttr };
-        }
-        return { url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attribution: '&copy; OpenStreetMap contributors' };
+        const rudyUrl = window.RUDY_TILE_URL || localStorage.getItem('RUDY_TILE_URL') || 'https://rudy.outdoors.tw/{z}/{x}/{y}.png';
+        const rudyAttr = window.RUDY_TILE_ATTR || localStorage.getItem('RUDY_TILE_ATTR') || '地圖: 魯地圖 rudy.outdoors.tw';
+        return { url: rudyUrl, attribution: rudyAttr };
+      }
+
+      function createBaseLayer(){
+        const base = getBaseLayer();
+        const layer = L.tileLayer(base.url, { attribution: base.attribution, maxZoom: 19 });
+        let switched = false;
+        layer.on('tileerror', () => {
+          if(switched) return;
+          switched = true;
+          const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 });
+          const map = layer._map;
+          if(map){
+            map.removeLayer(layer);
+            osm.addTo(map);
+          }
+        });
+        return layer;
       }
     })();
   </script>
