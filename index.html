@@ -701,7 +701,8 @@
         img.className = 'mapimg';
         const tryUrls = [
           `assets/maps/D${dayId}.jpg`,
-          `assets/maps/D${dayId}.png`
+          `assets/maps/D${dayId}.png`,
+          `assets/maps/D${dayId}.svg`
         ];
         let loaded = false;
         for(const url of tryUrls){
@@ -714,11 +715,10 @@
         }
         viewport.innerHTML = '';
         if(!loaded){
-          const msg = document.createElement('div');
-          msg.className = 'loading';
-          msg.textContent = `找不到截圖，請放置圖檔於 assets/maps/D${dayId}.jpg 或 .png`;
-          viewport.appendChild(msg);
-          return;
+          // fallback to shared placeholder
+          img.src = 'assets/maps/placeholder.svg';
+          await new Promise((resolve)=>{ img.onload = resolve; });
+          loaded = true;
         }
         viewport.appendChild(img);
 
@@ -748,8 +748,47 @@
                 if(match){ nameToPin[match].classList.add('highlight'); }
               });
             });
+          } else {
+            // 若無 pins.json，從清單自動產生標註，均分在圖上
+            autoPinsFromItems(viewport, items);
           }
-        }catch(e){ /* ignore */ }
+        }catch(e){
+          autoPinsFromItems(viewport, items);
+        }
+      }
+
+      function autoPinsFromItems(viewport, items){
+        const names = Array.from(items).map(li => {
+          const raw = li.textContent.trim();
+          const parts = raw.split('→').map(s=>s.trim()).filter(Boolean);
+          return parts[parts.length-1]
+            .replace(/\(.*?\)/g,'')
+            .replace(/\s+/g,' ')
+            .trim();
+        }).filter(Boolean);
+        const count = names.length || 1;
+        const nameToPin = {};
+        names.forEach((name, idx) => {
+          const x = 10 + (count===1 ? 40 : (idx*(80/(count-1))));
+          const y = 30 + (count===1 ? 20 : (idx%2===0 ? 10 : 0));
+          const pin = document.createElement('div');
+          pin.className = 'pin';
+          pin.style.setProperty('--x', String(Math.round(x)));
+          pin.style.setProperty('--y', String(y));
+          const dot = document.createElement('span'); dot.className = 'dot';
+          const label = document.createElement('span'); label.className = 'label'; label.textContent = name;
+          pin.appendChild(dot); pin.appendChild(label);
+          viewport.appendChild(pin);
+          nameToPin[name.toLowerCase()] = pin;
+        });
+        items.forEach(li => {
+          li.addEventListener('click', () => {
+            const txt = li.textContent.trim().toLowerCase();
+            const match = Object.keys(nameToPin).find(k => txt.includes(k));
+            Array.from(viewport.querySelectorAll('.pin')).forEach(p=>p.classList.remove('highlight'));
+            if(match){ nameToPin[match].classList.add('highlight'); }
+          });
+        });
       }
     })();
   </script>
