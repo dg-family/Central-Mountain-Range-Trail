@@ -23,7 +23,13 @@ details.day > summary::-webkit-details-marker{display:none}
 .segments{margin:0;padding-left:18px}
 .segments li{margin:2px 0}
 .segments li span.km{color:var(--muted)}
+.segments li.active{background:#fffbe6;border-radius:6px}
 .footer-line{margin-top:10px;color:var(--muted);font-size:13px}
 
 /* anchor for sticky header spacing */
 .anchor{display:block;height:0;visibility:hidden;scroll-margin-top:72px}
+
+/* map */
+.map-wrap{margin-top:12px}
+.map-toolbar{display:flex;gap:8px;margin:8px 0}
+.map{width:100%;height:360px;border:1px solid var(--border);border-radius:12px;overflow:hidden}

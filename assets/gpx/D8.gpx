@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="CMRT Demo" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>D8 卡西營地 → 天池山莊(補給點)</name>
+  </metadata>
+  <wpt lat="24.1450" lon="121.2980"><name>卡西營地</name></wpt>
+  <wpt lat="24.1390" lon="121.3020"><name>卡東營地</name></wpt>
+  <wpt lat="24.1335" lon="121.3060"><name>奇萊裡山登山口</name></wpt>
+  <wpt lat="24.1300" lon="121.3120"><name>裡山前看天池營地</name></wpt>
+  <wpt lat="24.1260" lon="121.3160"><name>南峰叉路口營地</name></wpt>
+  <wpt lat="24.1220" lon="121.3200"><name>天池山莊(補給點)</name></wpt>
+  <trk>
+    <name>D8 路徑</name>
+    <trkseg>
+      <trkpt lat="24.1450" lon="121.2980"/>
+      <trkpt lat="24.1418" lon="121.3000"/>
+      <trkpt lat="24.1390" lon="121.3020"/>
+      <trkpt lat="24.1362" lon="121.3040"/>
+      <trkpt lat="24.1335" lon="121.3060"/>
+      <trkpt lat="24.1315" lon="121.3090"/>
+      <trkpt lat="24.1300" lon="121.3120"/>
+      <trkpt lat="24.1280" lon="121.3140"/>
+      <trkpt lat="24.1260" lon="121.3160"/>
+      <trkpt lat="24.1240" lon="121.3180"/>
+      <trkpt lat="24.1220" lon="121.3200"/>
+    </trkseg>
+  </trk>
+</gpx>

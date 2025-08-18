@@ -5,4 +5,5 @@
   .segments{padding-left:16px}
   .menu{position:static;width:auto;flex-direction:row;padding:8px;border-right:none;background:transparent;backdrop-filter:none}
   .wrap{padding-left:24px}
+  .map{height:260px}
 }
