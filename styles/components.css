@@ -1,4 +1,4 @@
-.note{background:#101522;border:1px solid var(--border);padding:12px 14px;border-radius:12px;margin:16px 0;color:var(--muted)}
+.note{background:#f8fbff;border:1px solid var(--border);padding:12px 14px;border-radius:12px;margin:16px 0;color:var(--muted)}
 .legend{display:flex;gap:16px;align-items:center;font-size:14px}
 .swatch{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:6px}
 
@@ -9,9 +9,9 @@ details.day > summary{
 details.day > summary::-webkit-details-marker{display:none}
 .summary-title{display:flex;gap:10px;align-items:baseline}
 .summary-title h2{margin:0;font-size:18px}
-.menu{display:flex;gap:10px}
-.menu a{color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:8px;font-size:14px}
-.menu a:hover{color:var(--ink);border-color:#2a3350}
+.menu{position:fixed;left:0;top:72px;width:var(--sidebar-width);display:flex;flex-direction:column;gap:8px;padding:12px;border-right:1px solid var(--border);background:rgba(255,255,255,.8);backdrop-filter:saturate(140%) blur(6px)}
+.menu a{color:var(--ink);text-decoration:none;border:1px solid var(--border);padding:8px 10px;border-radius:10px;font-size:14px;background:#fff}
+.menu a:hover{color:var(--accent);border-color:#bfd1ff;background:#f8fbff}
 .meta{font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center}
 .barbox{display:flex;align-items:center;gap:10px}
 .barbox .bar{

@@ -1,5 +1,7 @@
 :root{
-  --bg:#0b0c10;--card:#111218;--ink:#e8eef2;--muted:#9aa7b0;
-  --ok:#36ba7a;--warn:#f0b429;--bad:#e25555;--accent:#6ab0ff;
-  --border:#1c2030;
+  /* light theme */
+  --bg:#f6f8fb;--card:#ffffff;--ink:#0f172a;--muted:#64748b;
+  --ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--accent:#3b82f6;
+  --border:#e5e7eb;
+  --sidebar-width:220px;
 }
