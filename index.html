@@ -58,8 +58,8 @@
           <li>→ <span class="km">(1.7公里，70分鐘)</span> → 5.3K岔路口</li>
           <li>→ <span class="km">(2.5公里，100分鐘)</span> → 8.0K松風嶺</li>
           <li>→ <span class="km">(3.15公里，170分鐘)</span> → 木杆鞍部</li>
-          <li>→ <span class="km">(公里，65分鐘)</span> → 南湖溪山屋</li>
-          <li>→ <span class="km">(公里，220分鐘)</span> → 香菇寮營地</li>
+          <li>→ <span class="km">(1.75公里，65分鐘)</span> → 南湖溪山屋</li>
+          <li>→ <span class="km">(5.93公里，220分鐘)</span> → 香菇寮營地</li>
         </ol>
         <div class="footer-line">本日合計：715 分鐘</div>
       </div>
@@ -78,8 +78,8 @@
       </summary>
       <div class="content">
         <ol class="segments">
-          <li>香菇寮營地 → <span class="km">(公里，180分鐘)</span> → 中央尖溪山屋</li>
-          <li>→ <span class="km">(公里，240分鐘)</span> → 中央尖鞍部</li>
+          <li>香菇寮營地 → <span class="km">(3.24公里，180分鐘)</span> → 中央尖溪山屋</li>
+          <li>→ <span class="km">(4.32公里，240分鐘)</span> → 中央尖鞍部</li>
           <li>→ <span class="km">(0.9公里，50分鐘)</span> → 中央尖山</li>
           <li>→ 途經死亡稜線 → <span class="km">(0.7公里，120分鐘)</span> → 天空營地</li>
         </ol>
@@ -407,7 +407,7 @@
           <li>→ <span class="km">(0.1公里，5分鐘)</span> → 烏妹浪胖山</li>
           <li>→ 直接往東南方向下到錐錐谷 → <span class="km">(2.2公里，100分鐘)</span> → 哈伊拉羅溪北源營地</li>
           <li>→ <span class="km">(1.45公里，170分鐘)</span> → 僕落西擴山</li>
-          <li>→ <span class="km">(公里，110分鐘)</span> → 嘆息灣</li>
+          <li>→ <span class="km">(2.81公里，110分鐘)</span> → 嘆息灣</li>
         </ol>
         <div class="footer-line">本日合計：555 分鐘</div>
       </div>
@@ -430,7 +430,7 @@
       </summary>
       <div class="content">
         <ol class="segments">
-          <li>嘆息灣 → <span class="km">(公里，300分鐘)</span> → 馬利加南山</li>
+          <li>嘆息灣 → <span class="km">(5.32公里，300分鐘)</span> → 馬利加南山</li>
           <li>→ <span class="km">(1.65公里，110分鐘)</span> → 馬利加南西鞍(飛機殘骸址)</li>
           <li>→ <span class="km">(0.7公里，60分鐘)</span> → 馬利亞文路山東峰</li>
           <li>→ <span class="km">(1.1公里，60分鐘)</span> → 途經馬利亞文路山北峰 → 馬利亞文路山</li>
@@ -505,7 +505,7 @@
       <div class="content">
         <ol class="segments">
           <li>轆轆谷山屋 → <span class="km">(4.5公里，240分鐘)</span> → 雲峰東峰三岔路口營地</li>
-          <li>→ <span class="km">(雲峰原路來回公里，180分鐘)</span> → 雲峰東峰三岔路口營地</li>
+          <li>→ <span class="km">(雲峰原路來回 3.5公里，180分鐘)</span> → 雲峰東峰三岔路口營地</li>
           <li>→ <span class="km">(2.1公里，150分鐘)</span> → 西北鞍南雙池營地</li>
           <li>→ <span class="km">(0.8公里，50分鐘)</span> → 南雙頭山</li>
           <li>→ <span class="km">(3.0公里，110分鐘)</span> → 拉庫音溪山屋</li>
@@ -645,7 +645,7 @@
       document.getElementById('expandAll').addEventListener('click', () => DAYS.forEach(d => d.open = true));
       document.getElementById('collapseAll').addEventListener('click', () => DAYS.forEach((d,i) => { d.open = (i===0); }));
 
-      // 目錄點擊平滑捲動
+      // 目錄點擊平滑捲動（利用 CSS scroll-margin-top 搭配 sticky header）
       document.querySelectorAll('.toc a').forEach(a=>{
         a.addEventListener('click', e=>{
           e.preventDefault();

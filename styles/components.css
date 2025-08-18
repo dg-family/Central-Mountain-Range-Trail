@@ -11,10 +11,10 @@ details.day > summary::-webkit-details-marker{display:none}
 .summary-title h2{margin:0;font-size:18px}
 .meta{font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center}
 .barbox{display:flex;align-items:center;gap:10px}
-.bar{
+.barbox .bar{
   width:min(42vw,360px);height:8px;background:#0e1320;border:1px solid #182036;border-radius:999px;overflow:hidden
 }
-.bar > i{display:block;height:100%;background:var(--ok);width:0%}
+.barbox .bar > i{display:block;height:100%;background:var(--ok);width:0%}
 .min{font-variant-numeric:tabular-nums}
 .content{padding:0 16px 16px}
 .segments{margin:0;padding-left:18px}
@@ -22,5 +22,5 @@ details.day > summary::-webkit-details-marker{display:none}
 .segments li span.km{color:var(--muted)}
 .footer-line{margin-top:10px;color:var(--muted);font-size:13px}
 
-/* anchor offset for sticky header */
-.anchor{position:relative;top:-68px;visibility:hidden}
+/* anchor for sticky header spacing */
+.anchor{display:block;height:0;visibility:hidden;scroll-margin-top:72px}
