@@ -44,3 +44,8 @@ details.day > summary::-webkit-details-marker{display:none}
 .mapimg-viewport .pin .label{background:#ffffffcc;color:#111;padding:2px 6px;border-radius:6px;border:1px solid var(--border);font-size:12px;white-space:nowrap}
 .mapimg-viewport .pin.highlight .dot{background:var(--ok)}
 .mapimg-viewport .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;background:linear-gradient(180deg,#fafcff 0%,#f6f8fb 100%)}
+
+/* tags */
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid var(--border);vertical-align:middle;margin-left:8px}
+.tag--primary{background:rgba(34,197,94,.12);color:#047857;border-color:#a7f3d0}
+.tag--secondary{background:rgba(59,130,246,.12);color:#1d4ed8;border-color:#bfdbfe}
