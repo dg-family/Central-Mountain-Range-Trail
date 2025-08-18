@@ -8,15 +8,12 @@
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/components.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="https://unpkg.com/leaflet-gpx@1.7.0/dist/leaflet-gpx.min.js" defer></script>
 </head>
 <body>
   <header>
     <div class="bar">
       <div>
-        <h1>中央山脈大縱走（北→南）行程表</h1>
+        <h1>中央山脈大縱走｜行程表</h1>
         <nav class="menu" aria-label="主選單">
           <a href="index.html">行程表</a>
           <a href="supplies.html">補給點</a>
@@ -662,7 +659,7 @@
         });
       });
 
-      // 動態插入地圖按鈕與容器
+      // 動態插入地圖按鈕與靜態截圖容器
       DAYS.forEach(d => {
         const summary = d.querySelector('summary .meta');
         if(!summary) return;
@@ -674,100 +671,85 @@
         toolbar.appendChild(btn);
         summary.appendChild(toolbar);
 
-        const mapWrap = document.createElement('div');
-        mapWrap.className = 'map-wrap';
-        const mapDiv = document.createElement('div');
-        mapDiv.className = 'map';
-        mapDiv.style.display = 'none';
-        mapWrap.appendChild(mapDiv);
-        d.appendChild(mapWrap);
+        const wrap = document.createElement('div');
+        wrap.className = 'mapimg-wrap';
+        const viewport = document.createElement('div');
+        viewport.className = 'mapimg-viewport';
+        viewport.style.display = 'none';
+        const loading = document.createElement('div');
+        loading.className = 'loading';
+        loading.textContent = '載入地圖截圖中...';
+        viewport.appendChild(loading);
+        wrap.appendChild(viewport);
+        d.appendChild(wrap);
 
-        let mapInstance = null;
-        let nameToMarker = {};
+        let initialized = false;
         btn.addEventListener('click', async () => {
-          const isHidden = mapDiv.style.display === 'none';
-          mapDiv.style.display = isHidden ? 'block' : 'none';
+          const isHidden = viewport.style.display === 'none';
+          viewport.style.display = isHidden ? 'block' : 'none';
           if(!isHidden) return;
-          // Initialize base map quickly
-          if(!mapInstance){
-            mapInstance = L.map(mapDiv, { zoomControl:true });
-            const layer = createBaseLayer();
-            layer.addTo(mapInstance);
-            mapInstance.setView([23.7, 121], 6); // Taiwan overview
+          if(!initialized){
+            const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
+            await loadStaticMap(dayId, viewport, d.querySelectorAll('.segments li'));
+            initialized = true;
           }
-          const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
-          const gpxPath = `assets/gpx/D${dayId}.gpx`;
-          nameToMarker = {};
-          mapDiv.classList.add('loading');
-          mapDiv.textContent = '載入 GPX 中...';
-          const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
-          g.on('loaded', () => {
-            mapDiv.classList.remove('loading');
-            mapDiv.textContent = '';
-            mapInstance.fitBounds(g.getBounds());
-          });
-          g.on('addpoint', (e) => {
-            const marker = e.marker;
-            const wp = e.point;
-            const nm = (wp?.name || '').trim();
-            if(nm){
-              marker.bindPopup(nm);
-              nameToMarker[nm.toLowerCase()] = marker;
-            }
-          });
-          g.on('error', () => {
-            mapDiv.classList.remove('loading');
-            mapDiv.textContent = '找不到 GPX 或載入失敗';
-          });
-          g.addTo(mapInstance);
-
-          // 連結清單項目與地圖標記
-          const items = d.querySelectorAll('.segments li');
-          items.forEach(li => {
-            li.addEventListener('click', () => {
-              const txt = li.textContent.trim().toLowerCase();
-              const matchedName = Object.keys(nameToMarker).find(nm => txt.includes(nm));
-              if(matchedName){
-                const mk = nameToMarker[matchedName];
-                mapInstance.setView(mk.getLatLng(), Math.max(mapInstance.getZoom(), 13));
-                mk.openPopup();
-              }
-            });
-          });
-          setTimeout(() => { mapInstance.invalidateSize(); }, 100);
         });
       });
 
-      function loadScript(src){
-        return new Promise((resolve,reject)=>{
-          if(document.querySelector(`script[src="${src}"]`)) return resolve();
-          const s = document.createElement('script');
-          s.src = src; s.onload = resolve; s.onerror = reject; document.body.appendChild(s);
-        });
-      }
+      async function loadStaticMap(dayId, viewport, items){
+        const img = new Image();
+        img.className = 'mapimg';
+        const tryUrls = [
+          `assets/maps/D${dayId}.jpg`,
+          `assets/maps/D${dayId}.png`
+        ];
+        let loaded = false;
+        for(const url of tryUrls){
+          try {
+            await new Promise((resolve, reject) => {
+              img.onload = resolve; img.onerror = reject; img.src = url;
+            });
+            loaded = true; break;
+          } catch(e){}
+        }
+        viewport.innerHTML = '';
+        if(!loaded){
+          const msg = document.createElement('div');
+          msg.className = 'loading';
+          msg.textContent = `找不到截圖，請放置圖檔於 assets/maps/D${dayId}.jpg 或 .png`;
+          viewport.appendChild(msg);
+          return;
+        }
+        viewport.appendChild(img);
 
-      // Tile layer config: prefer 魯地圖 (rudy.outdoors.tw) if not overridden
-      function getBaseLayer(){
-        const rudyUrl = window.RUDY_TILE_URL || localStorage.getItem('RUDY_TILE_URL') || 'https://rudy.outdoors.tw/{z}/{x}/{y}.png';
-        const rudyAttr = window.RUDY_TILE_ATTR || localStorage.getItem('RUDY_TILE_ATTR') || '地圖: 魯地圖 rudy.outdoors.tw';
-        return { url: rudyUrl, attribution: rudyAttr };
-      }
-
-      function createBaseLayer(){
-        const base = getBaseLayer();
-        const layer = L.tileLayer(base.url, { attribution: base.attribution, maxZoom: 19 });
-        let switched = false;
-        layer.on('tileerror', () => {
-          if(switched) return;
-          switched = true;
-          const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 });
-          const map = layer._map;
-          if(map){
-            map.removeLayer(layer);
-            osm.addTo(map);
+        // 載入座標標註
+        try{
+          const res = await fetch(`assets/maps/D${dayId}.pins.json`);
+          if(res.ok){
+            const data = await res.json();
+            const nameToPin = {};
+            (data.pins||[]).forEach(p => {
+              const pin = document.createElement('div');
+              pin.className = 'pin';
+              pin.style.setProperty('--x', String(p.x));
+              pin.style.setProperty('--y', String(p.y));
+              const dot = document.createElement('span'); dot.className = 'dot';
+              const label = document.createElement('span'); label.className = 'label'; label.textContent = p.name;
+              pin.appendChild(dot); pin.appendChild(label);
+              viewport.appendChild(pin);
+              nameToPin[(p.name||'').toLowerCase()] = pin;
+            });
+            // 連結清單項目 → 高亮對應 pin
+            items.forEach(li => {
+              li.addEventListener('click', () => {
+                const txt = li.textContent.trim().toLowerCase();
+                const match = Object.keys(nameToPin).find(k => txt.includes(k));
+                Array.from(viewport.querySelectorAll('.pin')).forEach(p=>p.classList.remove('highlight'));
+                if(match){ nameToPin[match].classList.add('highlight'); }
+              });
+            });
           }
-        });
-        return layer;
+        }catch(e){ /* ignore */ }
       }
     })();
   </script>
