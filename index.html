@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>中央山脈大縱走（北→南）行程表</title>
+  <style>
+    :root{
+      --bg:#0b0c10;--card:#111218;--ink:#e8eef2;--muted:#9aa7b0;
+      --ok:#36ba7a;--warn:#f0b429;--bad:#e25555;--accent:#6ab0ff;
+      --border:#1c2030;
+    }
+   *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background:linear-gradient(180deg,#0a0b12 0%,#0c0f19 100%);
+      color:var(--ink);font:16px/1.6 system-ui, -apple-system, "Segoe UI",
+      "Noto Sans TC", Roboto, "PingFang TC", "Hiragino Sans", "Microsoft JhengHei", Arial, sans-serif;
+    }
+    .wrap{max-width:1000px;margin:auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,12,16,.75);backdrop-filter:saturate(140%) blur(8px);z-index:5;border-bottom:1px solid var(--border)}
+    header .bar{max-width:1000px;margin:auto;padding:12px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    h1{font-size:clamp(22px,3.2vw,32px);margin:10px 0}
+    .tools{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+    button{
+      background:#182034;border:1px solid var(--border);color:var(--ink);
+      padding:8px 12px;border-radius:10px;cursor:pointer
+    }
+    button:hover{border-color:#2a3350}
+    .toc{display:flex;flex-wrap:wrap;gap:6px}
+    .toc a{
+      text-decoration:none;color:var(--muted);border:1px solid var(--border);
+      padding:4px 8px;border-radius:8px;font-size:13px
+    }
+    .toc a:hover{color:var(--ink);border-color:#2a3350}
+
+    .note{background:#101522;border:1px solid var(--border);padding:12px 14px;border-radius:12px;margin:16px 0;color:var(--muted)}
+    .legend{display:flex;gap:16px;align-items:center;font-size:14px}
+    .swatch{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:6px}
+
+    details.day{border:1px solid var(--border);background:var(--card);border-radius:14px;margin:14px 0;overflow:hidden}
+    details.day > summary{
+      list-style:none;cursor:pointer;padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center
+    }
+    details.day > summary::-webkit-details-marker{display:none}
+    .summary-title{display:flex;gap:10px;align-items:baseline}
+    .summary-title h2{margin:0;font-size:18px}
+    .meta{font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center}
+    .barbox{display:flex;align-items:center;gap:10px}
+    .bar{
+      width:min(42vw,360px);height:8px;background:#0e1320;border:1px solid #182036;border-radius:999px;overflow:hidden
+    }
+    .bar > i{display:block;height:100%;background:var(--ok);width:0%}
+    .min{font-variant-numeric:tabular-nums}
+    .content{padding:0 16px 16px}
+    .segments{margin:0;padding-left:18px}
+    .segments li{margin:2px 0}
+    .segments li span.km{color:var(--muted)}
+    .footer-line{margin-top:10px;color:var(--muted);font-size:13px}
+
+    /* small screens */
+    @media (max-width:640px){
+      .bar{width:52vw}
+      .meta{flex-wrap:wrap}
+      .segments{padding-left:16px}
+    }
+    /* anchor offset for sticky header */
+    .anchor{position:relative;top:-68px;visibility:hidden}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>中央山脈大縱走（北→南）行程表</h1>
+        <div class="toc" aria-label="快速導覽">
+          <!-- 目錄 -->
+          <a href="#D1">D1</a><a href="#D2">D2</a><a href="#D3">D3</a><a href="#D4">D4</a><a href="#D5">D5</a>
+          <a href="#D6">D6</a><a href="#D7">D7</a><a href="#D8">D8</a><a href="#D9">D9</a><a href="#D10">D10</a>
+          <a href="#D11">D11</a><a href="#D12">D12</a><a href="#D13">D13</a><a href="#D14">D14</a><a href="#D15">D15</a>
+          <a href="#D16">D16</a><a href="#D17">D17</a><a href="#D18">D18</a><a href="#D19">D19</a><a href="#D20">D20</a>
+          <a href="#D21">D21</a><a href="#D22">D22</a><a href="#D23">D23</a><a href="#D24">D24</a><a href="#D25">D25</a>
+          <a href="#D26">D26</a><a href="#D27">D27</a><a href="#D28">D28</a><a href="#D29">D29</a><a href="#D30">D30</a>
+        </div>
+      </div>
+      <div class="tools">
+        <button id="expandAll">全部展開</button>
+        <button id="collapseAll">全部收合</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="note">
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--ok)"></span> ≤ 600 分鐘（≤ 10 小時）</span>
+        <span><span class="swatch" style="background:var(--warn)"></span> 601–720 分鐘（10–12 小時）</span>
+        <span><span class="swatch" style="background:var(--bad)"></span> &gt; 720 分鐘（&gt; 12 小時）</span>
+      </div>
+    </div>
+
+    <!-- ===== D1 ~ D30 ===== -->
+    <span id="D1" class="anchor"></span>
+    <details class="day" data-minutes="715" open>
+      <summary>
+        <div class="summary-title"><h2>D1：勝光登山口 → 香菇寮營地</h2></div>
+        <div class="meta">
+          <div class="barbox">
+            <div class="bar"><i></i></div>
+            <span class="min"><strong>715</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span>
+          </div>
+        </div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>勝光登山口 → <span class="km">(1.2公里，30分鐘)</span> → 大水池登山口</li>
+          <li>→ <span class="km">(1.7公里，70分鐘)</span> → 5.3K岔路口</li>
+          <li>→ <span class="km">(2.5公里，100分鐘)</span> → 8.0K松風嶺</li>
+          <li>→ <span class="km">(3.15公里，170分鐘)</span> → 木杆鞍部</li>
+          <li>→ <span class="km">(公里，65分鐘)</span> → 南湖溪山屋</li>
+          <li>→ <span class="km">(公里，220分鐘)</span> → 香菇寮營地</li>
+        </ol>
+        <div class="footer-line">本日合計：715 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D2" class="anchor"></span>
+    <details class="day" data-minutes="590">
+      <summary>
+        <div class="summary-title"><h2>D2：香菇寮營地 → 天空營地</h2></div>
+        <div class="meta">
+          <div class="barbox">
+            <div class="bar"><i></i></div>
+            <span class="min"><strong>590</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span>
+          </div>
+        </div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>香菇寮營地 → <span class="km">(公里，180分鐘)</span> → 中央尖溪山屋</li>
+          <li>→ <span class="km">(公里，240分鐘)</span> → 中央尖鞍部</li>
+          <li>→ <span class="km">(0.9公里，50分鐘)</span> → 中央尖山</li>
+          <li>→ 途經死亡稜線 → <span class="km">(0.7公里，120分鐘)</span> → 天空營地</li>
+        </ol>
+        <div class="footer-line">本日合計：590 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D3" class="anchor"></span>
+    <details class="day" data-minutes="665">
+      <summary>
+        <div class="summary-title"><h2>D3：天空營地 → 無明水池</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>665</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>天空營地 → <span class="km">（1.0公里，120分鐘）</span> → 中央尖山西峰</li>
+          <li>→ <span class="km">(3.2公里，240分鐘)</span> → 途經白板營地、甘藷東南鞍營地/巨石營地 → 甘薯峰</li>
+          <li>→ <span class="km">(2.0公里，120分鐘)</span> → 甘薯南峰營地</li>
+          <li>→ 途經鬼門關斷崖 → <span class="km">(1.9公里，170分鐘)</span> → 鬼門關峰</li>
+          <li>→ <span class="km">(0.35公里，15分鐘)</span> → 無明水池</li>
+        </ol>
+        <div class="footer-line">本日合計：665 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D4" class="anchor"></span>
+    <details class="day" data-minutes="665">
+      <summary>
+        <div class="summary-title"><h2>D4：無明水池 → 黑水塘/汪汪水池營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>665</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>無明水池 → <span class="km">(0.9公里，70分鐘)</span> → 無明山</li>
+          <li>→ 途經無明斷崖 → <span class="km">(1.9公里，200分鐘)</span> → 無明山西峰</li>
+          <li>→ <span class="km">(3.0公里，290分鐘)</span> → 鈴鳴山東鞍營地</li>
+          <li>→ <span class="km">(0.45公里，30分鐘)</span> → 鈴鳴山</li>
+          <li>→ <span class="km">(約2.2公里，75分鐘)</span> → 黑水塘/汪汪水池營地</li>
+        </ol>
+        <div class="footer-line">本日合計：665 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D5" class="anchor"></span>
+    <details class="day" data-minutes="685">
+      <summary>
+        <div class="summary-title"><h2>D5：黑水塘/汪汪水池營地 → 大禹嶺(補給點)</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>685</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>黑水塘/汪汪水池營地 → <span class="km">(估1.8公里，150分鐘)</span> → 北畢祿山</li>
+          <li>→ 途徑畢祿斷崖 → <span class="km">(估1.8公里，150分鐘)</span> → 畢祿山</li>
+          <li>→ <span class="km">(0.2公里，5分鐘)</span> → 主稜三岔路口</li>
+          <li>→ <span class="km">(1.5公里，140分鐘)</span> → 途經拉繩垂直岩壁 → 8.4K 登山口營地</li>
+          <li>→ <span class="km">(8.4公里，230分鐘)</span> → 820林道0K(111K/合歡山隧道北口)</li>
+          <li>→ <span class="km">(0.2公里，10分鐘)</span> → 大禹嶺(補給點)</li>
+        </ol>
+        <div class="footer-line">本日合計：685 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D6" class="anchor"></span>
+    <details class="day" data-minutes="595">
+      <summary>
+        <div class="summary-title"><h2>D6：大禹嶺 → 屏風山南峰(H3183M)</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>595</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>大禹嶺 → <span class="km">(0.2公里，5分鐘)</span> → 大禹嶺111.2K登山口</li>
+          <li>→ <span class="km">(2.7公里，80分鐘)</span> → 第一次過塔次基里溪(活水)</li>
+          <li>→ <span class="km">(1.7公里，40分鐘)</span> → 鐵線吊橋</li>
+          <li>→ <span class="km">(0.987公里，40分鐘)</span> → 屏風山屋/松針營地(屏風山告示牌編號040)</li>
+          <li>→ 沿途再次經過塔次基里溪支流(活水) → <span class="km">(0.855公里，40分鐘)</span> → 巨木區</li>
+          <li>→ <span class="km">(2.26公里，180分鐘)</span> → 垂直峭壁裸岩區</li>
+          <li>→ <span class="km">(0.56公里，60分鐘)</span> → 屏風山</li>
+          <li>→ 途經黑水塘營地 、鐘塔 →  <span class="km">(約2.0公里，約150分鐘)</span> → 屏風山南峰(H3183M)</li>
+        </ol>
+        <div class="footer-line">本日合計：595 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D7" class="anchor"></span>
+    <details class="day" data-minutes="580">
+      <summary>
+        <div class="summary-title"><h2>D7：屏風山南峰 → 卡西營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>580</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>屏風山南峰(H3183M) → <span class="km">(約2.0公里，約180分鐘)</span> → 南北塔/大門牙/神祕洞穴</li>
+          <li>→ <span class="km">(約0.9公里，約90分鐘)</span> → 奇萊東稜岔路口</li>
+          <li>→ <span class="km">(約0.2公里，約10分鐘)</span> → 奇萊北峰</li>
+          <li>→ <span class="km">(2.0公里，75分鐘)</span> → 奇萊稜線山屋/營地</li>
+          <li>→ 沿途經過奇萊池山登山口 → <span class="km">(3.8公里，90分鐘)</span> → 奇萊主峰登山口</li>
+          <li>→ <span class="km">(0.6公里，40分鐘 奇萊主峰)</span> → 正式進入卡羅樓斷崖危險路段</li>
+          <li>→ <span class="km">(1.0公里，95分鐘)</span> → 卡西營地</li>
+        </ol>
+        <div class="footer-line">本日合計：580 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D8" class="anchor"></span>
+    <details class="day" data-minutes="455">
+      <summary>
+        <div class="summary-title"><h2>D8：卡西營地 → 天池山莊(補給點)</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>455</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>卡西營地 → 途經卡羅樓山鞍部 → <span class="km">(3.0公里, 230分鐘)</span> → 卡東營地</li>
+          <li>→ 途經石瀑區 → <span class="km">(0.5公里，30分鐘)</span> → 鐵杉林入口/箭竹海歡迎你/進森林後結束卡羅樓斷崖危險路段</li>
+          <li>→ <span class="km">(1.0公里，40分鐘)</span> → 奇萊裡山登山口</li>
+          <li>→ <span class="km">(1.8公里，80分鐘)</span> → 裡山前看天池營地(4T*10)</li>
+          <li>→ <span class="km">(1.3公里， 20分鐘)</span> → 南峰叉路口營地</li>
+          <li>→ <span class="km">(1.8公里， 55分鐘)</span> → 天池山莊(補給點)</li>
+        </ol>
+        <div class="footer-line">本日合計：455 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D9" class="anchor"></span>
+    <details class="day" data-minutes="695">
+      <summary>
+        <div class="summary-title"><h2>D9：天池山莊 → 南峰岔路口</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>695</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>天池山莊 → <span class="km">(2.5公里，50分鐘)</span> → 縣界埡口/光被八表紀念碑</li>
+          <li>→ <span class="km">(約1公里，15分鐘)</span> → 電塔下方營地</li>
+          <li>→ <span class="km">(4.7公里，315分鐘)</span> → 途經卡賀爾山 → 能高山主峰</li>
+          <li>→ <span class="km">(0.6公里，20分鐘)</span> → 能高小屋舊址</li>
+          <li>→ <span class="km">(0.5公里，15分鐘)</span> → 台灣池營地</li>
+          <li>→ <span class="km">(1.4公里，30分鐘)</span> → 大陸池營地</li>
+          <li>→ <span class="km">(1.3公里，165分鐘)</span> → 腰繞避開垂直岩壁拉繩段 → 能高南峰南嶺</li>
+          <li>→ <span class="km">(1.2公里，85分鐘)</span> → 南峰岔路口</li>
+        </ol>
+        <div class="footer-line">本日合計：695 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D10" class="anchor"></span>
+    <details class="day" data-minutes="638">
+      <summary>
+        <div class="summary-title"><h2>D10：南峰岔路口 → 屯鹿妹池</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>638</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>南峰岔路口 → <span class="km">(0.1公里，5分鐘)</span> → 能高山南峰</li>
+          <li>→ <span class="km">(0.1公里，3分鐘)</span> → 南峰岔路口</li>
+          <li>→ <span class="km">(1公里，70分鐘)</span> → 南峰南鞍營地</li>
+          <li>→ <span class="km">(0.8公里，90分鐘)</span> → 3039鞍營地</li>
+          <li>→ <span class="km">(1.1公里，60分鐘)</span> → 光頭山</li>
+          <li>→ <span class="km">(2公里，100分鐘)</span> → 白石池</li>
+          <li>→ <span class="km">(3公里，130分鐘)</span> → 白石山</li>
+          <li>→ <span class="km">(1.3公里，60分鐘)</span> → 萬里池</li>
+          <li>→ <span class="km">(2.1公里，120分鐘)</span> → 屯鹿池 → 屯鹿妹池</li>
+        </ol>
+        <div class="footer-line">本日合計：638 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D11" class="anchor"></span>
+    <details class="day" data-minutes="545">
+      <summary>
+        <div class="summary-title"><h2>D11：屯鹿妹池 → MIT鞍部鋪箭竹營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>545</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>屯鹿妹池 → <span class="km">(1.0公里，37分鐘)</span> → 北安東軍山東稜登山口</li>
+          <li>→ <span class="km">(0.3公里，8分鐘)</span> → 安東軍山三岔路口營地</li>
+          <li>→ <span class="km">(1.2公里，50分鐘)</span> → 安東軍山</li>
+          <li>→ <span class="km">(0.2公里，10分鐘)</span> → 摩即草山三岔路口</li>
+          <li>→ <span class="km">(0.9公里，估50分鐘)</span> → 青草營地</li>
+          <li>→ <span class="km">(0.35公里，估25分鐘)</span> → 樹林營地</li>
+          <li>→ <span class="km">(1.2公里，估85分鐘)</span> → 摩即地段前的平坦營地</li>
+          <li>→ <span class="km">(2.8公里，估280分鐘)</span> → MIT鞍部鋪箭竹營地</li>
+        </ol>
+        <div class="footer-line">本日合計：545 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D12" class="anchor"></span>
+    <details class="day" data-minutes="522">
+      <summary>
+        <div class="summary-title"><h2>D12：MIT鞍部鋪箭竹營地 → 凹谷避風營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>522</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>MIT鞍部鋪箭竹營地 → <span class="km">(1.5公里，估150分鐘)</span> → 摩即三岔路口</li>
+          <li>→ <span class="km">(0.05公里，估5分鐘)</span> → 摩即山西峰H2620M</li>
+          <li>→ <span class="km">(0.175公里，估10分鐘)</span> → 摩即山 2643M</li>
+          <li>→ <span class="km">(0.175公里，估10分鐘)</span> → 摩即山西峰</li>
+          <li>→ <span class="km">(0.05公里，估2分鐘)</span> → 摩即三岔路口</li>
+          <li>→ <span class="km">(0.8公里，估80分鐘)</span> → 摩即池/摩即池畔營地</li>
+          <li>→ <span class="km">(0.9公里，估70分鐘)</span> → 摩即南鞍營地</li>
+          <li>→ <span class="km">(0.8公里，估50分鐘)</span> → 2640峰(有腰繞路線，不上稜，好走)</li>
+          <li>→ <span class="km">(1.0公里，估85分鐘)</span> → 走出地獄箭竹海</li>
+          <li>→ <span class="km">(0.9公里，估60分鐘)</span> → 凹谷避風營地</li>
+        </ol>
+        <div class="footer-line">本日合計：522 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D13" class="anchor"></span>
+    <details class="day" data-minutes="475">
+      <summary>
+        <div class="summary-title"><h2>D13：凹谷避風營地 → 台電豪華工寮(補給點)</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>475</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>凹谷避風營地 → <span class="km">(0.4公里，估30分鐘)</span> → 途經最後的摩即關卡 → 草山岔路口</li>
+          <li>→ <span class="km">(0.4公里，估30分鐘)</span> → 草山 2811M</li>
+          <li>→ <span class="km">(0.4公里，估30分鐘)</span> → 草山岔路口</li>
+          <li>→ <span class="km">(0.2公里，估25分鐘)</span> → 草山下大黑水塘</li>
+          <li>→ <span class="km">(0.58公里，估25分鐘)</span> → 凹谷水池平坦大營地</li>
+          <li>→ <span class="km">(2.3公里，估85分鐘)</span> → 途經2675峰、超大營地 → 漂亮石陣</li>
+          <li>→ <span class="km">(2.6公里，估120分鐘)</span> → 卡社大山前漂亮白木林</li>
+          <li>→ <span class="km">(1.1公里，估40分鐘)</span> → 卡社(北丹)大山 2947M</li>
+          <li>→ <span class="km">(0.8公里，估40分鐘)</span> → 卡社池優美谷地</li>
+          <li>→ <span class="km">(2.2公里，估75分鐘)</span> → 台電豪華工寮(補給點)</li>
+        </ol>
+        <div class="footer-line">本日合計：475 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D14" class="anchor"></span>
+    <details class="day" data-minutes="0">
+      <summary>
+        <div class="summary-title"><h2>D14：預備日</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>0</strong> 分鐘 <small>(休整)</small></span></div></div>
+      </summary>
+      <div class="content"><div class="footer-line">預備日／機動天</div></div>
+    </details>
+
+    <span id="D15" class="anchor"></span>
+    <details class="day" data-minutes="483">
+      <summary>
+        <div class="summary-title"><h2>D15：台電豪華工寮 → 2761最低鞍部營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>483</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>台電豪華工寮 → <span class="km">(6.1公里，估150分鐘)</span> → 途經支13K告示牌記得往左往上走 → 六順山登山口</li>
+          <li>→ <span class="km">(0.08公里，5分鐘)</span> → 七彩湖日出展望點/網咖</li>
+          <li>→ <span class="km">(0.08公里，3分鐘)</span> → 六順山登山口</li>
+          <li>→ <span class="km">(4.0公里，190分鐘)</span> → 途經2897公尺峰 → 六順山前三岔路口</li>
+          <li>→ <span class="km">(2.3公里，60分鐘)</span> → 2813鞍營地</li>
+          <li>→ <span class="km">(0.8公里，75分鐘)</span> → 2761最低鞍部營地</li>
+        </ol>
+        <div class="footer-line">本日合計：483 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D16" class="anchor"></span>
+    <details class="day" data-minutes="650">
+      <summary>
+        <div class="summary-title"><h2>D16：2761最低鞍部營地 → 2603公尺鞍部</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>650</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>2761最低鞍部營地 → <span class="km">(1.6公里，210分鐘)</span> → 關門北山</li>
+          <li>→ <span class="km">(2.6公里，150分鐘)</span> → 關門山</li>
+          <li>→ <span class="km">(1.7公里，40分鐘)</span> → 巖山</li>
+          <li>→ <span class="km">(2.9公里，250分鐘)</span> → 途經關門山凹大水池 → 2603公尺鞍部</li>
+        </ol>
+        <div class="footer-line">本日合計：650 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D17" class="anchor"></span>
+    <details class="day" data-minutes="685">
+      <summary>
+        <div class="summary-title"><h2>D17：2603公尺鞍部 → 太平溪源營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>685</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>2603公尺鞍部 → <span class="km">(1.3公里，90分鐘)</span> → 大石公山</li>
+          <li>→ <span class="km">(0.3公里，15分鐘)</span> → 小石公山</li>
+          <li>→ <span class="km">(0.7公里，50分鐘)</span> → 2833公尺鞍部</li>
+          <li>→ <span class="km">(2.7公里，140分鐘)</span> → 3255公尺峰下營地</li>
+          <li>→ <span class="km">(1.3公里，260分鐘)</span> → 丹大山</li>
+          <li>→ <span class="km">(1.8公里，80分鐘)</span> → 盧利拉駱山</li>
+          <li>→ <span class="km">(1.4公里，50分鐘)</span> → 太平溪源營地</li>
+        </ol>
+        <div class="footer-line">本日合計：685 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D18" class="anchor"></span>
+    <details class="day" data-minutes="370">
+      <summary>
+        <div class="summary-title"><h2>D18：太平溪源營地 → 東鞍營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>370</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>太平溪源營地 → <span class="km">(1.6公里，100分鐘)</span> → 三岔路營地</li>
+          <li>→ 內嶺爾山輕裝來回 <span class="km">(1.4公里，55分鐘)</span> → 三岔路營地</li>
+          <li>→ <span class="km">(2.3公里，65分鐘)</span> → 馬路巴拉讓山</li>
+          <li>→ <span class="km">(1.4公里，150分鐘)</span> → 東鞍營地</li>
+        </ol>
+        <div class="footer-line">本日合計：370 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D19" class="anchor"></span>
+    <details class="day" data-minutes="555">
+      <summary>
+        <div class="summary-title"><h2>D19：東鞍營地 → 嘆息灣</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>555</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>東鞍營地 → <span class="km">(2.9公里，110分鐘)</span> → 義西請馬至山</li>
+          <li>→ <span class="km">(1.9公里，60分鐘)</span> → 烏妹浪胖池</li>
+          <li>→ <span class="km">(0.1公里，5分鐘)</span> → 烏妹浪胖山</li>
+          <li>→ 直接往東南方向下到錐錐谷 → <span class="km">(2.2公里，100分鐘)</span> → 哈伊拉羅溪北源營地</li>
+          <li>→ <span class="km">(1.45公里，170分鐘)</span> → 僕落西擴山</li>
+          <li>→ <span class="km">(公里，110分鐘)</span> → 嘆息灣</li>
+        </ol>
+        <div class="footer-line">本日合計：555 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D20" class="anchor"></span>
+    <details class="day" data-minutes="0">
+      <summary>
+        <div class="summary-title"><h2>D20：預備日</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>0</strong> 分鐘 <small>(休整)</small></span></div></div>
+      </summary>
+      <div class="content"><div class="footer-line">預備日／機動天</div></div>
+    </details>
+
+    <span id="D21" class="anchor"></span>
+    <details class="day" data-minutes="665">
+      <summary>
+        <div class="summary-title"><h2>D21：嘆息灣 → 馬博拉斯山屋</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>665</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>嘆息灣 → <span class="km">(公里，300分鐘)</span> → 馬利加南山</li>
+          <li>→ <span class="km">(1.65公里，110分鐘)</span> → 馬利加南西鞍(飛機殘骸址)</li>
+          <li>→ <span class="km">(0.7公里，60分鐘)</span> → 馬利亞文路山東峰</li>
+          <li>→ <span class="km">(1.1公里，60分鐘)</span> → 途經馬利亞文路山北峰 → 馬利亞文路山</li>
+          <li>→ <span class="km">(3.5公里，135分鐘)</span> → 馬博拉斯山屋</li>
+        </ol>
+        <div class="footer-line">本日合計：665 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D22" class="anchor"></span>
+    <details class="day" data-minutes="610">
+      <summary>
+        <div class="summary-title"><h2>D22：馬博拉斯山屋 → 大水窟山屋(補給點)</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>610</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>馬博拉斯山屋 → <span class="km">(0.3公里，40分鐘)</span> → 馬博前岔路</li>
+          <li>→ <span class="km">(輕裝來回馬博拉斯山0.6公里，15分鐘)</span> → 馬博前岔路</li>
+          <li>→ <span class="km">(1.5公里，40分鐘)</span> → 秀馬最低鞍部</li>
+          <li>→ <span class="km">(2.0公里，205分鐘)</span> → 途經秀馬山屋舊址 → 秀姑巒山</li>
+          <li>→ <span class="km">(2.0公里，70分鐘)</span> → 途經秀姑巒山南登山口 → 秀姑坪岔路</li>
+          <li>→ <span class="km">(2.4公里，140分鐘)</span> → 大水窟山</li>
+          <li>→ <span class="km">(2.8公里，100分鐘)</span> → 大水窟山屋(補給點)</li>
+        </ol>
+        <div class="footer-line">本日合計：610 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D23" class="anchor"></span>
+    <details class="day" data-minutes="550">
+      <summary>
+        <div class="summary-title"><h2>D23：大水窟山屋 → 達芬谷山屋</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>550</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>大水窟山屋 → <span class="km">(1.5公里，195分鐘)</span> → 南大水窟山</li>
+          <li>→ <span class="km">(2.1公里，95分鐘)</span> → 三岔路口</li>
+          <li>→ <span class="km">(2.9公里，140分鐘)</span> → 途經黑水塘 → 達芬尖山登山口</li>
+          <li>→ <span class="km">(輕裝來回達芬尖山0.4公里，30分鐘)</span> → 達芬尖山登山口</li>
+          <li>→ <span class="km">(2.5公里，90分鐘)</span> → 達芬谷山屋</li>
+        </ol>
+        <div class="footer-line">本日合計：550 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D24" class="anchor"></span>
+    <details class="day" data-minutes="523">
+      <summary>
+        <div class="summary-title"><h2>D24：達芬谷山屋 → 轆轆谷山屋</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>523</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>達芬谷山屋 → <span class="km">(1.7公里，160分鐘)</span> → 塔芬山</li>
+          <li>→ <span class="km">(0.4公里，20分鐘)</span> → 塔芬池</li>
+          <li>→ <span class="km">(3.9公里，250分鐘)</span> → 轆轆山登山口</li>
+          <li>→ <span class="km">(轆轆山原路來回 1.4公里，48分鐘)</span> → 轆轆山登山口</li>
+          <li>→ <span class="km">(0.9公里，45分鐘)</span> → 轆轆谷山屋</li>
+        </ol>
+        <div class="footer-line">本日合計：523 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D25" class="anchor"></span>
+    <details class="day" data-minutes="730">
+      <summary>
+        <div class="summary-title"><h2>D25：轆轆谷山屋 → 拉庫音溪山屋</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>730</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>轆轆谷山屋 → <span class="km">(4.5公里，240分鐘)</span> → 雲峰東峰三岔路口營地</li>
+          <li>→ <span class="km">(雲峰原路來回公里，180分鐘)</span> → 雲峰東峰三岔路口營地</li>
+          <li>→ <span class="km">(2.1公里，150分鐘)</span> → 西北鞍南雙池營地</li>
+          <li>→ <span class="km">(0.8公里，50分鐘)</span> → 南雙頭山</li>
+          <li>→ <span class="km">(3.0公里，110分鐘)</span> → 拉庫音溪山屋</li>
+        </ol>
+        <div class="footer-line">本日合計：730 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D26" class="anchor"></span>
+    <details class="day" data-minutes="705">
+      <summary>
+        <div class="summary-title"><h2>D26：拉庫音溪山屋 → 向陽森林遊樂區/向陽營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>705</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>拉庫音溪山屋 → <span class="km">(3.3公里，220分鐘)</span> → 新康山三岔路口</li>
+          <li>→ <span class="km">(0.9公里，30分鐘)</span> → 嘉明湖岔路口</li>
+          <li>→ <span class="km">(1.0公里，25分鐘)</span> → 三叉山登山口</li>
+          <li>→ <span class="km">(1.6公里，55分鐘)</span> → 向陽山北峰下解說牌</li>
+          <li>→ <span class="km">(1.3公里，35分鐘)</span> → 向陽三岔路口</li>
+          <li>→ <span class="km">(0.4公里，15分鐘)</span> → 嘉明湖避難山屋</li>
+          <li>→ <span class="km">(1.0公里，45分鐘)</span> → 向陽西側登山口</li>
+          <li>→ <span class="km">(向陽山原路來回 1.2公里，60分鐘，1.2公里)</span> → 西側登山口</li>
+          <li>→ <span class="km">(3.0公里，130分鐘)</span> → 途經向陽名樹 → 向陽山屋</li>
+          <li>→ <span class="km">(4.0公里，90分鐘)</span> → 途經林道登山口 → 向陽森林遊樂區/向陽營地 (補給點)</li>
+        </ol>
+        <div class="footer-line">本日合計：705 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D27" class="anchor"></span>
+    <details class="day" data-minutes="875">
+      <summary>
+        <div class="summary-title"><h2>D27：向陽森林遊樂區 → 海諾南山下營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>875</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>向陽森林遊樂區 → 坐車車接駁 → 進涇橋</li>
+          <li>→ <span class="km">(1.3公里，135分鐘)</span> → 3026庫哈諾辛山屋</li>
+          <li>→ <span class="km">(庫哈諾辛山原路來回 3.4公里，150分鐘)</span> → 3026庫哈諾辛山屋</li>
+          <li>→ <span class="km">(估2公里，150分鐘)</span> → 3444 主稜</li>
+          <li>→ <span class="km">(估1.9公里，130分鐘)</span> → 關山</li>
+          <li>→ <span class="km">(2.2公里，180分鐘)</span> → 2920鞍部營地</li>
+          <li>→ <span class="km">(2.5公里，130分鐘)</span> → 海諾南山</li>
+          <li>→ 海諾南山下營地</li>
+        </ol>
+        <div class="footer-line">本日合計：875 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D28" class="anchor"></span>
+    <details class="day" data-minutes="465">
+      <summary>
+        <div class="summary-title"><h2>D28：海諾南山下營地 → 雲水山營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>465</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>海諾南山下營地 → <span class="km">(3.4公里，170分鐘)</span> → 小關山北峰前營地</li>
+          <li>→ <span class="km">(0.1公里)</span> → 小關山北峰</li>
+          <li>→ <span class="km">(2.4公里，160 分鐘)</span> → 四岔路口</li>
+          <li>→ <span class="km">(小關山原路來回 0.2公里，5分鐘)</span> → <span class="km">(估0.7公里，40分鐘)</span> → 小關山森林營地</li>
+          <li>→ <span class="km">(估0.5公里，30分鐘)</span> → 最低鞍部</li>
+          <li>→ <span class="km">(估1.0公里，60分鐘)</span> → 雲水山營地</li>
+        </ol>
+        <div class="footer-line">本日合計：465 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D29" class="anchor"></span>
+    <details class="day" data-minutes="590">
+      <summary>
+        <div class="summary-title"><h2>D29：雲水山營地 → 三叉峰下營地</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>590</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>雲水山(營地/看天池) → <span class="km">(2.2公里，90分鐘)</span> → 雲馬最低鞍部營地</li>
+          <li>→ <span class="km">(1.1公里，70分鐘)</span> → 馬西巴秀山</li>
+          <li>→ <span class="km">(0.35公里，35分鐘)</span> → 馬西巴秀石洞營地&lt;拉瑪達星星遺址&gt;</li>
+          <li>→ <span class="km">(5.3公里，330分鐘)</span> → 3237公尺峰</li>
+          <li>→ <span class="km">(0.9公里65分鐘)</span> → 三叉峰下營地(營地/看天池)</li>
+        </ol>
+        <div class="footer-line">本日合計：590 分鐘</div>
+      </div>
+    </details>
+
+    <span id="D30" class="anchor"></span>
+    <details class="day" data-minutes="674">
+      <summary>
+        <div class="summary-title"><h2>D30：三叉峰下營地 → 石山林道登山口 7K特生中心</h2></div>
+        <div class="meta"><div class="barbox"><div class="bar"><i></i></div><span class="min"><strong>674</strong> 分鐘 <small>(≈ <span class="hrs"></span> 小時)</small></span></div></div>
+      </summary>
+      <div class="content">
+        <ol class="segments">
+          <li>三叉峰下營地(營地/看天池) → <span class="km">(1公里，10分鐘)</span> → 三叉路口</li>
+          <li>→ <span class="km">(卑南主山 輕裝來回 1.9公里，55分鐘)</span> → 三叉路口</li>
+          <li>→ <span class="km">(2.6公里，145分鐘)</span> → 新舊路岔路</li>
+          <li>→ <span class="km">(2.0公里，130分鐘)</span> → 林道鞍部(石山東鞍)</li>
+          <li>→ <span class="km">(1.1公里，100分鐘)</span> → 石瀑區</li>
+          <li>→ <span class="km">(0.4公里，40分鐘)</span> → 石山岔路口</li>
+          <li>→ <span class="km">(石山 輕裝來回4分鐘，0.1公里)</span> → 石山岔路口</li>
+          <li>→ <span class="km">(1.3公里，75分鐘)</span> → 石山西鞍</li>
+          <li>→ <span class="km">(估1.0公里，15分鐘)</span> → 溪南山登山口</li>
+          <li>→ 走捷徑接石山林道(沿途有訊號) → 不經貨櫃屋(最後訊號點)</li>
+          <li>→ <span class="km">(估4.3公里，估100分鐘)</span> → 石山林道登山口 7K特生中心</li>
+        </ol>
+        <div class="footer-line">本日合計：674 分鐘</div>
+      </div>
+    </details>
+
+  </div>
+
+  <script>
+    // 轉換分鐘→小時，並填色進度條（以 600 分鐘 / 10 小時為基準）
+    (() => {
+      const DAYS = document.querySelectorAll('details.day');
+      DAYS.forEach(d => {
+        const mins = +d.dataset.minutes || 0;
+        const hrs = (mins/60).toFixed(1);
+        const hrsSpan = d.querySelector('.hrs');
+        if(hrsSpan) hrsSpan.textContent = hrs;
+
+        const bar = d.querySelector('.bar > i');
+        const pct = Math.min(100, (mins/600)*100);
+        if(bar){ bar.style.width = pct + '%'; }
+
+        // 顏色分類
+        if(mins <= 600) bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--ok');
+        else if(mins <= 720) bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--warn');
+        else bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bad');
+      });
+
+      // 展開/收合全部
+      document.getElementById('expandAll').addEventListener('click', () => DAYS.forEach(d => d.open = true));
+      document.getElementById('collapseAll').addEventListener('click', () => DAYS.forEach((d,i) => { d.open = (i===0); }));
+
+      // 目錄點擊平滑捲動
+      document.querySelectorAll('.toc a').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          const id = a.getAttribute('href');
+          const el = document.querySelector(id);
+          if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
