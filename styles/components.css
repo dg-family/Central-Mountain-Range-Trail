@@ -9,6 +9,9 @@ details.day > summary{
 details.day > summary::-webkit-details-marker{display:none}
 .summary-title{display:flex;gap:10px;align-items:baseline}
 .summary-title h2{margin:0;font-size:18px}
+.menu{display:flex;gap:10px}
+.menu a{color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:8px;font-size:14px}
+.menu a:hover{color:var(--ink);border-color:#2a3350}
 .meta{font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center}
 .barbox{display:flex;align-items:center;gap:10px}
 .barbox .bar{
