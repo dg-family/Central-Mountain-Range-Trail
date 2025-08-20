@@ -685,6 +685,10 @@
         d.appendChild(wrap);
 
         let mapInstance = null;
+        let nameToMarker = {};
+        let gpxAdded = false;
+        let wantedName = null;
+        const items = d.querySelectorAll('.segments li');
         btn.addEventListener('click', async () => {
           const isHidden = mapDiv.style.display === 'none';
           mapDiv.style.display = isHidden ? 'block' : 'none';
@@ -694,15 +698,60 @@
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }).addTo(mapInstance);
             mapInstance.setView([23.7, 121], 6);
           }
-          const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
-          const gpxPath = `assets/gpx/D${dayId}.gpx`;
-          try{
-            const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
-            g.on('loaded', () => { mapInstance.fitBounds(g.getBounds()); });
-            g.addTo(mapInstance);
-          }catch(e){ /* 若無 GPX 仍顯示 OSM */ }
+          if(!gpxAdded){
+            const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
+            const gpxPath = `assets/gpx/D${dayId}.gpx`;
+            try{
+              const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
+              g.on('addpoint', (e) => {
+                const nm = (e.point?.name || '').trim();
+                if(nm){ nameToMarker[nm.toLowerCase()] = e.marker.bindPopup(nm); }
+              });
+              g.on('loaded', () => {
+                gpxAdded = true;
+                mapInstance.fitBounds(g.getBounds());
+                if(wantedName){ focusByName(wantedName); wantedName = null; }
+              });
+              g.addTo(mapInstance);
+            }catch(e){ /* 若無 GPX 仍顯示 OSM */ }
+          }
           setTimeout(()=>mapInstance.invalidateSize(),100);
         });
+
+        // 點選清單項目 → 導向地圖上的標記
+        items.forEach(li => {
+          li.addEventListener('click', () => {
+            const candidate = extractNameFromItem(li.textContent || '');
+            wantedName = candidate;
+            // 展開地圖
+            mapDiv.style.display = 'block';
+            if(!mapInstance){ btn.click(); return; }
+            if(!gpxAdded){ btn.click(); return; }
+            focusByName(candidate);
+          });
+        });
+
+        function extractNameFromItem(raw){
+          const parts = raw.trim().split('→').map(s=>s.trim()).filter(Boolean);
+          const last = parts[parts.length-1] || raw;
+          return last.replace(/\(.*?\)/g,'').replace(/\s+/g,' ').trim().toLowerCase();
+        }
+
+        function focusByName(nameLc){
+          // 清除舊高亮
+          items.forEach(el => el.classList.remove('active'));
+          // 嘗試直接匹配名稱（包含）
+          const keys = Object.keys(nameToMarker);
+          const match = keys.find(k => nameLc.includes(k) || k.includes(nameLc));
+          if(match){
+            const marker = nameToMarker[match];
+            mapInstance.setView(marker.getLatLng(), Math.max(mapInstance.getZoom(), 13));
+            marker.openPopup();
+            // 高亮對應的 li
+            const hit = Array.from(items).find(el => (el.textContent||'').toLowerCase().includes(match));
+            if(hit) hit.classList.add('active');
+          }
+        }
       });
     })();
   </script>
