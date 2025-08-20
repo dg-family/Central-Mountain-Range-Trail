@@ -694,9 +694,8 @@
           mapDiv.style.display = isHidden ? 'block' : 'none';
           if(!isHidden) return;
           if(!mapInstance){
-            mapInstance = L.map(mapDiv, { zoomControl:true });
+            mapInstance = L.map(mapDiv, { zoomControl:true, maxBoundsViscosity: 0.8 });
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }).addTo(mapInstance);
-            mapInstance.setView([23.7, 121], 6);
           }
           if(!gpxAdded){
             const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
@@ -709,7 +708,10 @@
               });
               g.on('loaded', () => {
                 gpxAdded = true;
-                mapInstance.fitBounds(g.getBounds());
+                const b = g.getBounds();
+                mapInstance.fitBounds(b);
+                mapInstance.setMaxBounds(b.pad(0.2));
+                mapInstance.setMinZoom(mapInstance.getZoom());
                 if(wantedName){ focusByName(wantedName); wantedName = null; }
               });
               g.addTo(mapInstance);
