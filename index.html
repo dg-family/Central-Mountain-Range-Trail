@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/components.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://unpkg.com/leaflet-gpx@1.7.0/dist/leaflet-gpx.min.js" defer></script>
 </head>
 <body>
   <header>
@@ -661,7 +664,7 @@
         });
       });
 
-      // 動態插入地圖按鈕與靜態截圖容器
+      // 動態插入地圖按鈕與 Leaflet 地圖容器（OSM）
       DAYS.forEach(d => {
         const summary = d.querySelector('summary .meta');
         if(!summary) return;
@@ -674,124 +677,33 @@
         summary.appendChild(toolbar);
 
         const wrap = document.createElement('div');
-        wrap.className = 'mapimg-wrap';
-        const viewport = document.createElement('div');
-        viewport.className = 'mapimg-viewport';
-        viewport.style.display = 'none';
-        const loading = document.createElement('div');
-        loading.className = 'loading';
-        loading.textContent = '載入地圖截圖中...';
-        viewport.appendChild(loading);
-        wrap.appendChild(viewport);
+        wrap.className = 'map-wrap';
+        const mapDiv = document.createElement('div');
+        mapDiv.className = 'map';
+        mapDiv.style.display = 'none';
+        wrap.appendChild(mapDiv);
         d.appendChild(wrap);
 
-        let initialized = false;
+        let mapInstance = null;
         btn.addEventListener('click', async () => {
-          const isHidden = viewport.style.display === 'none';
-          viewport.style.display = isHidden ? 'block' : 'none';
+          const isHidden = mapDiv.style.display === 'none';
+          mapDiv.style.display = isHidden ? 'block' : 'none';
           if(!isHidden) return;
-          if(!initialized){
-            const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
-            await loadStaticMap(dayId, viewport, d.querySelectorAll('.segments li'));
-            initialized = true;
+          if(!mapInstance){
+            mapInstance = L.map(mapDiv, { zoomControl:true });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }).addTo(mapInstance);
+            mapInstance.setView([23.7, 121], 6);
           }
+          const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
+          const gpxPath = `assets/gpx/D${dayId}.gpx`;
+          try{
+            const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
+            g.on('loaded', () => { mapInstance.fitBounds(g.getBounds()); });
+            g.addTo(mapInstance);
+          }catch(e){ /* 若無 GPX 仍顯示 OSM */ }
+          setTimeout(()=>mapInstance.invalidateSize(),100);
         });
       });
-
-      async function loadStaticMap(dayId, viewport, items){
-        const img = new Image();
-        img.className = 'mapimg';
-        const tryUrls = [
-          `assets/maps/D${dayId}.jpg`,
-          `assets/maps/D${dayId}.png`,
-          `assets/maps/D${dayId}.svg`
-        ];
-        let loaded = false;
-        for(const url of tryUrls){
-          try {
-            await new Promise((resolve, reject) => {
-              img.onload = resolve; img.onerror = reject; img.src = url;
-            });
-            loaded = true; break;
-          } catch(e){}
-        }
-        viewport.innerHTML = '';
-        if(!loaded){
-          // fallback to shared placeholder
-          img.src = 'assets/maps/placeholder.svg';
-          await new Promise((resolve)=>{ img.onload = resolve; });
-          loaded = true;
-        }
-        viewport.appendChild(img);
-
-        // 載入座標標註
-        try{
-          const res = await fetch(`assets/maps/D${dayId}.pins.json`);
-          if(res.ok){
-            const data = await res.json();
-            const nameToPin = {};
-            (data.pins||[]).forEach(p => {
-              const pin = document.createElement('div');
-              pin.className = 'pin';
-              pin.style.setProperty('--x', String(p.x));
-              pin.style.setProperty('--y', String(p.y));
-              const dot = document.createElement('span'); dot.className = 'dot';
-              const label = document.createElement('span'); label.className = 'label'; label.textContent = p.name;
-              pin.appendChild(dot); pin.appendChild(label);
-              viewport.appendChild(pin);
-              nameToPin[(p.name||'').toLowerCase()] = pin;
-            });
-            // 連結清單項目 → 高亮對應 pin
-            items.forEach(li => {
-              li.addEventListener('click', () => {
-                const txt = li.textContent.trim().toLowerCase();
-                const match = Object.keys(nameToPin).find(k => txt.includes(k));
-                Array.from(viewport.querySelectorAll('.pin')).forEach(p=>p.classList.remove('highlight'));
-                if(match){ nameToPin[match].classList.add('highlight'); }
-              });
-            });
-          } else {
-            // 若無 pins.json，從清單自動產生標註，均分在圖上
-            autoPinsFromItems(viewport, items);
-          }
-        }catch(e){
-          autoPinsFromItems(viewport, items);
-        }
-      }
-
-      function autoPinsFromItems(viewport, items){
-        const names = Array.from(items).map(li => {
-          const raw = li.textContent.trim();
-          const parts = raw.split('→').map(s=>s.trim()).filter(Boolean);
-          return parts[parts.length-1]
-            .replace(/\(.*?\)/g,'')
-            .replace(/\s+/g,' ')
-            .trim();
-        }).filter(Boolean);
-        const count = names.length || 1;
-        const nameToPin = {};
-        names.forEach((name, idx) => {
-          const x = 10 + (count===1 ? 40 : (idx*(80/(count-1))));
-          const y = 30 + (count===1 ? 20 : (idx%2===0 ? 10 : 0));
-          const pin = document.createElement('div');
-          pin.className = 'pin';
-          pin.style.setProperty('--x', String(Math.round(x)));
-          pin.style.setProperty('--y', String(y));
-          const dot = document.createElement('span'); dot.className = 'dot';
-          const label = document.createElement('span'); label.className = 'label'; label.textContent = name;
-          pin.appendChild(dot); pin.appendChild(label);
-          viewport.appendChild(pin);
-          nameToPin[name.toLowerCase()] = pin;
-        });
-        items.forEach(li => {
-          li.addEventListener('click', () => {
-            const txt = li.textContent.trim().toLowerCase();
-            const match = Object.keys(nameToPin).find(k => txt.includes(k));
-            Array.from(viewport.querySelectorAll('.pin')).forEach(p=>p.classList.remove('highlight'));
-            if(match){ nameToPin[match].classList.add('highlight'); }
-          });
-        });
-      }
     })();
   </script>
 </body>
