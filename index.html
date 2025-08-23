@@ -690,33 +690,94 @@
           const isHidden = mapDiv.style.display === 'none';
           mapDiv.style.display = isHidden ? 'block' : 'none';
           if(!isHidden) return;
+          
+          // 確保地圖容器有正確的尺寸
+          mapDiv.style.height = '360px';
+          mapDiv.style.width = '100%';
+          
           if(!mapInstance){
-            mapInstance = L.map(mapDiv, { zoomControl:true, maxBoundsViscosity: 0.8, updateWhenIdle: true });
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; OpenStreetMap contributors', maxZoom: 19, updateWhenIdle: true, keepBuffer: 1
-            }).addTo(mapInstance);
+            try {
+              mapInstance = L.map(mapDiv, { 
+                zoomControl: true, 
+                maxBoundsViscosity: 0.8, 
+                updateWhenIdle: true,
+                center: [23.5, 121], // 台灣中心座標
+                zoom: 8
+              });
+              
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors', 
+                maxZoom: 19, 
+                updateWhenIdle: true, 
+                keepBuffer: 1
+              }).addTo(mapInstance);
+              
+              // 強制重新計算地圖尺寸
+              setTimeout(() => {
+                if(mapInstance) mapInstance.invalidateSize();
+              }, 100);
+            } catch(e) {
+              console.error('地圖初始化失敗:', e);
+              mapDiv.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">地圖載入失敗</div>';
+              return;
+            }
           }
+          
           if(!gpxAdded){
             const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
-            const gpxPath = `assets/gpx/D${dayId}.gpx`;
-            try{
-              const g = new L.GPX(gpxPath, { async: true, marker_options: { startIconUrl: '', endIconUrl: '', shadowUrl: '' } });
-              g.on('addpoint', (e) => {
-                const nm = (e.point?.name || '').trim();
-                if(nm){ nameToMarker[nm.toLowerCase()] = e.marker.bindPopup(nm); }
-              });
-              g.on('loaded', () => {
-                gpxAdded = true;
-                const b = g.getBounds();
-                mapInstance.fitBounds(b);
-                mapInstance.setMaxBounds(b.pad(0.2));
-                mapInstance.setMinZoom(mapInstance.getZoom());
-                if(wantedName){ focusByName(wantedName); wantedName = null; }
-              });
-              g.addTo(mapInstance);
-            }catch(e){ /* 若無 GPX 仍顯示 OSM */ }
+            if(dayId) {
+              const gpxPath = `assets/gpx/D${dayId}.gpx`;
+              try{
+                const g = new L.GPX(gpxPath, { 
+                  async: true, 
+                  marker_options: { 
+                    startIconUrl: '', 
+                    endIconUrl: '', 
+                    shadowUrl: '' 
+                  } 
+                });
+                
+                g.on('addpoint', (e) => {
+                  const nm = (e.point?.name || '').trim();
+                  if(nm){ 
+                    nameToMarker[nm.toLowerCase()] = e.marker.bindPopup(nm); 
+                  }
+                });
+                
+                g.on('loaded', () => {
+                  gpxAdded = true;
+                  const b = g.getBounds();
+                  if(b.isValid()) {
+                    mapInstance.fitBounds(b);
+                    mapInstance.setMaxBounds(b.pad(0.2));
+                    mapInstance.setMinZoom(mapInstance.getZoom());
+                  }
+                  if(wantedName){ 
+                    focusByName(wantedName); 
+                    wantedName = null; 
+                  }
+                });
+                
+                g.on('error', (e) => {
+                  console.log(`GPX 載入失敗 (D${dayId}):`, e);
+                  // 即使GPX載入失敗，地圖仍然可以顯示
+                });
+                
+                g.addTo(mapInstance);
+              } catch(e) { 
+                console.log(`GPX 檔案不存在 (D${dayId}):`, e);
+                // 若無 GPX 仍顯示 OSM
+              }
+            }
           }
-          setTimeout(()=>mapInstance.invalidateSize(),100);
+          
+          // 確保地圖正確顯示
+          setTimeout(() => {
+            if(mapInstance) {
+              mapInstance.invalidateSize();
+              mapInstance.setView(mapInstance.getCenter(), mapInstance.getZoom());
+            }
+          }, 200);
         });
 
         // 點選清單項目 → 導向地圖上的標記

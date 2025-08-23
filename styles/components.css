@@ -211,6 +211,14 @@ details.day > summary::-webkit-details-marker {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+}
+
+/* 確保Leaflet地圖容器正確顯示 */
+.map .leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .map.loading {

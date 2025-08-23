@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Central Mountain Trail" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>D3 - 南湖大山 → 中央尖山</name>
+    <desc>中央山脈大縱走 第三天</desc>
+  </metadata>
+  <wpt lat="24.3900" lon="121.4500">
+    <name>南湖大山</name>
+  </wpt>
+  <wpt lat="24.3950" lon="121.4550">
+    <name>中央尖山</name>
+  </wpt>
+  <trk>
+    <name>D3 路線</name>
+    <trkseg>
+      <trkpt lat="24.3900" lon="121.4500">
+        <ele>3742</ele>
+      </trkpt>
+      <trkpt lat="24.3950" lon="121.4550">
+        <ele>3705</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

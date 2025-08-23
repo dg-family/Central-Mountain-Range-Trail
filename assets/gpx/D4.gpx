@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Central Mountain Trail" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>D4 - 中央尖山 → 甘薯峰</name>
+    <desc>中央山脈大縱走 第四天</desc>
+  </metadata>
+  <wpt lat="24.3950" lon="121.4550">
+    <name>中央尖山</name>
+  </wpt>
+  <wpt lat="24.4000" lon="121.4600">
+    <name>甘薯峰</name>
+  </wpt>
+  <trk>
+    <name>D4 路線</name>
+    <trkseg>
+      <trkpt lat="24.3950" lon="121.4550">
+        <ele>3705</ele>
+      </trkpt>
+      <trkpt lat="24.4000" lon="121.4600">
+        <ele>3158</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
