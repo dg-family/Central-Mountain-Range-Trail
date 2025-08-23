@@ -1,9 +1,445 @@
-/* small screens */
-@media (max-width:640px){
-  .bar{width:52vw}
-  .meta{flex-wrap:wrap}
-  .segments{padding-left:16px}
-  .menu{position:static;width:auto;flex-direction:row;padding:8px;border-right:none;background:transparent;backdrop-filter:none}
-  .wrap{padding-left:24px}
-  .map{height:260px}
+/* 中央山脈大縱走 - 響應式設計 */
+
+/* 大螢幕 (1200px 以上) */
+@media (min-width: 1200px) {
+  .wrap {
+    max-width: 1200px;
+    padding: var(--spacing-2xl);
+    padding-left: calc(var(--sidebar-width) + var(--spacing-2xl));
+  }
+  
+  header .bar {
+    max-width: 1200px;
+    padding: var(--spacing-lg) var(--spacing-2xl);
+  }
+  
+  .barbox .bar {
+    width: min(50vw, 400px);
+  }
+  
+  .map {
+    height: 400px;
+  }
+}
+
+/* 中等螢幕 (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .wrap {
+    max-width: 100%;
+    padding: var(--spacing-xl);
+    padding-left: calc(var(--sidebar-width) + var(--spacing-xl));
+  }
+  
+  header .bar {
+    max-width: 100%;
+    padding: var(--spacing-md) var(--spacing-xl);
+  }
+  
+  .barbox .bar {
+    width: min(45vw, 320px);
+  }
+  
+  .map {
+    height: 380px;
+  }
+}
+
+/* 平板 (768px 以下) */
+@media (max-width: 767px) {
+  .wrap {
+    padding: var(--spacing-lg);
+    padding-left: var(--spacing-lg);
+  }
+  
+  header .bar {
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+  
+  .meta {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+  
+  .segments {
+    padding-left: var(--spacing-md);
+  }
+  
+  .menu {
+    position: static;
+    width: auto;
+    flex-direction: row;
+    padding: var(--spacing-sm);
+    border-right: none;
+    background: transparent;
+    backdrop-filter: none;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .menu a {
+    font-size: var(--text-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .barbox .bar {
+    width: 52vw;
+  }
+  
+  .map {
+    height: 300px;
+  }
+  
+  .legend {
+    gap: var(--spacing-md);
+    font-size: var(--text-sm);
+  }
+  
+  .content {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+  }
+  
+  details.day > summary {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .summary-title h2 {
+    font-size: var(--text-lg);
+  }
+}
+
+/* 手機 (480px 以下) */
+@media (max-width: 480px) {
+  .wrap {
+    padding: var(--spacing-md);
+    padding-left: var(--spacing-md);
+  }
+  
+  header .bar {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  h1 {
+    font-size: var(--text-xl);
+  }
+  
+  .menu {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .menu a {
+    text-align: center;
+    padding: var(--spacing-sm);
+  }
+  
+  .barbox .bar {
+    width: 60vw;
+    height: 6px;
+  }
+  
+  .map {
+    height: 260px;
+  }
+  
+  .legend {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .segments {
+    padding-left: var(--spacing-sm);
+  }
+  
+  .segments li {
+    font-size: var(--text-sm);
+  }
+  
+  .content {
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
+  }
+  
+  details.day > summary {
+    padding: var(--spacing-sm);
+  }
+  
+  .summary-title h2 {
+    font-size: var(--text-base);
+  }
+  
+  .meta {
+    font-size: var(--text-xs);
+  }
+  
+  .note {
+    padding: var(--spacing-sm);
+    font-size: var(--text-sm);
+  }
+  
+  .toc {
+    gap: var(--spacing-xs);
+  }
+  
+  .toc a {
+    font-size: var(--text-xs);
+    padding: var(--spacing-xs);
+  }
+}
+
+/* 超小螢幕 (360px 以下) */
+@media (max-width: 360px) {
+  .wrap {
+    padding: var(--spacing-sm);
+  }
+  
+  header .bar {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  h1 {
+    font-size: var(--text-lg);
+  }
+  
+  .barbox .bar {
+    width: 70vw;
+  }
+  
+  .map {
+    height: 240px;
+  }
+  
+  .segments {
+    padding-left: var(--spacing-xs);
+  }
+  
+  .content {
+    padding: 0 var(--spacing-xs) var(--spacing-xs);
+  }
+  
+  details.day > summary {
+    padding: var(--spacing-xs);
+  }
+  
+  .summary-title h2 {
+    font-size: var(--text-sm);
+  }
+}
+
+/* 橫向手機 (高度小於寬度) */
+@media (max-height: 500px) and (orientation: landscape) {
+  header {
+    position: relative;
+  }
+  
+  .menu {
+    position: static;
+    flex-direction: row;
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .wrap {
+    padding: var(--spacing-sm);
+    padding-left: var(--spacing-sm);
+  }
+  
+  .map {
+    height: 200px;
+  }
+  
+  details.day {
+    margin: var(--spacing-sm) 0;
+  }
+  
+  details.day > summary {
+    padding: var(--spacing-sm);
+  }
+  
+  .content {
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
+  }
+}
+
+/* 觸控設備優化 */
+@media (hover: none) and (pointer: coarse) {
+  .menu a:hover {
+    transform: none;
+  }
+  
+  .toc a:hover {
+    transform: none;
+  }
+  
+  details.day > summary:hover {
+    background: transparent;
+  }
+  
+  .tag:hover {
+    transform: none;
+  }
+  
+  /* 增加觸控目標大小 */
+  .menu a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .toc a {
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button {
+    min-height: 44px;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+}
+
+/* 高解析度螢幕 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .barbox .bar {
+    border-width: 0.5px;
+  }
+  
+  details.day {
+    border-width: 0.5px;
+  }
+  
+  .map {
+    border-width: 0.5px;
+  }
+}
+
+/* 深色模式支援 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --ink: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-overlay: rgba(15, 23, 42, 0.95);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-light: #475569;
+    --border-medium: #334155;
+    --accent-light: #3b82f6;
+    --accent-bg: rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* 淺色模式支援 */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --border: #e5e7eb;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f6f8fb;
+    --bg-tertiary: #f8fbff;
+    --bg-overlay: rgba(255, 255, 255, 0.85);
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border-light: #f1f5f9;
+    --border-medium: #e2e8f0;
+    --accent-light: #bfd1ff;
+    --accent-bg: #eef2ff;
+  }
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #000000;
+    --text-muted: #000000;
+    --bg-secondary: #ffffff;
+  }
+  
+  button {
+    border-width: 2px;
+  }
+  
+  .menu a {
+    border-width: 2px;
+  }
+  
+  .toc a {
+    border-width: 2px;
+  }
+}
+
+/* 減少動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .menu a,
+  .toc a,
+  .tag,
+  button,
+  details.day {
+    transition: none;
+  }
+  
+  .menu a:hover,
+  .toc a:hover,
+  .tag:hover,
+  button:hover,
+  details.day > summary:hover {
+    transform: none;
+  }
+  
+  .barbox .bar > i {
+    transition: none;
+  }
+  
+  .loading::after {
+    animation: none;
+  }
+}
+
+/* 列印樣式 */
+@media print {
+  .menu,
+  .tools,
+  .toc,
+  .map-wrap {
+    display: none !important;
+  }
+  
+  .wrap {
+    padding: 0;
+    padding-left: 0;
+  }
+  
+  details.day {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  
+  details.day[open] {
+    display: block;
+  }
+  
+  details.day > summary {
+    cursor: default;
+  }
+  
+  .barbox .bar {
+    background: #ccc;
+    border: 1px solid #999;
+  }
+  
+  .barbox .bar > i {
+    background: #000;
+  }
 }
