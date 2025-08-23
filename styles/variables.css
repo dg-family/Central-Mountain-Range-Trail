@@ -2,7 +2,7 @@
 
 :root {
   /* 主要顏色 */
-  --bg: #f6f8fb;
+  --bg: #fafbfc;
   --card: #ffffff;
   --ink: #0f172a;
   --muted: #64748b;
@@ -17,9 +17,9 @@
   
   /* 背景色階 */
   --bg-primary: #ffffff;
-  --bg-secondary: #f6f8fb;
-  --bg-tertiary: #f8fbff;
-  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --bg-secondary: #fafbfc;
+  --bg-tertiary: #fcfdff;
+  --bg-overlay: rgba(255, 255, 255, 0.9);
   
   /* 文字色階 */
   --text-primary: #0f172a;

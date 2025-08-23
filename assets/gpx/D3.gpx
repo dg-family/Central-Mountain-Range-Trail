@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="Central Mountain Trail" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata>
-    <name>D3 - 南湖大山 → 中央尖山</name>
+    <name>D3 - 天空營地 → 無明水池</name>
     <desc>中央山脈大縱走 第三天</desc>
   </metadata>
-  <wpt lat="24.3900" lon="121.4500">
-    <name>南湖大山</name>
+  <wpt lat="24.3400" lon="121.5500">
+    <name>天空營地</name>
   </wpt>
-  <wpt lat="24.3950" lon="121.4550">
-    <name>中央尖山</name>
+  <wpt lat="24.3380" lon="121.5600">
+    <name>中央尖山西峰</name>
+  </wpt>
+  <wpt lat="24.3350" lon="121.5750">
+    <name>甘薯峰</name>
+  </wpt>
+  <wpt lat="24.3320" lon="121.5850">
+    <name>甘薯南峰營地</name>
+  </wpt>
+  <wpt lat="24.3300" lon="121.5950">
+    <name>鬼門關峰</name>
+  </wpt>
+  <wpt lat="24.3280" lon="121.6050">
+    <name>無明水池</name>
   </wpt>
   <trk>
     <name>D3 路線</name>
     <trkseg>
-      <trkpt lat="24.3900" lon="121.4500">
-        <ele>3742</ele>
+      <trkpt lat="24.3400" lon="121.5500">
+        <ele>3500</ele>
       </trkpt>
-      <trkpt lat="24.3950" lon="121.4550">
-        <ele>3705</ele>
+      <trkpt lat="24.3380" lon="121.5600">
+        <ele>3450</ele>
+      </trkpt>
+      <trkpt lat="24.3350" lon="121.5750">
+        <ele>3158</ele>
+      </trkpt>
+      <trkpt lat="24.3320" lon="121.5850">
+        <ele>3100</ele>
+      </trkpt>
+      <trkpt lat="24.3300" lon="121.5950">
+        <ele>3050</ele>
+      </trkpt>
+      <trkpt lat="24.3280" lon="121.6050">
+        <ele>3000</ele>
       </trkpt>
     </trkseg>
   </trk>

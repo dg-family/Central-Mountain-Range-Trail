@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="Central Mountain Trail" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata>
-    <name>D4 - 中央尖山 → 甘薯峰</name>
+    <name>D4 - 無明水池 → 人待山</name>
     <desc>中央山脈大縱走 第四天</desc>
   </metadata>
-  <wpt lat="24.3950" lon="121.4550">
-    <name>中央尖山</name>
+  <wpt lat="24.3280" lon="121.6050">
+    <name>無明水池</name>
   </wpt>
-  <wpt lat="24.4000" lon="121.4600">
-    <name>甘薯峰</name>
+  <wpt lat="24.3250" lon="121.6150">
+    <name>無明山</name>
+  </wpt>
+  <wpt lat="24.3220" lon="121.6250">
+    <name>鈴鳴山</name>
+  </wpt>
+  <wpt lat="24.3200" lon="121.6350">
+    <name>鈴鳴東鞍營地</name>
+  </wpt>
+  <wpt lat="24.3180" lon="121.6450">
+    <name>人待山</name>
   </wpt>
   <trk>
     <name>D4 路線</name>
     <trkseg>
-      <trkpt lat="24.3950" lon="121.4550">
-        <ele>3705</ele>
+      <trkpt lat="24.3280" lon="121.6050">
+        <ele>3000</ele>
       </trkpt>
-      <trkpt lat="24.4000" lon="121.4600">
-        <ele>3158</ele>
+      <trkpt lat="24.3250" lon="121.6150">
+        <ele>3452</ele>
+      </trkpt>
+      <trkpt lat="24.3220" lon="121.6250">
+        <ele>3272</ele>
+      </trkpt>
+      <trkpt lat="24.3200" lon="121.6350">
+        <ele>3200</ele>
+      </trkpt>
+      <trkpt lat="24.3180" lon="121.6450">
+        <ele>3100</ele>
       </trkpt>
     </trkseg>
   </trk>

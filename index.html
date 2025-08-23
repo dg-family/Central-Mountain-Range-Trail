@@ -692,7 +692,7 @@
           if(!isHidden) return;
           
           // 確保地圖容器有正確的尺寸
-          mapDiv.style.height = '360px';
+          mapDiv.style.height = '480px';
           mapDiv.style.width = '100%';
           
           if(!mapInstance){
@@ -723,50 +723,46 @@
             }
           }
           
-          if(!gpxAdded){
+                    if(!gpxAdded){
             const dayId = d.querySelector('.summary-title h2')?.textContent?.match(/^D(\d+)/)?.[1];
             if(dayId) {
-              const gpxPath = `assets/gpx/D${dayId}.gpx`;
-              try{
-                const g = new L.GPX(gpxPath, { 
-                  async: true, 
-                  marker_options: { 
-                    startIconUrl: '', 
-                    endIconUrl: '', 
-                    shadowUrl: '' 
-                  } 
-                });
-                
-                g.on('addpoint', (e) => {
-                  const nm = (e.point?.name || '').trim();
-                  if(nm){ 
-                    nameToMarker[nm.toLowerCase()] = e.marker.bindPopup(nm); 
-                  }
-                });
-                
-                g.on('loaded', () => {
+              // 使用簡單的標記點方法，避免GPX問題
+              const routeData = getRouteData(dayId);
+              if(routeData) {
+                try {
+                  console.log(`載入路線數據 (D${dayId})`);
+                  
+                  // 添加標記點
+                  routeData.points.forEach(point => {
+                    const marker = L.marker([point.lat, point.lon])
+                      .bindPopup(point.name)
+                      .addTo(mapInstance);
+                    nameToMarker[point.name.toLowerCase()] = marker;
+                  });
+                  
+                  // 添加路線
+                  const route = routeData.points.map(p => [p.lat, p.lon]);
+                  const polyline = L.polyline(route, { 
+                    color: 'red', 
+                    weight: 3 
+                  }).addTo(mapInstance);
+                  
+                  // 縮放到路線範圍，並擴大顯示區域
+                  const bounds = polyline.getBounds();
+                  mapInstance.fitBounds(bounds.pad(0.4)); // 增加邊界範圍
+                  mapInstance.setMaxBounds(bounds.pad(0.6)); // 擴大最大邊界
+                  mapInstance.setMinZoom(Math.max(mapInstance.getZoom() - 2, 8)); // 允許更小的縮放
+                  
                   gpxAdded = true;
-                  const b = g.getBounds();
-                  if(b.isValid()) {
-                    mapInstance.fitBounds(b);
-                    mapInstance.setMaxBounds(b.pad(0.2));
-                    mapInstance.setMinZoom(mapInstance.getZoom());
-                  }
+                  console.log(`路線載入完成 (D${dayId})`);
+                  
                   if(wantedName){ 
                     focusByName(wantedName); 
                     wantedName = null; 
                   }
-                });
-                
-                g.on('error', (e) => {
-                  console.log(`GPX 載入失敗 (D${dayId}):`, e);
-                  // 即使GPX載入失敗，地圖仍然可以顯示
-                });
-                
-                g.addTo(mapInstance);
-              } catch(e) { 
-                console.log(`GPX 檔案不存在 (D${dayId}):`, e);
-                // 若無 GPX 仍顯示 OSM
+                } catch(e) { 
+                  console.error(`路線載入失敗 (D${dayId}):`, e);
+                }
               }
             }
           }
@@ -807,12 +803,58 @@
           const match = keys.find(k => nameLc.includes(k) || k.includes(nameLc));
           if(match){
             const marker = nameToMarker[match];
-            mapInstance.setView(marker.getLatLng(), Math.max(mapInstance.getZoom(), 13));
+            mapInstance.setView(marker.getLatLng(), Math.max(mapInstance.getZoom(), 11)); // 降低縮放等級
             marker.openPopup();
             // 高亮對應的 li
             const hit = Array.from(items).find(el => (el.textContent||'').toLowerCase().includes(match));
             if(hit) hit.classList.add('active');
           }
+        }
+
+        // 路線數據函數
+        function getRouteData(dayId) {
+          const routeData = {
+            '1': {
+              points: [
+                { lat: 24.372681, lon: 121.344573, name: '勝光登山口' },
+                { lat: 24.374728, lon: 121.352304, name: '大水池登山口' },
+                { lat: 24.372469, lon: 121.365729, name: '5.3K岔路口' },
+                { lat: 24.369071, lon: 121.383761, name: '松風嶺8.0K' },
+                { lat: 24.370011, lon: 121.397066, name: '木杆鞍部' },
+                { lat: 24.370193, lon: 121.397087, name: '南湖溪山屋' },
+                { lat: 24.34689, lon: 121.40653, name: '香菇寮營地' }
+              ]
+            },
+            '2': {
+              points: [
+                { lat: 24.34689, lon: 121.40653, name: '香菇寮營地' },
+                { lat: 24.33553, lon: 121.41827, name: '中央尖溪山屋' },
+                { lat: 24.308619, lon: 121.421371, name: '中央尖鞍部' },
+                { lat: 24.31023, lon: 121.41621, name: '中央尖山' },
+                { lat: 24.308566, lon: 121.412555, name: '天空營地' }
+              ]
+            },
+            '3': {
+              points: [
+                { lat: 24.3400, lon: 121.5500, name: '天空營地' },
+                { lat: 24.3380, lon: 121.5600, name: '中央尖山西峰' },
+                { lat: 24.3350, lon: 121.5750, name: '甘薯峰' },
+                { lat: 24.3320, lon: 121.5850, name: '甘薯南峰營地' },
+                { lat: 24.3300, lon: 121.5950, name: '鬼門關峰' },
+                { lat: 24.3280, lon: 121.6050, name: '無明水池' }
+              ]
+            },
+            '4': {
+              points: [
+                { lat: 24.3280, lon: 121.6050, name: '無明水池' },
+                { lat: 24.3250, lon: 121.6150, name: '無明山' },
+                { lat: 24.3220, lon: 121.6250, name: '鈴鳴山' },
+                { lat: 24.3200, lon: 121.6350, name: '鈴鳴東鞍營地' },
+                { lat: 24.3180, lon: 121.6450, name: '人待山' }
+              ]
+            }
+          };
+          return routeData[dayId] || null;
         }
       });
     })();

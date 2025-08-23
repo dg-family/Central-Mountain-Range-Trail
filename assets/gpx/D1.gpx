@@ -4,31 +4,45 @@
     <name>D1 勝光登山口 → 香菇寮營地</name>
   </metadata>
   <!-- Waypoints (names must match list text for linking) -->
-  <wpt lat="24.3780" lon="121.4500"><name>勝光登山口</name></wpt>
-  <wpt lat="24.3745" lon="121.4475"><name>大水池登山口</name></wpt>
-  <wpt lat="24.3720" lon="121.4460"><name>5.3K岔路口</name></wpt>
-  <wpt lat="24.3680" lon="121.4450"><name>8.0K松風嶺</name></wpt>
-  <wpt lat="24.3635" lon="121.4445"><name>木杆鞍部</name></wpt>
-  <wpt lat="24.3605" lon="121.4435"><name>南湖溪山屋</name></wpt>
-  <wpt lat="24.3550" lon="121.4420"><name>香菇寮營地</name></wpt>
+  <wpt lat="24.372681" lon="121.344573">
+    <name>勝光登山口</name>
+  </wpt>
+  <wpt lat="24.374728" lon="121.352304">
+    <name>大水池登山口</name>
+  </wpt>
+  <wpt lat="24.372469" lon="121.365729">
+    <name>5.3K岔路口</name>
+  </wpt>
+  <wpt lat="24.369071" lon="121.383761">
+    <name>松風嶺8.0K</name>
+  </wpt>
+  <wpt lat="24.370011" lon="121.397066">
+    <name>木杆鞍部</name>
+  </wpt>
+  <wpt lat="24.370193" lon="121.397087">
+    <name>南湖溪山屋</name>
+  </wpt>
+  <wpt lat="24.34689" lon="121.40653">
+    <name>香菇寮營地</name>
+  </wpt>
   <!-- Simple mock track connecting waypoints -->
   <trk>
     <name>D1 路徑</name>
     <trkseg>
-      <trkpt lat="24.3780" lon="121.4500"/>
-      <trkpt lat="24.3765" lon="121.4488"/>
-      <trkpt lat="24.3745" lon="121.4475"/>
-      <trkpt lat="24.3730" lon="121.4468"/>
-      <trkpt lat="24.3720" lon="121.4460"/>
-      <trkpt lat="24.3695" lon="121.4454"/>
-      <trkpt lat="24.3680" lon="121.4450"/>
-      <trkpt lat="24.3650" lon="121.4446"/>
-      <trkpt lat="24.3635" lon="121.4445"/>
-      <trkpt lat="24.3615" lon="121.4440"/>
-      <trkpt lat="24.3605" lon="121.4435"/>
-      <trkpt lat="24.3578" lon="121.4428"/>
-      <trkpt lat="24.3562" lon="121.4424"/>
-      <trkpt lat="24.3550" lon="121.4420"/>
+      <trkpt lat="24.372681" lon="121.344573"/>
+      <trkpt lat="24.373705" lon="121.348439"/>
+      <trkpt lat="24.374728" lon="121.352304"/>
+      <trkpt lat="24.373599" lon="121.359017"/>
+      <trkpt lat="24.372469" lon="121.365729"/>
+      <trkpt lat="24.370770" lon="121.374745"/>
+      <trkpt lat="24.369071" lon="121.383761"/>
+      <trkpt lat="24.369541" lon="121.390414"/>
+      <trkpt lat="24.370011" lon="121.397066"/>
+      <trkpt lat="24.370102" lon="121.397077"/>
+      <trkpt lat="24.370193" lon="121.397087"/>
+      <trkpt lat="24.358542" lon="121.401809"/>
+      <trkpt lat="24.352716" lon="121.404172"/>
+      <trkpt lat="24.34689" lon="121.40653"/>
     </trkseg>
   </trk>
 </gpx>

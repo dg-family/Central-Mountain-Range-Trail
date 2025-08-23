@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="Central Mountain Trail" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata>
-    <name>D2 - 香菇寮營地 → 南湖大山</name>
+    <name>D2 - 香菇寮營地 → 天空營地</name>
     <desc>中央山脈大縱走 第二天</desc>
   </metadata>
-  <wpt lat="24.3850" lon="121.4450">
+  <wpt lat="24.34689" lon="121.40653">
     <name>香菇寮營地</name>
   </wpt>
-  <wpt lat="24.3900" lon="121.4500">
-    <name>南湖大山</name>
+  <wpt lat="24.33553" lon="121.41827">
+    <name>中央尖溪山屋</name>
+  </wpt>
+  <wpt lat="24.308619" lon="121.421371">
+    <name>中央尖鞍部</name>
+  </wpt>
+  <wpt lat="24.31023" lon="121.41621">
+    <name>中央尖山</name>
+  </wpt>
+  <wpt lat="24.308566" lon="121.412555">
+    <name>天空營地</name>
   </wpt>
   <trk>
     <name>D2 路線</name>
     <trkseg>
-      <trkpt lat="24.3850" lon="121.4450">
-        <ele>2800</ele>
+      <trkpt lat="24.34689" lon="121.40653">
+        <ele>2318</ele>
       </trkpt>
-      <trkpt lat="24.3900" lon="121.4500">
-        <ele>3742</ele>
+      <trkpt lat="24.33553" lon="121.41827">
+        <ele>2378</ele>
+      </trkpt>
+      <trkpt lat="24.308619" lon="121.421371">
+        <ele>3461</ele>
+      </trkpt>
+      <trkpt lat="24.31023" lon="121.41621">
+        <ele>3679</ele>
+      </trkpt>
+      <trkpt lat="24.308566" lon="121.412555">
+        <ele>2980</ele>
       </trkpt>
     </trkseg>
   </trk>

@@ -23,7 +23,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
   color: var(--text-primary);
   font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", Roboto, "PingFang TC", "Hiragino Sans", "Microsoft JhengHei", Arial, sans-serif;
   font-size: var(--text-lg);
@@ -120,8 +120,8 @@ button:focus-visible {
 header {
   position: sticky;
   top: 0;
-  background: var(--bg-overlay);
-  backdrop-filter: saturate(140%) blur(8px);
+  background: var(--bg-tertiary);
+  backdrop-filter: saturate(140%) blur(10px);
   z-index: var(--z-sticky);
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
@@ -202,7 +202,7 @@ header .bar {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--bg-tertiary);
 }
 
 ::-webkit-scrollbar-thumb {
