@@ -4,38 +4,44 @@
     <name>D4 - 無明水池 → 人待山</name>
     <desc>中央山脈大縱走 第四天</desc>
   </metadata>
-  <wpt lat="24.3280" lon="121.6050">
+  <wpt lat="24.26237" lon="121.38458">
     <name>無明水池</name>
   </wpt>
-  <wpt lat="24.3250" lon="121.6150">
+  <wpt lat="24.25534" lon="121.38468">
     <name>無明山</name>
   </wpt>
-  <wpt lat="24.3220" lon="121.6250">
+  <wpt lat="24.25429" lon="121.37199">
+    <name>無明山西峰</name>
+  </wpt>
+  <wpt lat="24.24477" lon="121.35442">
+    <name>鈴鳴山東鞍營地</name>
+  </wpt>
+  <wpt lat="24.24438" lon="121.35165">
     <name>鈴鳴山</name>
   </wpt>
-  <wpt lat="24.3200" lon="121.6350">
-    <name>鈴鳴東鞍營地</name>
-  </wpt>
-  <wpt lat="24.3180" lon="121.6450">
-    <name>人待山</name>
+  <wpt lat="24.235481" lon="121.352584">
+    <name>黑水塘/汪汪水池營地</name>
   </wpt>
   <trk>
     <name>D4 路線</name>
     <trkseg>
-      <trkpt lat="24.3280" lon="121.6050">
-        <ele>3000</ele>
+      <trkpt lat="24.26237" lon="121.38458">
+        <ele>3322</ele>
       </trkpt>
-      <trkpt lat="24.3250" lon="121.6150">
-        <ele>3452</ele>
+      <trkpt lat="24.25534" lon="121.38468">
+        <ele>3442</ele>
       </trkpt>
-      <trkpt lat="24.3220" lon="121.6250">
-        <ele>3272</ele>
+      <trkpt lat="24.25429" lon="121.37199">
+        <ele>3218</ele>
       </trkpt>
-      <trkpt lat="24.3200" lon="121.6350">
-        <ele>3200</ele>
+      <trkpt lat="24.24477" lon="121.35442">
+        <ele>3170</ele>
       </trkpt>
-      <trkpt lat="24.3180" lon="121.6450">
-        <ele>3100</ele>
+      <trkpt lat="24.24438" lon="121.35165">
+        <ele>3259</ele>
+      </trkpt>
+      <trkpt lat="24.235481" lon="121.352584">
+        <ele>3070</ele>
       </trkpt>
     </trkseg>
   </trk>

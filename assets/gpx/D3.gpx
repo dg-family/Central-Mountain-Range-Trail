@@ -4,44 +4,44 @@
     <name>D3 - 天空營地 → 無明水池</name>
     <desc>中央山脈大縱走 第三天</desc>
   </metadata>
-  <wpt lat="24.3400" lon="121.5500">
+  <wpt lat="24.308566" lon="121.412555">
     <name>天空營地</name>
   </wpt>
-  <wpt lat="24.3380" lon="121.5600">
+  <wpt lat="24.30873" lon="121.40451">
     <name>中央尖山西峰</name>
   </wpt>
-  <wpt lat="24.3350" lon="121.5750">
+  <wpt lat="24.29039" lon="121.38984">
     <name>甘薯峰</name>
   </wpt>
-  <wpt lat="24.3320" lon="121.5850">
+  <wpt lat="24.28003" lon="121.38">
     <name>甘薯南峰營地</name>
   </wpt>
-  <wpt lat="24.3300" lon="121.5950">
+  <wpt lat="24.26566" lon="121.38447">
     <name>鬼門關峰</name>
   </wpt>
-  <wpt lat="24.3280" lon="121.6050">
+  <wpt lat="24.26237" lon="121.38458">
     <name>無明水池</name>
   </wpt>
   <trk>
     <name>D3 路線</name>
     <trkseg>
-      <trkpt lat="24.3400" lon="121.5500">
-        <ele>3500</ele>
+      <trkpt lat="24.308566" lon="121.412555">
+        <ele>2980</ele>
       </trkpt>
-      <trkpt lat="24.3380" lon="121.5600">
-        <ele>3450</ele>
+      <trkpt lat="24.30873" lon="121.40451">
+        <ele>3376</ele>
       </trkpt>
-      <trkpt lat="24.3350" lon="121.5750">
-        <ele>3158</ele>
+      <trkpt lat="24.29039" lon="121.38984">
+        <ele>3145</ele>
       </trkpt>
-      <trkpt lat="24.3320" lon="121.5850">
-        <ele>3100</ele>
+      <trkpt lat="24.28003" lon="121.38">
+        <ele>3152</ele>
       </trkpt>
-      <trkpt lat="24.3300" lon="121.5950">
-        <ele>3050</ele>
+      <trkpt lat="24.26566" lon="121.38447">
+        <ele>3357</ele>
       </trkpt>
-      <trkpt lat="24.3280" lon="121.6050">
-        <ele>3000</ele>
+      <trkpt lat="24.26237" lon="121.38458">
+        <ele>3322</ele>
       </trkpt>
     </trkseg>
   </trk>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Central Mountain Trail" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>D5 - 黑水塘/汪汪水池營地 → 大禹嶺</name>
+    <desc>中央山脈大縱走 第五天</desc>
+  </metadata>
+  <wpt lat="24.235481" lon="121.352584">
+    <name>黑水塘/汪汪水池營地</name>
+  </wpt>
+  <wpt lat="24.22399" lon="121.34231">
+    <name>北畢祿山</name>
+  </wpt>
+  <wpt lat="24.21358" lon="121.34717">
+    <name>畢祿山</name>
+  </wpt>
+  <wpt lat="24.20351" lon="121.34008">
+    <name>8.4K登山口營地</name>
+  </wpt>
+  <wpt lat="24.18223" lon="121.30819">
+    <name>820林道0K</name>
+  </wpt>
+  <wpt lat="24.18226" lon="121.31709">
+    <name>大禹嶺</name>
+  </wpt>
+  <trk>
+    <name>D5 路線</name>
+    <trkseg>
+      <trkpt lat="24.235481" lon="121.352584">
+        <ele>3070</ele>
+      </trkpt>
+      <trkpt lat="24.22399" lon="121.34231">
+        <ele>3189</ele>
+      </trkpt>
+      <trkpt lat="24.21358" lon="121.34717">
+        <ele>3359</ele>
+      </trkpt>
+      <trkpt lat="24.20351" lon="121.34008">
+        <ele>2592</ele>
+      </trkpt>
+      <trkpt lat="24.18223" lon="121.30819">
+        <ele>2568</ele>
+      </trkpt>
+      <trkpt lat="24.18226" lon="121.31709">
+        <ele>2637</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
