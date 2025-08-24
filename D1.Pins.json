@@ -1,0 +1,793 @@
+{
+  "d1_database": {
+    "name": "siyuan-trail-db",
+    "description": "Cloudflare D1 database for 思源啞口登山步道 (Siyuan Pass Trail)",
+    "osm_way_id": 810113984,
+    "created_by": "台灣紫斑蝶",
+    "changeset_id": 85996831
+  },
+  "trail_metadata": {
+    "id": 1,
+    "osm_way_id": 810113984,
+    "name": "思源啞口登山步道",
+    "description": "Siyuan Pass Trail - hiking trail from 思源啞口 to 南湖大山 勝光登山口",
+    "highway_type": "track",
+    "total_nodes": 74,
+    "bounds": {
+      "min_lat": 24.3698934,
+      "max_lat": 24.3709985,
+      "min_lon": 121.3400627,
+      "max_lon": 121.3435477
+    }
+  },
+  "pins": [
+    {
+      "id": 1,
+      "trail_id": 1,
+      "osm_node_id": 2178199327,
+      "sequence_order": 1,
+      "latitude": 24.3707927,
+      "longitude": 121.3429648,
+      "name": "Trail Point 1",
+      "description": "Start of 思源啞口 trail",
+      "is_waypoint": true
+    },
+    {
+      "id": 2,
+      "trail_id": 1,
+      "osm_node_id": 3314751083,
+      "sequence_order": 2,
+      "latitude": 24.3707570,
+      "longitude": 121.3429207,
+      "name": "Trail Point 2",
+      "is_waypoint": false
+    },
+    {
+      "id": 3,
+      "trail_id": 1,
+      "osm_node_id": 3314751082,
+      "sequence_order": 3,
+      "latitude": 24.3707053,
+      "longitude": 121.3429219,
+      "name": "Trail Point 3",
+      "is_waypoint": false
+    },
+    {
+      "id": 4,
+      "trail_id": 1,
+      "osm_node_id": 2178199289,
+      "sequence_order": 4,
+      "latitude": 24.3706609,
+      "longitude": 121.3429640,
+      "name": "Trail Point 4",
+      "is_waypoint": false
+    },
+    {
+      "id": 5,
+      "trail_id": 1,
+      "osm_node_id": 3314751077,
+      "sequence_order": 5,
+      "latitude": 24.3706148,
+      "longitude": 121.3431336,
+      "name": "Trail Point 5",
+      "is_waypoint": false
+    },
+    {
+      "id": 6,
+      "trail_id": 1,
+      "osm_node_id": 2178199315,
+      "sequence_order": 6,
+      "latitude": 24.3705888,
+      "longitude": 121.3433109,
+      "name": "Trail Point 6",
+      "is_waypoint": false
+    },
+    {
+      "id": 7,
+      "trail_id": 1,
+      "osm_node_id": 3314751076,
+      "sequence_order": 7,
+      "latitude": 24.3705806,
+      "longitude": 121.3434421,
+      "name": "Trail Point 7",
+      "is_waypoint": false
+    },
+    {
+      "id": 8,
+      "trail_id": 1,
+      "osm_node_id": 3314751073,
+      "sequence_order": 8,
+      "latitude": 24.3705494,
+      "longitude": 121.3435198,
+      "name": "Trail Point 8",
+      "is_waypoint": false
+    },
+    {
+      "id": 9,
+      "trail_id": 1,
+      "osm_node_id": 2178199326,
+      "sequence_order": 9,
+      "latitude": 24.3704970,
+      "longitude": 121.3435477,
+      "name": "Trail Point 9",
+      "is_waypoint": false
+    },
+    {
+      "id": 10,
+      "trail_id": 1,
+      "osm_node_id": 3314751069,
+      "sequence_order": 10,
+      "latitude": 24.3704602,
+      "longitude": 121.3435090,
+      "name": "Trail Point 10",
+      "is_waypoint": false
+    },
+    {
+      "id": 11,
+      "trail_id": 1,
+      "osm_node_id": 3314751067,
+      "sequence_order": 11,
+      "latitude": 24.3704458,
+      "longitude": 121.3434345,
+      "name": "Trail Point 11",
+      "is_waypoint": false
+    },
+    {
+      "id": 12,
+      "trail_id": 1,
+      "osm_node_id": 2178199282,
+      "sequence_order": 12,
+      "latitude": 24.3704329,
+      "longitude": 121.3433208,
+      "name": "Trail Point 12",
+      "is_waypoint": false
+    },
+    {
+      "id": 13,
+      "trail_id": 1,
+      "osm_node_id": 3314751065,
+      "sequence_order": 13,
+      "latitude": 24.3704252,
+      "longitude": 121.3431268,
+      "name": "Trail Point 13",
+      "is_waypoint": false
+    },
+    {
+      "id": 14,
+      "trail_id": 1,
+      "osm_node_id": 3314751064,
+      "sequence_order": 14,
+      "latitude": 24.3704023,
+      "longitude": 121.3430641,
+      "name": "Trail Point 14",
+      "is_waypoint": false
+    },
+    {
+      "id": 15,
+      "trail_id": 1,
+      "osm_node_id": 3314751063,
+      "sequence_order": 15,
+      "latitude": 24.3703627,
+      "longitude": 121.3429922,
+      "name": "Trail Point 15",
+      "is_waypoint": false
+    },
+    {
+      "id": 16,
+      "trail_id": 1,
+      "osm_node_id": 3314749860,
+      "sequence_order": 16,
+      "latitude": 24.3703330,
+      "longitude": 121.3429261,
+      "name": "Trail Point 16",
+      "is_waypoint": false
+    },
+    {
+      "id": 17,
+      "trail_id": 1,
+      "osm_node_id": 2178199331,
+      "sequence_order": 17,
+      "latitude": 24.3703266,
+      "longitude": 121.3428711,
+      "name": "Trail Point 17",
+      "is_waypoint": false
+    },
+    {
+      "id": 18,
+      "trail_id": 1,
+      "osm_node_id": 3314751062,
+      "sequence_order": 18,
+      "latitude": 24.3703627,
+      "longitude": 121.3428107,
+      "name": "Trail Point 18",
+      "is_waypoint": false
+    },
+    {
+      "id": 19,
+      "trail_id": 1,
+      "osm_node_id": 3314751066,
+      "sequence_order": 19,
+      "latitude": 24.3704331,
+      "longitude": 121.3427898,
+      "name": "Trail Point 19",
+      "is_waypoint": false
+    },
+    {
+      "id": 20,
+      "trail_id": 1,
+      "osm_node_id": 3314751072,
+      "sequence_order": 20,
+      "latitude": 24.3705281,
+      "longitude": 121.3427681,
+      "name": "Trail Point 20",
+      "is_waypoint": false
+    },
+    {
+      "id": 21,
+      "trail_id": 1,
+      "osm_node_id": 2178199383,
+      "sequence_order": 21,
+      "latitude": 24.3705931,
+      "longitude": 121.3427362,
+      "name": "Trail Point 21",
+      "is_waypoint": false
+    },
+    {
+      "id": 22,
+      "trail_id": 1,
+      "osm_node_id": 3314751080,
+      "sequence_order": 22,
+      "latitude": 24.3706960,
+      "longitude": 121.3426621,
+      "name": "Trail Point 22",
+      "is_waypoint": false
+    },
+    {
+      "id": 23,
+      "trail_id": 1,
+      "osm_node_id": 2178199309,
+      "sequence_order": 23,
+      "latitude": 24.3707704,
+      "longitude": 121.3425538,
+      "name": "Trail Point 23",
+      "is_waypoint": false
+    },
+    {
+      "id": 24,
+      "trail_id": 1,
+      "osm_node_id": 3314751087,
+      "sequence_order": 24,
+      "latitude": 24.3707818,
+      "longitude": 121.3424483,
+      "name": "Trail Point 24",
+      "is_waypoint": false
+    },
+    {
+      "id": 25,
+      "trail_id": 1,
+      "osm_node_id": 3314751089,
+      "sequence_order": 25,
+      "latitude": 24.3707893,
+      "longitude": 121.3423702,
+      "name": "Trail Point 25",
+      "is_waypoint": false
+    },
+    {
+      "id": 26,
+      "trail_id": 1,
+      "osm_node_id": 3314751086,
+      "sequence_order": 26,
+      "latitude": 24.3707732,
+      "longitude": 121.3422709,
+      "name": "Trail Point 26",
+      "is_waypoint": false
+    },
+    {
+      "id": 27,
+      "trail_id": 1,
+      "osm_node_id": 2178199335,
+      "sequence_order": 27,
+      "latitude": 24.3707715,
+      "longitude": 121.3421801,
+      "name": "Trail Point 27",
+      "is_waypoint": false
+    },
+    {
+      "id": 28,
+      "trail_id": 1,
+      "osm_node_id": 3314751085,
+      "sequence_order": 28,
+      "latitude": 24.3707710,
+      "longitude": 121.3420722,
+      "name": "Trail Point 28",
+      "is_waypoint": false
+    },
+    {
+      "id": 29,
+      "trail_id": 1,
+      "osm_node_id": 3314751088,
+      "sequence_order": 29,
+      "latitude": 24.3707850,
+      "longitude": 121.3419989,
+      "name": "Trail Point 29",
+      "is_waypoint": false
+    },
+    {
+      "id": 30,
+      "trail_id": 1,
+      "osm_node_id": 3314751093,
+      "sequence_order": 30,
+      "latitude": 24.3708173,
+      "longitude": 121.3419469,
+      "name": "Trail Point 30",
+      "is_waypoint": false
+    },
+    {
+      "id": 31,
+      "trail_id": 1,
+      "osm_node_id": 3314751097,
+      "sequence_order": 31,
+      "latitude": 24.3708539,
+      "longitude": 121.3419102,
+      "name": "Trail Point 31",
+      "is_waypoint": false
+    },
+    {
+      "id": 32,
+      "trail_id": 1,
+      "osm_node_id": 2178199384,
+      "sequence_order": 32,
+      "latitude": 24.3708849,
+      "longitude": 121.3418702,
+      "name": "Trail Point 32",
+      "is_waypoint": false
+    },
+    {
+      "id": 33,
+      "trail_id": 1,
+      "osm_node_id": 3314751099,
+      "sequence_order": 33,
+      "latitude": 24.3708841,
+      "longitude": 121.3417837,
+      "name": "Trail Point 33",
+      "is_waypoint": false
+    },
+    {
+      "id": 34,
+      "trail_id": 1,
+      "osm_node_id": 3314751098,
+      "sequence_order": 34,
+      "latitude": 24.3708690,
+      "longitude": 121.3416891,
+      "name": "Trail Point 34",
+      "is_waypoint": false
+    },
+    {
+      "id": 35,
+      "trail_id": 1,
+      "osm_node_id": 3314751094,
+      "sequence_order": 35,
+      "latitude": 24.3708238,
+      "longitude": 121.3415495,
+      "name": "Trail Point 35",
+      "is_waypoint": false
+    },
+    {
+      "id": 36,
+      "trail_id": 1,
+      "osm_node_id": 2178199313,
+      "sequence_order": 36,
+      "latitude": 24.3707877,
+      "longitude": 121.3414424,
+      "name": "Trail Point 36",
+      "is_waypoint": false
+    },
+    {
+      "id": 37,
+      "trail_id": 1,
+      "osm_node_id": 3314751084,
+      "sequence_order": 37,
+      "latitude": 24.3707613,
+      "longitude": 121.3413556,
+      "name": "Trail Point 37",
+      "is_waypoint": false
+    },
+    {
+      "id": 38,
+      "trail_id": 1,
+      "osm_node_id": 3314751079,
+      "sequence_order": 38,
+      "latitude": 24.3706633,
+      "longitude": 121.3412456,
+      "name": "Trail Point 38",
+      "is_waypoint": false
+    },
+    {
+      "id": 39,
+      "trail_id": 1,
+      "osm_node_id": 2178199386,
+      "sequence_order": 39,
+      "latitude": 24.3705454,
+      "longitude": 121.3411452,
+      "name": "Trail Point 39",
+      "is_waypoint": false
+    },
+    {
+      "id": 40,
+      "trail_id": 1,
+      "osm_node_id": 3314751070,
+      "sequence_order": 40,
+      "latitude": 24.3704705,
+      "longitude": 121.3410280,
+      "name": "Trail Point 40",
+      "is_waypoint": false
+    },
+    {
+      "id": 41,
+      "trail_id": 1,
+      "osm_node_id": 3314751068,
+      "sequence_order": 41,
+      "latitude": 24.3704543,
+      "longitude": 121.3409594,
+      "name": "Trail Point 41",
+      "is_waypoint": false
+    },
+    {
+      "id": 42,
+      "trail_id": 1,
+      "osm_node_id": 2178199311,
+      "sequence_order": 42,
+      "latitude": 24.3704621,
+      "longitude": 121.3408921,
+      "name": "Trail Point 42",
+      "is_waypoint": false
+    },
+    {
+      "id": 43,
+      "trail_id": 1,
+      "osm_node_id": 3314751074,
+      "sequence_order": 43,
+      "latitude": 24.3705513,
+      "longitude": 121.3407347,
+      "name": "Trail Point 43",
+      "is_waypoint": false
+    },
+    {
+      "id": 44,
+      "trail_id": 1,
+      "osm_node_id": 2178199390,
+      "sequence_order": 44,
+      "latitude": 24.3706180,
+      "longitude": 121.3405668,
+      "name": "Trail Point 44",
+      "is_waypoint": false
+    },
+    {
+      "id": 45,
+      "trail_id": 1,
+      "osm_node_id": 3314751081,
+      "sequence_order": 45,
+      "latitude": 24.3706891,
+      "longitude": 121.3404533,
+      "name": "Trail Point 45",
+      "is_waypoint": false
+    },
+    {
+      "id": 46,
+      "trail_id": 1,
+      "osm_node_id": 2676857199,
+      "sequence_order": 46,
+      "latitude": 24.3707604,
+      "longitude": 121.3403688,
+      "name": "Trail Point 46",
+      "is_waypoint": false
+    },
+    {
+      "id": 47,
+      "trail_id": 1,
+      "osm_node_id": 3314751095,
+      "sequence_order": 47,
+      "latitude": 24.3708247,
+      "longitude": 121.3402882,
+      "name": "Trail Point 47",
+      "is_waypoint": false
+    },
+    {
+      "id": 48,
+      "trail_id": 1,
+      "osm_node_id": 2676857202,
+      "sequence_order": 48,
+      "latitude": 24.3708764,
+      "longitude": 121.3402666,
+      "name": "Trail Point 48",
+      "is_waypoint": false
+    },
+    {
+      "id": 49,
+      "trail_id": 1,
+      "osm_node_id": 2676857203,
+      "sequence_order": 49,
+      "latitude": 24.3709761,
+      "longitude": 121.3402239,
+      "name": "Trail Point 49",
+      "is_waypoint": false
+    },
+    {
+      "id": 50,
+      "trail_id": 1,
+      "osm_node_id": 3314751101,
+      "sequence_order": 50,
+      "latitude": 24.3709985,
+      "longitude": 121.3401724,
+      "name": "Trail Point 50",
+      "description": "Highest point of trail",
+      "is_waypoint": true
+    },
+    {
+      "id": 51,
+      "trail_id": 1,
+      "osm_node_id": 2178199385,
+      "sequence_order": 51,
+      "latitude": 24.3709762,
+      "longitude": 121.3401360,
+      "name": "Trail Point 51",
+      "is_waypoint": false
+    },
+    {
+      "id": 52,
+      "trail_id": 1,
+      "osm_node_id": 2676857201,
+      "sequence_order": 52,
+      "latitude": 24.3708615,
+      "longitude": 121.3401162,
+      "name": "Trail Point 52",
+      "is_waypoint": false
+    },
+    {
+      "id": 53,
+      "trail_id": 1,
+      "osm_node_id": 2676857198,
+      "sequence_order": 53,
+      "latitude": 24.3707371,
+      "longitude": 121.3400956,
+      "name": "Trail Point 53",
+      "is_waypoint": false
+    },
+    {
+      "id": 54,
+      "trail_id": 1,
+      "osm_node_id": 2676857197,
+      "sequence_order": 54,
+      "latitude": 24.3706658,
+      "longitude": 121.3400805,
+      "name": "Trail Point 54",
+      "is_waypoint": false
+    },
+    {
+      "id": 55,
+      "trail_id": 1,
+      "osm_node_id": 3314751078,
+      "sequence_order": 55,
+      "latitude": 24.3705958,
+      "longitude": 121.3400627,
+      "name": "Trail Point 55",
+      "description": "Westernmost point of trail",
+      "is_waypoint": true
+    },
+    {
+      "id": 56,
+      "trail_id": 1,
+      "osm_node_id": 3314751075,
+      "sequence_order": 56,
+      "latitude": 24.3705036,
+      "longitude": 121.3400834,
+      "name": "Trail Point 56",
+      "is_waypoint": false
+    },
+    {
+      "id": 57,
+      "trail_id": 1,
+      "osm_node_id": 3314751071,
+      "sequence_order": 57,
+      "latitude": 24.3704259,
+      "longitude": 121.3400977,
+      "name": "Trail Point 57",
+      "is_waypoint": false
+    },
+    {
+      "id": 58,
+      "trail_id": 1,
+      "osm_node_id": 2178199391,
+      "sequence_order": 58,
+      "latitude": 24.3703671,
+      "longitude": 121.3401348,
+      "name": "Trail Point 58",
+      "is_waypoint": false
+    },
+    {
+      "id": 59,
+      "trail_id": 1,
+      "osm_node_id": 3314751061,
+      "sequence_order": 59,
+      "latitude": 24.3703369,
+      "longitude": 121.3401928,
+      "name": "Trail Point 59",
+      "is_waypoint": false
+    },
+    {
+      "id": 60,
+      "trail_id": 1,
+      "osm_node_id": 3314749859,
+      "sequence_order": 60,
+      "latitude": 24.3703183,
+      "longitude": 121.3402950,
+      "name": "Trail Point 60",
+      "is_waypoint": false
+    },
+    {
+      "id": 61,
+      "trail_id": 1,
+      "osm_node_id": 3314749858,
+      "sequence_order": 61,
+      "latitude": 24.3702942,
+      "longitude": 121.3403743,
+      "name": "Trail Point 61",
+      "is_waypoint": false
+    },
+    {
+      "id": 62,
+      "trail_id": 1,
+      "osm_node_id": 3314749857,
+      "sequence_order": 62,
+      "latitude": 24.3702714,
+      "longitude": 121.3404122,
+      "name": "Trail Point 62",
+      "is_waypoint": false
+    },
+    {
+      "id": 63,
+      "trail_id": 1,
+      "osm_node_id": 3314749856,
+      "sequence_order": 63,
+      "latitude": 24.3702448,
+      "longitude": 121.3404196,
+      "name": "Trail Point 63",
+      "is_waypoint": false
+    },
+    {
+      "id": 64,
+      "trail_id": 1,
+      "osm_node_id": 3314749855,
+      "sequence_order": 64,
+      "latitude": 24.3702257,
+      "longitude": 121.3403435,
+      "name": "Trail Point 64",
+      "is_waypoint": false
+    },
+    {
+      "id": 65,
+      "trail_id": 1,
+      "osm_node_id": 3314749854,
+      "sequence_order": 65,
+      "latitude": 24.3702012,
+      "longitude": 121.3402681,
+      "name": "Trail Point 65",
+      "is_waypoint": false
+    },
+    {
+      "id": 66,
+      "trail_id": 1,
+      "osm_node_id": 3314749853,
+      "sequence_order": 66,
+      "latitude": 24.3701661,
+      "longitude": 121.3402036,
+      "name": "Trail Point 66",
+      "is_waypoint": false
+    },
+    {
+      "id": 67,
+      "trail_id": 1,
+      "osm_node_id": 3314749852,
+      "sequence_order": 67,
+      "latitude": 24.3701466,
+      "longitude": 121.3401904,
+      "name": "Trail Point 67",
+      "is_waypoint": false
+    },
+    {
+      "id": 68,
+      "trail_id": 1,
+      "osm_node_id": 3314749851,
+      "sequence_order": 68,
+      "latitude": 24.3701241,
+      "longitude": 121.3402013,
+      "name": "Trail Point 68",
+      "is_waypoint": false
+    },
+    {
+      "id": 69,
+      "trail_id": 1,
+      "osm_node_id": 3314749850,
+      "sequence_order": 69,
+      "latitude": 24.3700664,
+      "longitude": 121.3402874,
+      "name": "Trail Point 69",
+      "is_waypoint": false
+    },
+    {
+      "id": 70,
+      "trail_id": 1,
+      "osm_node_id": 2676857196,
+      "sequence_order": 70,
+      "latitude": 24.3700045,
+      "longitude": 121.3404118,
+      "name": "Trail Point 70",
+      "is_waypoint": false
+    },
+    {
+      "id": 71,
+      "trail_id": 1,
+      "osm_node_id": 3314749849,
+      "sequence_order": 71,
+      "latitude": 24.3699668,
+      "longitude": 121.3405525,
+      "name": "Trail Point 71",
+      "is_waypoint": false
+    },
+    {
+      "id": 72,
+      "trail_id": 1,
+      "osm_node_id": 3314749848,
+      "sequence_order": 72,
+      "latitude": 24.3699184,
+      "longitude": 121.3405713,
+      "name": "Trail Point 72",
+      "is_waypoint": false
+    },
+    {
+      "id": 73,
+      "trail_id": 1,
+      "osm_node_id": 5628201473,
+      "sequence_order": 73,
+      "latitude": 24.3698934,
+      "longitude": 121.3405897,
+      "name": "南湖大山 勝光登山口",
+      "description": "Trailhead for Nanhu Mountain - Shengguang entrance point",
+      "is_waypoint": true,
+      "tags": "{\"highway\": \"trailhead\"}"
+    },
+    {
+      "id": 74,
+      "trail_id": 1,
+      "osm_node_id": 414017264,
+      "sequence_order": 74,
+      "latitude": 24.3698934,
+      "longitude": 121.3405897,
+      "name": "中興路一段交叉點",
+      "description": "Intersection with Zhongxing Road Section 1",
+      "is_waypoint": true
+    }
+  ],
+  "api_endpoints": {
+    "base_url": "https://your-worker.your-subdomain.workers.dev",
+    "endpoints": [
+      "/api/trails",
+      "/api/trail/1",
+      "/api/gpx",
+      "/api/health"
+    ]
+  },
+  "deployment_commands": {
+    "setup": [
+      "npm install",
+      "npm run db:create",
+      "npm run db:setup",
+      "npm run deploy"
+    ],
+    "database_operations": [
+      "npm run db:migrate",
+      "npm run db:seed",
+      "npm run db:query \"SELECT * FROM trail_coordinates LIMIT 5\""
+    ]
+  }
+}
