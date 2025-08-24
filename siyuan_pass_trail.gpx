@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="OSM Trail Extractor" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>思源啞口登山步道 (Siyuan Pass Trail)</name>
+    <desc>Way 810113984 from OpenStreetMap - 思源啞口 hiking trail with 74 nodes</desc>
+    <author>
+      <name>OSM Taiwan 台灣紫斑蝶</name>
+    </author>
+    <time>2024-12-24T12:33:02Z</time>
+  </metadata>
+  
+  <!-- Waypoints for key locations -->
+  <wpt lat="24.3698934" lon="121.3405897">
+    <name>Trail End</name>
+    <desc>南湖大山 勝光登山口</desc>
+  </wpt>
+  <wpt lat="24.3707927" lon="121.3429648">
+    <name>Trail Start</name>
+    <desc>思源啞口步道起點</desc>
+  </wpt>
+  
+  <!-- Main track -->
+  <trk>
+    <name>思源啞口登山步道</name>
+    <desc>Complete trail from 思源啞口 to 南湖大山 勝光登山口</desc>
+    <trkseg>
+      <trkpt lat="24.3707927" lon="121.3429648"></trkpt>
+      <trkpt lat="24.3707570" lon="121.3429207"></trkpt>
+      <trkpt lat="24.3707053" lon="121.3429219"></trkpt>
+      <trkpt lat="24.3706609" lon="121.3429640"></trkpt>
+      <trkpt lat="24.3706148" lon="121.3431336"></trkpt>
+      <trkpt lat="24.3705888" lon="121.3433109"></trkpt>
+      <trkpt lat="24.3705806" lon="121.3434421"></trkpt>
+      <trkpt lat="24.3705494" lon="121.3435198"></trkpt>
+      <trkpt lat="24.3704970" lon="121.3435477"></trkpt>
+      <trkpt lat="24.3704602" lon="121.3435090"></trkpt>
+      <trkpt lat="24.3704458" lon="121.3434345"></trkpt>
+      <trkpt lat="24.3704329" lon="121.3433208"></trkpt>
+      <trkpt lat="24.3704252" lon="121.3431268"></trkpt>
+      <trkpt lat="24.3704023" lon="121.3430641"></trkpt>
+      <trkpt lat="24.3703627" lon="121.3429922"></trkpt>
+      <trkpt lat="24.3703330" lon="121.3429261"></trkpt>
+      <trkpt lat="24.3703266" lon="121.3428711"></trkpt>
+      <trkpt lat="24.3703627" lon="121.3428107"></trkpt>
+      <trkpt lat="24.3704331" lon="121.3427898"></trkpt>
+      <trkpt lat="24.3705281" lon="121.3427681"></trkpt>
+      <trkpt lat="24.3705931" lon="121.3427362"></trkpt>
+      <trkpt lat="24.3706960" lon="121.3426621"></trkpt>
+      <trkpt lat="24.3707704" lon="121.3425538"></trkpt>
+      <trkpt lat="24.3707818" lon="121.3424483"></trkpt>
+      <trkpt lat="24.3707893" lon="121.3423702"></trkpt>
+      <trkpt lat="24.3707732" lon="121.3422709"></trkpt>
+      <trkpt lat="24.3707715" lon="121.3421801"></trkpt>
+      <trkpt lat="24.3707710" lon="121.3420722"></trkpt>
+      <trkpt lat="24.3707850" lon="121.3419989"></trkpt>
+      <trkpt lat="24.3708173" lon="121.3419469"></trkpt>
+      <trkpt lat="24.3708539" lon="121.3419102"></trkpt>
+      <trkpt lat="24.3708849" lon="121.3418702"></trkpt>
+      <trkpt lat="24.3708841" lon="121.3417837"></trkpt>
+      <trkpt lat="24.3708690" lon="121.3416891"></trkpt>
+      <trkpt lat="24.3708238" lon="121.3415495"></trkpt>
+      <trkpt lat="24.3707877" lon="121.3414424"></trkpt>
+      <trkpt lat="24.3707613" lon="121.3413556"></trkpt>
+      <trkpt lat="24.3706633" lon="121.3412456"></trkpt>
+      <trkpt lat="24.3705454" lon="121.3411452"></trkpt>
+      <trkpt lat="24.3704705" lon="121.3410280"></trkpt>
+      <trkpt lat="24.3704543" lon="121.3409594"></trkpt>
+      <trkpt lat="24.3704621" lon="121.3408921"></trkpt>
+      <trkpt lat="24.3705513" lon="121.3407347"></trkpt>
+      <trkpt lat="24.3706180" lon="121.3405668"></trkpt>
+      <trkpt lat="24.3706891" lon="121.3404533"></trkpt>
+      <trkpt lat="24.3707604" lon="121.3403688"></trkpt>
+      <trkpt lat="24.3708247" lon="121.3402882"></trkpt>
+      <trkpt lat="24.3708764" lon="121.3402666"></trkpt>
+      <trkpt lat="24.3709761" lon="121.3402239"></trkpt>
+      <trkpt lat="24.3709985" lon="121.3401724"></trkpt>
+      <trkpt lat="24.3709762" lon="121.3401360"></trkpt>
+      <trkpt lat="24.3708615" lon="121.3401162"></trkpt>
+      <trkpt lat="24.3707371" lon="121.3400956"></trkpt>
+      <trkpt lat="24.3706658" lon="121.3400805"></trkpt>
+      <trkpt lat="24.3705958" lon="121.3400627"></trkpt>
+      <trkpt lat="24.3705036" lon="121.3400834"></trkpt>
+      <trkpt lat="24.3704259" lon="121.3400977"></trkpt>
+      <trkpt lat="24.3703671" lon="121.3401348"></trkpt>
+      <trkpt lat="24.3703369" lon="121.3401928"></trkpt>
+      <trkpt lat="24.3703183" lon="121.3402950"></trkpt>
+      <trkpt lat="24.3702942" lon="121.3403743"></trkpt>
+      <trkpt lat="24.3702714" lon="121.3404122"></trkpt>
+      <trkpt lat="24.3702448" lon="121.3404196"></trkpt>
+      <trkpt lat="24.3702257" lon="121.3403435"></trkpt>
+      <trkpt lat="24.3702012" lon="121.3402681"></trkpt>
+      <trkpt lat="24.3701661" lon="121.3402036"></trkpt>
+      <trkpt lat="24.3701466" lon="121.3401904"></trkpt>
+      <trkpt lat="24.3701241" lon="121.3402013"></trkpt>
+      <trkpt lat="24.3700664" lon="121.3402874"></trkpt>
+      <trkpt lat="24.3700045" lon="121.3404118"></trkpt>
+      <trkpt lat="24.3699668" lon="121.3405525"></trkpt>
+      <trkpt lat="24.3699184" lon="121.3405713"></trkpt>
+      <trkpt lat="24.3698934" lon="121.3405897"></trkpt>
+    </trkseg>
+  </trk>
+</gpx>
