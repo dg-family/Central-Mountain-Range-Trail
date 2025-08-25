@@ -16,7 +16,7 @@
    ```
 
 2. **訪問網頁**：
-   - 地圖測試：http://localhost:8000/map-test.html
+   - 地圖測試：http://localhost:8000/simple-map-test.html
    - 行程表：http://localhost:8000/index.html
    - 補給點：http://localhost:8000/supplies.html
 
@@ -74,7 +74,7 @@ GPX parsing failed
 Central-Mountain-Range-Trail/
 ├── index.html              # 主行程表
 ├── supplies.html           # 補給點頁面
-├── map-test.html          # 地圖測試頁面
+├── simple-map-test.html   # 地圖測試頁面
 ├── start-server.py        # 本地服務器
 ├── assets/
 │   └── gpx/

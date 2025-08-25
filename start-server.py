@@ -32,7 +32,7 @@ if __name__ == "__main__":
         with socketserver.TCPServer(("", PORT), CORSHTTPRequestHandler) as httpd:
             print(f"🚀 服務器啟動在 http://localhost:{PORT}")
             print(f"📁 服務目錄: {os.getcwd()}")
-            print(f"🗺️  地圖測試: http://localhost:{PORT}/map-test.html")
+            print(f"🗺️  地圖測試: http://localhost:{PORT}/simple-map-test.html")
             print(f"📋 行程表: http://localhost:{PORT}/index.html")
             print(f"📦 補給點: http://localhost:{PORT}/supplies.html")
             print("\n按 Ctrl+C 停止服務器")
