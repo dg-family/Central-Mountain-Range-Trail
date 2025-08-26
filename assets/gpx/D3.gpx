@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="Central Mountain Range Trail">
+  <metadata>
+    <name>D3：天空營地 → 無明水池</name>
+    <desc>中央山脈大縱走 D3 路線</desc>
+    <time>2024-01-01T00:00:00Z</time>
+  </metadata>
+  
+  <wpt lat="24.3094289" lon="121.4142593">
+    <name>天空營地</name>
+  </wpt>
+  
+  <wpt lat="24.3085885" lon="121.4044893">
+    <name>中央尖山西峰</name>
+  </wpt>
+  
+  <wpt lat="24.2899819" lon="121.3899299">
+    <name>甘薯峰</name>
+  </wpt>
+  
+  <wpt lat="24.2799500" lon="121.3801048">
+    <name>甘薯南峰營地</name>
+  </wpt>
+  
+  <wpt lat="24.2656565" lon="121.3844560">
+    <name>鬼門關峰</name>
+  </wpt>
+  
+  <wpt lat="24.2623783" lon="121.3845077">
+    <name>無明水池</name>
+  </wpt>
+  
+  <trk>
+    <name>D3：天空營地 → 無明水池</name>
+    <trkseg>
+      <!-- 天空營地 -->
+      <trkpt lat="24.3094289" lon="121.4142593">
+        <ele>3200</ele>
+      </trkpt>
+      
+      <!-- 中央尖山西峰 -->
+      <trkpt lat="24.3085885" lon="121.4044893">
+        <ele>3500</ele>
+      </trkpt>
+      
+      <!-- 甘薯峰 -->
+      <trkpt lat="24.2899819" lon="121.3899299">
+        <ele>3158</ele>
+      </trkpt>
+      
+      <!-- 甘薯南峰營地 -->
+      <trkpt lat="24.2799500" lon="121.3801048">
+        <ele>3000</ele>
+      </trkpt>
+      
+      <!-- 鬼門關峰 -->
+      <trkpt lat="24.2656565" lon="121.3844560">
+        <ele>3400</ele>
+      </trkpt>
+      
+      <!-- 無明水池 -->
+      <trkpt lat="24.2623783" lon="121.3845077">
+        <ele>3322</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
