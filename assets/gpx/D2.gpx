@@ -4,10 +4,10 @@
     <name>D2 - 香菇寮營地 → 天空營地</name>
     <desc>中央山脈大縱走 第二天</desc>
   </metadata>
-  <wpt lat="24.34689" lon="121.40653">
+  <wpt lat="24.3436971" lon="121.4065169">
     <name>香菇寮營地</name>
   </wpt>
-  <wpt lat="24.33553" lon="121.41827">
+  <wpt lat="24.3355638" lon="121.4187062">
     <name>中央尖溪山屋</name>
   </wpt>
   <wpt lat="24.308619" lon="121.421371">
@@ -21,19 +21,211 @@
   </wpt>
   <trk>
     <name>D2 路線</name>
+    <!-- 第一段：香菇寮營地到中央尖溪山屋 (Way: 171969824) -->
     <trkseg>
-      <trkpt lat="24.34689" lon="121.40653">
-        <ele>2318</ele>
+      <!-- 香菇寮營地 -->
+      <trkpt lat="24.3436971" lon="121.4065169">
+        <ele>2240</ele>
       </trkpt>
-      <trkpt lat="24.33553" lon="121.41827">
-        <ele>2378</ele>
+      
+      <!-- Way: 171969824 節點 - 香菇寮營地到中央尖溪山屋 -->
+      <trkpt lat="24.3355638" lon="121.4187062">
+        <ele>2230</ele>
       </trkpt>
+      <trkpt lat="24.3356926" lon="121.4185017">
+        <ele>2220</ele>
+      </trkpt>
+      <trkpt lat="24.335757" lon="121.4181805">
+        <ele>2210</ele>
+      </trkpt>
+      <trkpt lat="24.335798" lon="121.4178273">
+        <ele>2200</ele>
+      </trkpt>
+      <trkpt lat="24.3359736" lon="121.417596">
+        <ele>2190</ele>
+      </trkpt>
+      <trkpt lat="24.3360321" lon="121.4173776">
+        <ele>2180</ele>
+      </trkpt>
+      <trkpt lat="24.3365295" lon="121.4172941">
+        <ele>2170</ele>
+      </trkpt>
+      <trkpt lat="24.3365178" lon="121.4171785">
+        <ele>2160</ele>
+      </trkpt>
+      <trkpt lat="24.3361843" lon="121.4170501">
+        <ele>2150</ele>
+      </trkpt>
+      <trkpt lat="24.3361082" lon="121.4167417">
+        <ele>2140</ele>
+      </trkpt>
+      <trkpt lat="24.3361901" lon="121.416594">
+        <ele>2130</ele>
+      </trkpt>
+      <trkpt lat="24.3360028" lon="121.4161958">
+        <ele>2120</ele>
+      </trkpt>
+      <trkpt lat="24.335997" lon="121.4160031">
+        <ele>2110</ele>
+      </trkpt>
+      <trkpt lat="24.3362545" lon="121.4159902">
+        <ele>2100</ele>
+      </trkpt>
+      <trkpt lat="24.3364418" lon="121.4160031">
+        <ele>2090</ele>
+      </trkpt>
+      <trkpt lat="24.336553" lon="121.4162407">
+        <ele>2080</ele>
+      </trkpt>
+      <trkpt lat="24.3366642" lon="121.4162664">
+        <ele>2070</ele>
+      </trkpt>
+      <trkpt lat="24.3366407" lon="121.416549">
+        <ele>2060</ele>
+      </trkpt>
+      <trkpt lat="24.3367695" lon="121.4164591">
+        <ele>2050</ele>
+      </trkpt>
+      <trkpt lat="24.3368865" lon="121.4165555">
+        <ele>2040</ele>
+      </trkpt>
+      <trkpt lat="24.3369687" lon="121.4163752">
+        <ele>2030</ele>
+      </trkpt>
+      <trkpt lat="24.3370504" lon="121.4161958">
+        <ele>2020</ele>
+      </trkpt>
+      <trkpt lat="24.3371733" lon="121.4161123">
+        <ele>2010</ele>
+      </trkpt>
+      <trkpt lat="24.3372904" lon="121.4162793">
+        <ele>2000</ele>
+      </trkpt>
+      <trkpt lat="24.3376532" lon="121.4162921">
+        <ele>1990</ele>
+      </trkpt>
+      <trkpt lat="24.3377293" lon="121.4160416">
+        <ele>1980</ele>
+      </trkpt>
+      <trkpt lat="24.3378814" lon="121.415881">
+        <ele>1970</ele>
+      </trkpt>
+      <trkpt lat="24.3381097" lon="121.4158746">
+        <ele>1960</ele>
+      </trkpt>
+      <trkpt lat="24.3385018" lon="121.4160031">
+        <ele>1950</ele>
+      </trkpt>
+      <trkpt lat="24.3385896" lon="121.415881">
+        <ele>1940</ele>
+      </trkpt>
+      <trkpt lat="24.3385369" lon="121.4157076">
+        <ele>1930</ele>
+      </trkpt>
+      <trkpt lat="24.33873" lon="121.4155727">
+        <ele>1920</ele>
+      </trkpt>
+      <trkpt lat="24.3386623" lon="121.4155094">
+        <ele>1910</ele>
+      </trkpt>
+      <trkpt lat="24.3383379" lon="121.4152066">
+        <ele>1900</ele>
+      </trkpt>
+      <trkpt lat="24.3379458" lon="121.4149176">
+        <ele>1890</ele>
+      </trkpt>
+      <trkpt lat="24.3378697" lon="121.4143459">
+        <ele>1880</ele>
+      </trkpt>
+      <trkpt lat="24.3378463" lon="121.4141982">
+        <ele>1870</ele>
+      </trkpt>
+      <trkpt lat="24.3377878" lon="121.4138706">
+        <ele>1860</ele>
+      </trkpt>
+      <trkpt lat="24.33794" lon="121.4135558">
+        <ele>1850</ele>
+      </trkpt>
+      <trkpt lat="24.3380453" lon="121.4133118">
+        <ele>1840</ele>
+      </trkpt>
+      <trkpt lat="24.3380336" lon="121.4130484">
+        <ele>1830</ele>
+      </trkpt>
+      <trkpt lat="24.3381272" lon="121.4127786">
+        <ele>1820</ele>
+      </trkpt>
+      <trkpt lat="24.3383496" lon="121.4126951">
+        <ele>1810</ele>
+      </trkpt>
+      <trkpt lat="24.3385486" lon="121.4126245">
+        <ele>1800</ele>
+      </trkpt>
+      <trkpt lat="24.3386861" lon="121.4127016">
+        <ele>1790</ele>
+      </trkpt>
+      <trkpt lat="24.3389014" lon="121.4125271">
+        <ele>1780</ele>
+      </trkpt>
+      <trkpt lat="24.3391824" lon="121.4122994">
+        <ele>1770</ele>
+      </trkpt>
+      <trkpt lat="24.3393814" lon="121.4118369">
+        <ele>1760</ele>
+      </trkpt>
+      <trkpt lat="24.3395803" lon="121.4115543">
+        <ele>1750</ele>
+      </trkpt>
+      <trkpt lat="24.3395686" lon="121.411079">
+        <ele>1740</ele>
+      </trkpt>
+      <trkpt lat="24.3397793" lon="121.4104367">
+        <ele>1730</ele>
+      </trkpt>
+      <trkpt lat="24.3402358" lon="121.4100513">
+        <ele>1720</ele>
+      </trkpt>
+      <trkpt lat="24.3406923" lon="121.4096916">
+        <ele>1710</ele>
+      </trkpt>
+      <trkpt lat="24.3409264" lon="121.4092805">
+        <ele>1700</ele>
+      </trkpt>
+      <trkpt lat="24.3410317" lon="121.408741">
+        <ele>1690</ele>
+      </trkpt>
+      <trkpt lat="24.3410375" lon="121.408423">
+        <ele>1680</ele>
+      </trkpt>
+      <trkpt lat="24.3409644" lon="121.4082046">
+        <ele>1670</ele>
+      </trkpt>
+      <trkpt lat="24.3408511" lon="121.4080748">
+        <ele>1660</ele>
+      </trkpt>
+      <trkpt lat="24.3355638" lon="121.4187062">
+        <ele>1650</ele>
+      </trkpt>
+    </trkseg>
+    
+    <!-- 第二段：中央尖溪山屋到天空營地 -->
+    <trkseg>
+      <!-- 中央尖溪山屋 -->
+      <trkpt lat="24.3355638" lon="121.4187062">
+        <ele>1650</ele>
+      </trkpt>
+      
+      <!-- 繼續到中央尖鞍部 -->
       <trkpt lat="24.308619" lon="121.421371">
         <ele>3461</ele>
       </trkpt>
+      
+      <!-- 繼續到中央尖山 -->
       <trkpt lat="24.31023" lon="121.41621">
         <ele>3679</ele>
       </trkpt>
+      
+      <!-- 繼續到天空營地 -->
       <trkpt lat="24.308566" lon="121.412555">
         <ele>2980</ele>
       </trkpt>
