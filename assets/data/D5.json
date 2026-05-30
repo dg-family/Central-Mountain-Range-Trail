@@ -6063,5 +6063,49 @@
       "lat": 24.1807453,
       "lon": 121.309687
     }
+  ],
+  "segments": [
+    {
+      "from": "黑水塘/汪汪水池營地",
+      "to": "北畢祿山",
+      "distance": 2.1,
+      "time": 128,
+      "description": "黑水塘/汪汪水池營地 → 北畢祿山"
+    },
+    {
+      "from": "北畢祿山",
+      "to": "畢祿山",
+      "distance": 1.4,
+      "time": 103,
+      "description": "北畢祿山 → 畢祿山"
+    },
+    {
+      "from": "畢祿山",
+      "to": "主稜三岔路口",
+      "distance": 0.1,
+      "time": 14,
+      "description": "畢祿山 → 主稜三岔路口"
+    },
+    {
+      "from": "主稜三岔路口",
+      "to": "8.4K登山口營地",
+      "distance": 1.8,
+      "time": 103,
+      "description": "主稜三岔路口 → 8.4K登山口營地"
+    },
+    {
+      "from": "8.4K登山口營地",
+      "to": "畢祿替代路線",
+      "distance": 8.1,
+      "time": 307,
+      "description": "8.4K登山口營地 → 畢祿替代路線"
+    },
+    {
+      "from": "畢祿替代路線",
+      "to": "大禹嶺",
+      "distance": 0.6,
+      "time": 30,
+      "description": "畢祿替代路線 → 大禹嶺"
+    }
   ]
 }

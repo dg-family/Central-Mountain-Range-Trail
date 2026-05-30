@@ -1377,5 +1377,35 @@
       "lat": 24.3094289,
       "lon": 121.4142593
     }
+  ],
+  "segments": [
+    {
+      "from": "香菇寮營地",
+      "to": "中央尖溪山屋",
+      "distance": 2.3,
+      "time": 171,
+      "description": "香菇寮營地 → 中央尖溪山屋"
+    },
+    {
+      "from": "中央尖溪山屋",
+      "to": "中央尖鞍部",
+      "distance": 3.3,
+      "time": 334,
+      "description": "中央尖溪山屋 → 中央尖鞍部"
+    },
+    {
+      "from": "中央尖鞍部",
+      "to": "中央尖山",
+      "distance": 0.7,
+      "time": 63,
+      "description": "中央尖鞍部 → 中央尖山"
+    },
+    {
+      "from": "中央尖山",
+      "to": "天空營地",
+      "distance": 0.6,
+      "time": 22,
+      "description": "中央尖山 → 天空營地"
+    }
   ]
 }

@@ -1440,5 +1440,42 @@
       "lat": 24.2623783,
       "lon": 121.3845077
     }
+  ],
+  "segments": [
+    {
+      "from": "天空營地",
+      "to": "中央尖山西峰",
+      "distance": 1.1,
+      "time": 95,
+      "description": "天空營地 → 中央尖山西峰"
+    },
+    {
+      "from": "中央尖山西峰",
+      "to": "甘薯峰",
+      "distance": 3.5,
+      "time": 240,
+      "description": "中央尖山西峰 → 甘薯峰"
+    },
+    {
+      "from": "甘薯峰",
+      "to": "甘薯南峰營地",
+      "distance": 1.9,
+      "time": 142,
+      "description": "甘薯峰 → 甘薯南峰營地"
+    },
+    {
+      "from": "甘薯南峰營地",
+      "to": "鬼門關峰",
+      "distance": 1.8,
+      "time": 154,
+      "description": "甘薯南峰營地 → 鬼門關峰"
+    },
+    {
+      "from": "鬼門關峰",
+      "to": "無明水池",
+      "distance": 0.4,
+      "time": 34,
+      "description": "鬼門關峰 → 無明水池"
+    }
   ]
 }

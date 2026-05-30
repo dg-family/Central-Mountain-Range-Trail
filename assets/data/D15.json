@@ -1,4 +1,60 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "2761最低鞍部營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "關門北山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "關門山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "巖山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "2603公尺鞍部"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "2761最低鞍部營地",
+      "to": "關門北山",
+      "distance": 1.6,
+      "time": 210,
+      "description": "2761最低鞍部營地 → 關門北山"
+    },
+    {
+      "from": "關門北山",
+      "to": "關門山",
+      "distance": 2.6,
+      "time": 150,
+      "description": "關門北山 → 關門山"
+    },
+    {
+      "from": "關門山",
+      "to": "巖山",
+      "distance": 1.7,
+      "time": 40,
+      "description": "關門山 → 巖山"
+    },
+    {
+      "from": "巖山",
+      "to": "2603公尺鞍部",
+      "distance": 2.9,
+      "time": 250,
+      "description": "巖山 → 2603公尺鞍部"
+    }
+  ]
 }

@@ -1,4 +1,72 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 24.1168,
+      "lon": 121.3352,
+      "name": "奇萊山屋營地"
+    },
+    {
+      "lat": 24.1062,
+      "lon": 121.3341,
+      "name": "奇萊主峰"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "卡羅樓斷崖"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "奇萊南峰南鞍"
+    },
+    {
+      "lat": 24.0382,
+      "lon": 121.5647,
+      "name": "天池山莊"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "光被八表紀念碑"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "奇萊山屋營地",
+      "to": "奇萊主峰",
+      "distance": 3.6,
+      "time": 150,
+      "description": "奇萊山屋營地 → 奇萊主峰"
+    },
+    {
+      "from": "奇萊主峰",
+      "to": "卡羅樓斷崖",
+      "distance": 2.5,
+      "time": 180,
+      "description": "奇萊主峰 → 卡羅樓斷崖"
+    },
+    {
+      "from": "卡羅樓斷崖",
+      "to": "奇萊南峰南鞍",
+      "distance": 3.0,
+      "time": 200,
+      "description": "卡羅樓斷崖 → 奇萊南峰南鞍"
+    },
+    {
+      "from": "奇萊南峰南鞍",
+      "to": "天池山莊",
+      "distance": 4.5,
+      "time": 120,
+      "description": "奇萊南峰南鞍 → 天池山莊"
+    },
+    {
+      "from": "天池山莊",
+      "to": "光被八表紀念碑",
+      "distance": 2.5,
+      "time": 40,
+      "description": "天池山莊 → 光被八表紀念碑"
+    }
+  ]
 }

@@ -1,4 +1,60 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "達芬谷山屋"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "塔芬山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "塔芬池"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "轆轆山登山口"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "轆轆谷山屋"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "達芬谷山屋",
+      "to": "塔芬山",
+      "distance": 1.7,
+      "time": 160,
+      "description": "達芬谷山屋 → 塔芬山"
+    },
+    {
+      "from": "塔芬山",
+      "to": "塔芬池",
+      "distance": 0.4,
+      "time": 20,
+      "description": "塔芬山 → 塔芬池"
+    },
+    {
+      "from": "塔芬池",
+      "to": "轆轆山登山口",
+      "distance": 3.9,
+      "time": 250,
+      "description": "塔芬池 → 轆轆山登山口"
+    },
+    {
+      "from": "轆轆山登山口",
+      "to": "轆轆谷山屋",
+      "distance": 0.9,
+      "time": 45,
+      "description": "轆轆山登山口 → 轆轆谷山屋"
+    }
+  ]
 }

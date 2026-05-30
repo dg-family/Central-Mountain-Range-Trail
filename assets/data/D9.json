@@ -1,4 +1,120 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "南峰岔路口"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "能高山南峰"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "南峰岔路口"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "南峰南鞍營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "3039鞍營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "光頭山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "白石池"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "白石山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "萬里池"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "屯鹿池 → 屯鹿妹池"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "南峰岔路口",
+      "to": "能高山南峰",
+      "distance": 0.1,
+      "time": 5,
+      "description": "南峰岔路口 → 能高山南峰"
+    },
+    {
+      "from": "能高山南峰",
+      "to": "南峰岔路口",
+      "distance": 0.1,
+      "time": 3,
+      "description": "能高山南峰 → 南峰岔路口"
+    },
+    {
+      "from": "南峰岔路口",
+      "to": "南峰南鞍營地",
+      "distance": 1.0,
+      "time": 70,
+      "description": "南峰岔路口 → 南峰南鞍營地"
+    },
+    {
+      "from": "南峰南鞍營地",
+      "to": "3039鞍營地",
+      "distance": 0.8,
+      "time": 90,
+      "description": "南峰南鞍營地 → 3039鞍營地"
+    },
+    {
+      "from": "3039鞍營地",
+      "to": "光頭山",
+      "distance": 1.1,
+      "time": 60,
+      "description": "3039鞍營地 → 光頭山"
+    },
+    {
+      "from": "光頭山",
+      "to": "白石池",
+      "distance": 2.0,
+      "time": 100,
+      "description": "光頭山 → 白石池"
+    },
+    {
+      "from": "白石池",
+      "to": "白石山",
+      "distance": 3.0,
+      "time": 130,
+      "description": "白石池 → 白石山"
+    },
+    {
+      "from": "白石山",
+      "to": "萬里池",
+      "distance": 1.3,
+      "time": 60,
+      "description": "白石山 → 萬里池"
+    },
+    {
+      "from": "萬里池",
+      "to": "屯鹿池 → 屯鹿妹池",
+      "distance": 2.1,
+      "time": 120,
+      "description": "萬里池 → 屯鹿池 → 屯鹿妹池"
+    }
+  ]
 }

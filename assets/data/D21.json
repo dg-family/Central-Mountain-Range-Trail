@@ -1,4 +1,91 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "馬博拉斯山屋"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "馬博前岔路"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "秀馬最低鞍部"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "秀姑巒山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "秀姑坪岔路"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "大水窟山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "大水窟山屋"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "馬博拉斯山屋",
+      "to": "馬博前岔路",
+      "distance": 0.3,
+      "time": 40,
+      "description": "馬博拉斯山屋 → 馬博前岔路"
+    },
+    {
+      "from": "馬博前岔路",
+      "to": "馬博前岔路",
+      "distance": 0.6,
+      "time": 15,
+      "description": "馬博前岔路 → 馬博拉斯山（輕裝來回 0.6公里，15分鐘）→ 馬博前岔路"
+    },
+    {
+      "from": "馬博前岔路",
+      "to": "秀馬最低鞍部",
+      "distance": 1.5,
+      "time": 40,
+      "description": "馬博前岔路 → 秀馬最低鞍部"
+    },
+    {
+      "from": "秀馬最低鞍部",
+      "to": "秀姑巒山",
+      "distance": 2.0,
+      "time": 205,
+      "description": "秀馬最低鞍部 → 秀姑巒山"
+    },
+    {
+      "from": "秀姑巒山",
+      "to": "秀姑坪岔路",
+      "distance": 2.0,
+      "time": 70,
+      "description": "秀姑巒山 → 秀姑坪岔路"
+    },
+    {
+      "from": "秀姑坪岔路",
+      "to": "大水窟山",
+      "distance": 2.4,
+      "time": 140,
+      "description": "秀姑坪岔路 → 大水窟山"
+    },
+    {
+      "from": "大水窟山",
+      "to": "大水窟山屋",
+      "distance": 2.8,
+      "time": 100,
+      "description": "大水窟山 → 大水窟山屋"
+    }
+  ]
 }

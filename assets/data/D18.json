@@ -1,4 +1,84 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "東鞍營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "義西請馬至山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "烏妹浪胖池"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "烏妹浪胖山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "哈伊拉羅溪北源營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "僕落西擴山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "嘆息灣"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "東鞍營地",
+      "to": "義西請馬至山",
+      "distance": 2.9,
+      "time": 110,
+      "description": "東鞍營地 → 義西請馬至山"
+    },
+    {
+      "from": "義西請馬至山",
+      "to": "烏妹浪胖池",
+      "distance": 1.9,
+      "time": 60,
+      "description": "義西請馬至山 → 烏妹浪胖池"
+    },
+    {
+      "from": "烏妹浪胖池",
+      "to": "烏妹浪胖山",
+      "distance": 0.1,
+      "time": 5,
+      "description": "烏妹浪胖池 → 烏妹浪胖山"
+    },
+    {
+      "from": "烏妹浪胖山",
+      "to": "哈伊拉羅溪北源營地",
+      "distance": 2.2,
+      "time": 100,
+      "description": "烏妹浪胖山 → 直接往東南方向下到錐錐谷 → 哈伊拉羅溪北源營地"
+    },
+    {
+      "from": "哈伊拉羅溪北源營地",
+      "to": "僕落西擴山",
+      "distance": 1.45,
+      "time": 170,
+      "description": "哈伊拉羅溪北源營地 → 僕落西擴山"
+    },
+    {
+      "from": "僕落西擴山",
+      "to": "嘆息灣",
+      "distance": 2.81,
+      "time": 110,
+      "description": "僕落西擴山 → 嘆息灣"
+    }
+  ]
 }

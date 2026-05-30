@@ -1,4 +1,91 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "海諾南山下營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "小關山北峰前營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "小關山北峰"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "四岔路口"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "小關山森林營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "最低鞍部"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "雲水山營地"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "海諾南山下營地",
+      "to": "小關山北峰前營地",
+      "distance": 3.4,
+      "time": 170,
+      "description": "海諾南山下營地 → 小關山北峰前營地"
+    },
+    {
+      "from": "小關山北峰前營地",
+      "to": "小關山北峰",
+      "distance": 0.1,
+      "time": 5,
+      "description": "小關山北峰前營地 → 小關山北峰"
+    },
+    {
+      "from": "小關山北峰",
+      "to": "四岔路口",
+      "distance": 2.4,
+      "time": 160,
+      "description": "小關山北峰 → 四岔路口"
+    },
+    {
+      "from": "四岔路口",
+      "to": "四岔路口",
+      "distance": 0.2,
+      "time": 5,
+      "description": "四岔路口 → 小關山（原路來回 0.2公里，5分鐘）→ 四岔路口"
+    },
+    {
+      "from": "四岔路口",
+      "to": "小關山森林營地",
+      "distance": 0.7,
+      "time": 40,
+      "description": "四岔路口 → 小關山森林營地"
+    },
+    {
+      "from": "小關山森林營地",
+      "to": "最低鞍部",
+      "distance": 0.5,
+      "time": 30,
+      "description": "小關山森林營地 → 最低鞍部"
+    },
+    {
+      "from": "最低鞍部",
+      "to": "雲水山營地",
+      "distance": 1.0,
+      "time": 60,
+      "description": "最低鞍部 → 雲水山營地"
+    }
+  ]
 }

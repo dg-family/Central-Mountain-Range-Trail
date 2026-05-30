@@ -1,4 +1,60 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "轆轆谷山屋"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "雲峰東峰三岔路口營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "西北鞍南雙池營地"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "南雙頭山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "拉庫音溪山屋"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "轆轆谷山屋",
+      "to": "雲峰東峰三岔路口營地",
+      "distance": 4.5,
+      "time": 240,
+      "description": "轆轆谷山屋 → 雲峰東峰三岔路口營地"
+    },
+    {
+      "from": "雲峰東峰三岔路口營地",
+      "to": "西北鞍南雙池營地",
+      "distance": 2.1,
+      "time": 150,
+      "description": "雲峰東峰三岔路口營地 → 西北鞍南雙池營地"
+    },
+    {
+      "from": "西北鞍南雙池營地",
+      "to": "南雙頭山",
+      "distance": 0.8,
+      "time": 50,
+      "description": "西北鞍南雙池營地 → 南雙頭山"
+    },
+    {
+      "from": "南雙頭山",
+      "to": "拉庫音溪山屋",
+      "distance": 3.0,
+      "time": 110,
+      "description": "南雙頭山 → 拉庫音溪山屋"
+    }
+  ]
 }

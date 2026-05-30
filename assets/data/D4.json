@@ -1740,5 +1740,42 @@
       "lat": 24.2351305,
       "lon": 121.3519253
     }
+  ],
+  "segments": [
+    {
+      "from": "無明水池",
+      "to": "無明山",
+      "distance": 0.8,
+      "time": 94,
+      "description": "無明水池 → 無明山"
+    },
+    {
+      "from": "無明山",
+      "to": "無明山西峰",
+      "distance": 1.5,
+      "time": 159,
+      "description": "無明山 → 無明山西峰"
+    },
+    {
+      "from": "無明山西峰",
+      "to": "鈴鳴山東鞍營地",
+      "distance": 2.7,
+      "time": 253,
+      "description": "無明山西峰 → 鈴鳴山東鞍營地"
+    },
+    {
+      "from": "鈴鳴山東鞍營地",
+      "to": "鈴鳴山",
+      "distance": 0.3,
+      "time": 33,
+      "description": "鈴鳴山東鞍營地 → 鈴鳴山"
+    },
+    {
+      "from": "鈴鳴山",
+      "to": "黑水塘/汪汪水池營地",
+      "distance": 1.2,
+      "time": 126,
+      "description": "鈴鳴山 → 黑水塘/汪汪水池營地"
+    }
   ]
 }

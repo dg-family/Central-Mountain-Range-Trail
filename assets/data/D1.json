@@ -2905,5 +2905,49 @@
       "lat": 24.3436971,
       "lon": 121.4065169
     }
+  ],
+  "segments": [
+    {
+      "from": "勝光登山口",
+      "to": "大水池登山口",
+      "distance": 1.2,
+      "time": 38,
+      "description": "勝光登山口 → 大水池登山口"
+    },
+    {
+      "from": "大水池登山口",
+      "to": "710林道4.8K",
+      "distance": 1.0,
+      "time": 61,
+      "description": "大水池登山口 → 710林道4.8K"
+    },
+    {
+      "from": "710林道4.8K",
+      "to": "松風嶺8.0K",
+      "distance": 2.3,
+      "time": 145,
+      "description": "710林道4.8K → 松風嶺8.0K"
+    },
+    {
+      "from": "松風嶺8.0K",
+      "to": "木杆鞍部",
+      "distance": 3.2,
+      "time": 177,
+      "description": "松風嶺8.0K → 木杆鞍部"
+    },
+    {
+      "from": "木杆鞍部",
+      "to": "南湖溪山屋",
+      "distance": 1.0,
+      "time": 58,
+      "description": "木杆鞍部 → 南湖溪山屋"
+    },
+    {
+      "from": "南湖溪山屋",
+      "to": "香菇寮營地",
+      "distance": 3.8,
+      "time": 236,
+      "description": "南湖溪山屋 → 香菇寮營地"
+    }
   ]
 }

@@ -1,4 +1,60 @@
 {
-  "waypoints": [],
-  "trackPoints": []
+  "waypoints": [
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "大水窟山屋"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "南大水窟山"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "三岔路口"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "達芬尖山登山口"
+    },
+    {
+      "lat": 0.0,
+      "lon": 0.0,
+      "name": "達芬谷山屋"
+    }
+  ],
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "大水窟山屋",
+      "to": "南大水窟山",
+      "distance": 1.5,
+      "time": 195,
+      "description": "大水窟山屋 → 南大水窟山"
+    },
+    {
+      "from": "南大水窟山",
+      "to": "三岔路口",
+      "distance": 2.1,
+      "time": 95,
+      "description": "南大水窟山 → 三岔路口"
+    },
+    {
+      "from": "三岔路口",
+      "to": "達芬尖山登山口",
+      "distance": 2.9,
+      "time": 140,
+      "description": "三岔路口 → 達芬尖山登山口"
+    },
+    {
+      "from": "達芬尖山登山口",
+      "to": "達芬谷山屋",
+      "distance": 2.5,
+      "time": 90,
+      "description": "達芬尖山登山口 → 達芬谷山屋"
+    }
+  ]
 }

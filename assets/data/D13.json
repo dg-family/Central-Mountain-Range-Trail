@@ -1,4 +1,13 @@
 {
   "waypoints": [],
-  "trackPoints": []
+  "trackPoints": [],
+  "segments": [
+    {
+      "from": "",
+      "to": "",
+      "distance": 0,
+      "time": 0,
+      "description": "預備日／機動天"
+    }
+  ]
 }
