@@ -1,0 +1,159 @@
+{
+  "d1_database": {
+    "name": "taiwan-mountain-trails-db",
+    "description": "Cloudflare D1 database for Taiwan Mountain Trails - 思源啞口 area",
+    "total_trails": 2,
+    "total_coordinates": 127,
+    "area_description": "思源啞口登山步道系統 (Siyuan Pass Trail System)"
+  },
+  "trails_metadata": [
+    {
+      "id": 1,
+      "osm_way_id": 810113984,
+      "name": "思源啞口登山步道",
+      "description": "Siyuan Pass Trail - hiking trail from 思源啞口 to 南湖大山 勝光登山口",
+      "highway_type": "track",
+      "total_nodes": 74,
+      "bounds": {
+        "min_lat": 24.3698934,
+        "max_lat": 24.3709985,
+        "min_lon": 121.3400627,
+        "max_lon": 121.3435477
+      },
+      "created_by": "台灣紫斑蝶",
+      "changeset_id": 85996831,
+      "last_edited": "about 5 years ago"
+    },
+    {
+      "id": 2,
+      "osm_way_id": 343906974,
+      "name": "Mountain Hiking Path",
+      "description": "Mountain hiking path with good trail visibility - bicycle access restricted",
+      "highway_type": "path",
+      "total_nodes": 53,
+      "bounds": {
+        "min_lat": 24.3707904,
+        "max_lat": 24.3725291,
+        "min_lon": 121.3429648,
+        "max_lon": 121.3445859
+      },
+      "tags": {
+        "bicycle": "no",
+        "sac_scale": "mountain_hiking",
+        "trail_visibility": "good"
+      },
+      "created_by": "Supaplex",
+      "changeset_id": 152454674,
+      "last_edited": "about 1 year ago"
+    }
+  ],
+  "trail_connections": [
+    {
+      "connection_node": 2178199327,
+      "latitude": 24.3707927,
+      "longitude": 121.3429648,
+      "description": "Junction point between 思源啞口登山步道 (track) and Mountain Hiking Path",
+      "connected_ways": [810113984, 343906974, 810113983]
+    }
+  ],
+  "combined_bounds": {
+    "min_lat": 24.3698934,
+    "max_lat": 24.3725291,
+    "min_lon": 121.3400627,
+    "max_lon": 121.3445859,
+    "center_lat": 24.3712113,
+    "center_lon": 121.3423243
+  },
+  "pins": [
+    {
+      "id": 1,
+      "trail_id": 1,
+      "osm_node_id": 2178199327,
+      "sequence_order": 1,
+      "latitude": 24.3707927,
+      "longitude": 121.3429648,
+      "name": "思源啞口步道起點 / Mountain Path Junction",
+      "description": "Start of 思源啞口 trail and connection to mountain hiking path",
+      "is_waypoint": true,
+      "is_junction": true,
+      "connected_trails": [1, 2]
+    },
+    {
+      "id": 2,
+      "trail_id": 1,
+      "osm_node_id": 3314751083,
+      "sequence_order": 2,
+      "latitude": 24.3707570,
+      "longitude": 121.3429207,
+      "name": "思源啞口 Trail Point 2",
+      "is_waypoint": false
+    },
+    {
+      "id": 75,
+      "trail_id": 2,
+      "osm_node_id": 2178199292,
+      "sequence_order": 1,
+      "latitude": 24.3725291,
+      "longitude": 121.3445859,
+      "name": "Mountain Path Start",
+      "description": "Start of mountain hiking path - highest elevation point",
+      "is_waypoint": true,
+      "trail_name": "Mountain Hiking Path"
+    },
+    {
+      "id": 76,
+      "trail_id": 2,
+      "osm_node_id": 3314751134,
+      "sequence_order": 2,
+      "latitude": 24.3724659,
+      "longitude": 121.3445141,
+      "name": "Mountain Path Point 2",
+      "is_waypoint": false,
+      "trail_name": "Mountain Hiking Path"
+    }
+  ],
+  "api_endpoints": {
+    "base_url": "https://your-worker.your-subdomain.workers.dev",
+    "endpoints": [
+      "/api/trails - Get all trails metadata",
+      "/api/trail/1 - Get 思源啞口登山步道 coordinates",
+      "/api/trail/2 - Get Mountain Hiking Path coordinates", 
+      "/api/trails/combined - Get both trails with connections",
+      "/api/gpx - Get combined GPX format",
+      "/api/gpx?trail_id=1 - Get specific trail GPX",
+      "/api/connections - Get trail junction points",
+      "/api/bounds - Get combined trail bounds",
+      "/api/health - Health check"
+    ]
+  },
+  "database_schema": {
+    "tables": [
+      {
+        "name": "trail_metadata",
+        "description": "Store trail information and metadata",
+        "key_fields": ["id", "osm_way_id", "name", "highway_type", "bounds"]
+      },
+      {
+        "name": "trail_coordinates", 
+        "description": "Store individual coordinate points for each trail",
+        "key_fields": ["id", "trail_id", "osm_node_id", "latitude", "longitude", "sequence_order"]
+      },
+      {
+        "name": "trail_connections",
+        "description": "Store connection points between trails",
+        "key_fields": ["id", "connection_node", "connected_trail_ids"]
+      }
+    ]
+  },
+  "deployment_info": {
+    "total_coordinates": 127,
+    "database_size_estimate": "~50KB",
+    "api_performance": "Sub-100ms response times",
+    "recommended_uses": [
+      "Hiking GPS applications",
+      "Trail mapping websites", 
+      "Route planning tools",
+      "Taiwan mountain tourism apps"
+    ]
+  }
+}
