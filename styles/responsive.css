@@ -61,7 +61,8 @@
   }
   
   .segments {
-    padding-left: var(--spacing-md);
+    padding-left: 1.5rem;
+    padding-right: var(--spacing-sm);
   }
   
   .menu {
@@ -148,15 +149,17 @@
   }
   
   .segments {
-    padding-left: var(--spacing-sm);
+    padding-left: 1.75rem;
+    padding-right: var(--spacing-md);
   }
   
   .segments li {
     font-size: var(--text-sm);
+    padding-left: var(--spacing-xs);
   }
   
   .content {
-    padding: 0 var(--spacing-sm) var(--spacing-sm);
+    padding: 0 var(--spacing-md) var(--spacing-md);
   }
   
   details.day > summary {
@@ -209,11 +212,12 @@
   }
   
   .segments {
-    padding-left: var(--spacing-xs);
+    padding-left: 1.5rem;
+    padding-right: var(--spacing-sm);
   }
   
   .content {
-    padding: 0 var(--spacing-xs) var(--spacing-xs);
+    padding: 0 var(--spacing-md) var(--spacing-md);
   }
   
   details.day > summary {
