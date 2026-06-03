@@ -6107,5 +6107,8 @@
       "time": 30,
       "description": "畢祿替代路線 → 大禹嶺"
     }
-  ]
+  ],
+  "metadata": {
+    "total_time_min": 685
+  }
 }

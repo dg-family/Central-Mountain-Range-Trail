@@ -1,0 +1,138 @@
+{
+  "description": "奇萊段（D6）OpenStreetMap 參考",
+  "relation_zhubei": {
+    "id": 18232290,
+    "name": "奇萊主北",
+    "url": "https://www.openstreetmap.org/relation/18232290",
+    "member_way_ids": [
+      1276528549,
+      218953435,
+      221210184,
+      358514963,
+      218953434
+    ]
+  },
+  "relation_dongling": {
+    "id": 18232299,
+    "name": "奇萊東稜",
+    "url": "https://www.openstreetmap.org/relation/18232299",
+    "note": "東稜進攻路線，非一般主北 D1"
+  },
+  "d6_segments": {
+    "D6-seg1_坐車_大禹嶺-松雪樓": {
+      "way_ids": [],
+      "note": "台14甲公路接駁，非登山步道。OSM 需用 highway=primary/secondary 路段拼湊，或以外部導航 GPX 為準。",
+      "osm_search": "https://www.openstreetmap.org/search?query=%E5%A4%A7%E7%A6%AD%E5%B6%BA%20%E5%90%88%E6%AD%A1%E5%B1%B1"
+    },
+    "D6-seg2_奇萊登山口-成功山屋": {
+      "way_ids": [
+        1276528549,
+        218953435
+      ],
+      "ways": [
+        {
+          "id": 1276528549,
+          "name": "奇萊山步道",
+          "highway": "footway",
+          "sac_scale": null,
+          "length_km": 1.35,
+          "points": 120,
+          "osm_url": "https://www.openstreetmap.org/way/1276528549"
+        },
+        {
+          "id": 218953435,
+          "name": "奇萊山步道",
+          "highway": "path",
+          "sac_scale": null,
+          "length_km": 4.48,
+          "points": 281,
+          "osm_url": "https://www.openstreetmap.org/way/218953435"
+        }
+      ],
+      "gpx_file": "assets/gpx/qilai/D6-seg2_奇萊登山口-成功山屋.gpx"
+    },
+    "D6-seg2_track2_成功山屋-奇萊山屋營地": {
+      "way_ids": [
+        218953434
+      ],
+      "note": "D6 第二段現以交會點 node/2281525782 為成功山屋，沿奇萊北峰步道至稜線奇萊山屋營地（非低地 node/2302643561）。"
+    },
+    "D6-seg3_成功山屋-奇萊北峰": {
+      "way_ids": [
+        218953434
+      ],
+      "alternate_way_ids": [
+        220625143
+      ],
+      "note": "主線建議 奇萊北峰步道 218953434。220625143 為奇萊北稜(alpine_hiking)技術稜線，非一般主北行程。",
+      "ways": [
+        {
+          "id": 218953434,
+          "name": "奇萊北峰步道",
+          "highway": "path",
+          "sac_scale": null,
+          "length_km": 1.47,
+          "points": 132,
+          "osm_url": "https://www.openstreetmap.org/way/218953434"
+        },
+        {
+          "id": 220625143,
+          "name": "奇萊北稜",
+          "highway": "path",
+          "sac_scale": "alpine_hiking",
+          "length_km": 3.08,
+          "points": 46,
+          "osm_url": "https://www.openstreetmap.org/way/220625143",
+          "role": "alternate"
+        }
+      ],
+      "gpx_file": "assets/gpx/qilai/D6-seg3_成功山屋-奇萊北峰.gpx"
+    },
+    "D6-seg4_奇萊北峰-奇萊山屋": {
+      "way_ids": [
+        358514963,
+        221210184
+      ],
+      "ways": [
+        {
+          "id": 358514963,
+          "name": "奇萊主峰步道",
+          "highway": "path",
+          "sac_scale": "mountain_hiking",
+          "length_km": 3.31,
+          "points": 321,
+          "osm_url": "https://www.openstreetmap.org/way/358514963"
+        },
+        {
+          "id": 221210184,
+          "name": null,
+          "highway": "path",
+          "sac_scale": null,
+          "length_km": 0.14,
+          "points": 10,
+          "osm_url": "https://www.openstreetmap.org/way/221210184"
+        }
+      ],
+      "gpx_file": "assets/gpx/qilai/D6-seg4_奇萊北峰-奇萊山屋.gpx"
+    }
+  },
+  "gpx_sources": [
+    {
+      "name": "健行筆記 奇萊連峰登山步道",
+      "url": "https://hiking.biji.co/index.php?act=detail&id=644&q=trail",
+      "note": "頁面內「相關GPX」可下載"
+    },
+    {
+      "name": "Gaia GPS 成功山屋 via 奇萊山步道",
+      "url": "https://www.gaiagps.com/hike/381597/via/"
+    },
+    {
+      "name": "Gaia GPS 奇萊稜線山屋 via 奇萊山步道",
+      "url": "https://www.gaiagps.com/hike/271029/via/"
+    },
+    {
+      "name": "OSM relation XML",
+      "url": "https://www.openstreetmap.org/api/0.6/relation/18232290/full"
+    }
+  ]
+}

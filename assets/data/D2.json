@@ -1407,5 +1407,8 @@
       "time": 22,
       "description": "中央尖山 → 天空營地"
     }
-  ]
+  ],
+  "metadata": {
+    "total_time_min": 590
+  }
 }

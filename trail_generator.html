@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中央山脈步道路線生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-section h2::before {
+            content: "📍";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .route-order-container {
+            margin-top: 10px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            min-height: 100px;
+            padding: 10px;
+            background: white;
+        }
+
+        .route-item {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: move;
+            transition: all 0.3s ease;
+        }
+
+        .route-item:hover {
+            background: #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .route-item.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .route-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .route-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .route-way-id {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .route-description {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .route-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .route-action-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .route-action-btn:hover {
+            background: #c0392b;
+        }
+
+        .route-action-btn.move-up {
+            background: #f39c12;
+        }
+
+        .route-action-btn.move-up:hover {
+            background: #e67e22;
+        }
+
+        .route-action-btn.move-down {
+            background: #27ae60;
+        }
+
+        .route-action-btn.move-down:hover {
+            background: #229954;
+        }
+
+        .way-id-input {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .add-way-id-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-way-id-btn:hover {
+            background: #229954;
+        }
+
+        .route-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .route-btn:hover {
+            background: #2980b9;
+        }
+
+        .add-all-routes-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-all-routes-btn:hover {
+            background: #8e44ad;
+        }
+
+        .waypoints-container {
+            margin-top: 10px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            min-height: 100px;
+            padding: 10px;
+            background: white;
+        }
+
+        .waypoint-item {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: move;
+            transition: all 0.3s ease;
+        }
+
+        .waypoint-item:hover {
+            background: #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .waypoint-item.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .waypoint-number {
+            background: #e74c3c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .waypoint-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .waypoint-name {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 120px;
+        }
+
+        .waypoint-coords {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .waypoint-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .waypoint-action-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .waypoint-action-btn:hover {
+            background: #c0392b;
+        }
+
+        .waypoint-action-btn.move-up {
+            background: #f39c12;
+        }
+
+        .waypoint-action-btn.move-up:hover {
+            background: #e67e22;
+        }
+
+        .waypoint-action-btn.move-down {
+            background: #27ae60;
+        }
+
+        .waypoint-action-btn.move-down:hover {
+            background: #229954;
+        }
+
+        .add-waypoint-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-waypoint-btn:hover {
+            background: #c0392b;
+        }
+
+        .waypoint-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .waypoint-btn:hover {
+            background: #c0392b;
+        }
+
+        .add-all-waypoints-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-all-waypoints-btn:hover {
+            background: #d35400;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+            margin: 30px auto;
+            min-width: 200px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .generate-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .output-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .output-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+
+        .output-section h2::before {
+            content: "📊";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .output-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .example-section {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .example-section h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .example-section pre {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>中央山脈步道路線生成器</h1>
+            <p>輸入參數並生成完整的步道路線系統</p>
+        </div>
+
+        <div class="content">
+            <form id="trailForm">
+                <div class="form-section">
+                    <h2>Waypoints 管理</h2>
+                    <div class="input-group">
+                        <label>添加 Waypoint:</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="waypointName" placeholder="名稱" style="flex: 1;">
+                            <input type="number" id="waypointLat" placeholder="緯度" min="-90" max="90" style="flex: 1;">
+                            <input type="number" id="waypointLon" placeholder="經度" min="-180" max="180" style="flex: 1;">
+                            <button type="button" class="add-waypoint-btn" onclick="addWaypoint()">添加</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Waypoints 順序 (可拖拽重新排序):</label>
+                        <div id="waypointsContainer" class="waypoints-container">
+                            <!-- Waypoint 項目將在這裡動態添加 -->
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <h3>預設 Waypoints (點擊添加):</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('大禹嶺', 24.1808178, 121.3100595)">大禹嶺</button>
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('屏風山登山口(111.2K)', 24.1797024, 121.3178096)">屏風山登山口</button>
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('鐵線吊橋', 24.1678721, 121.3253052)">鐵線吊橋</button>
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('屏風山屋', 24.1620980, 121.3249603)">屏風山屋</button>
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('屏風山', 24.1492572, 121.3429486)">屏風山</button>
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('屏風山舊路與新路分岔點', 24.1429556, 121.3391185)">分岔點</button>
+                            <button type="button" class="waypoint-btn" onclick="addPresetWaypoint('屏風南峰營地', 24.1364191, 121.3347372)">屏風南峰營地</button>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button type="button" class="add-all-waypoints-btn" onclick="addAllPresetWaypoints()">添加所有預設 Waypoints</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>路線順序設定</h2>
+                    <div class="input-group">
+                        <label for="wayIdInput">添加 Way ID 到路線:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="wayIdInput" placeholder="輸入 Way ID" class="way-id-input">
+                            <button type="button" class="add-way-id-btn" onclick="addWayId()">添加</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>路線順序 (可拖拽重新排序):</label>
+                        <div id="routeOrderContainer" class="route-order-container">
+                            <!-- 路線項目將在這裡動態添加 -->
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <h3>預設路線順序 (點擊添加):</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <button type="button" class="route-btn" onclick="addPresetRoute(1, 531491993)">路線1: 531491993</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(2, 918227944)">路線2: 918227944</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(3, 968626070)">路線3: 968626070</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(4, 968626068)">路線4: 968626068</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(5, 1049745494)">路線5: 1049745494</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(6, 220625142)">路線6: 220625142</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(7, 220625149)">路線7: 220625149</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(8, 411431051)">路線8: 411431051</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(9, 220625149)">路線9: 220625149</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(10, 220625143)">路線10: 220625143</button>
+                            <button type="button" class="route-btn" onclick="addPresetRoute(11, 410181708)">路線11: 410181708</button>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button type="button" class="add-all-routes-btn" onclick="addAllPresetRoutes()">添加所有預設路線</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="generate-btn" id="generateBtn">
+                    生成路線
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>正在生成路線，請稍候...</p>
+            </div>
+
+            <div class="output-section" id="outputSection" style="display: none;">
+                <h2>執行結果</h2>
+                <div class="output-content" id="outputContent"></div>
+                <div id="resultMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let routes = [];
+        let routeCounter = 1;
+        let waypoints = [];
+        let waypointCounter = 1;
+
+        // 路線描述映射
+        const routeDescriptions = {
+            531491993: "大禹嶺 → 屏風山登山口",
+            918227944: "屏風山登山口 → 鐵線吊橋",
+            968626070: "鐵線吊橋 → 屏風山屋",
+            968626068: "屏風山屋 → 屏風山",
+            1049745494: "屏風山 → 鐵線吊橋",
+            220625142: "起點 → 屏風山屋",
+            220625149: "屏風山相關路段",
+            411431051: "屏風山屋 → 屏風山",
+            220625143: "屏風山舊路與新路分岔點 → 終點",
+            410181708: "路線10終點 → 屏風南峰營地"
+        };
+
+        // Waypoint 管理函數
+        function addWaypoint() {
+            const name = document.getElementById('waypointName').value.trim();
+            const lat = parseFloat(document.getElementById('waypointLat').value);
+            const lon = parseFloat(document.getElementById('waypointLon').value);
+            
+            if (!name || isNaN(lat) || isNaN(lon)) {
+                alert('請填寫完整的 waypoint 信息');
+                return;
+            }
+            
+            const waypoint = {
+                id: waypointCounter++,
+                name: name,
+                lat: lat,
+                lon: lon
+            };
+            waypoints.push(waypoint);
+            updateWaypointsDisplay();
+            
+            // 清空輸入框
+            document.getElementById('waypointName').value = '';
+            document.getElementById('waypointLat').value = '';
+            document.getElementById('waypointLon').value = '';
+        }
+
+        function addPresetWaypoint(name, lat, lon) {
+            const waypoint = {
+                id: waypointCounter++,
+                name: name,
+                lat: lat,
+                lon: lon
+            };
+            waypoints.push(waypoint);
+            updateWaypointsDisplay();
+        }
+
+        function addAllPresetWaypoints() {
+            const presetWaypoints = [
+                { name: "大禹嶺", lat: 24.1808178, lon: 121.3100595 },
+                { name: "屏風山登山口(111.2K)", lat: 24.1797024, lon: 121.3178096 },
+                { name: "鐵線吊橋", lat: 24.1678721, lon: 121.3253052 },
+                { name: "屏風山屋", lat: 24.1620980, lon: 121.3249603 },
+                { name: "屏風山", lat: 24.1492572, lon: 121.3429486 },
+                { name: "屏風山舊路與新路分岔點", lat: 24.1429556, lon: 121.3391185 },
+                { name: "屏風南峰營地", lat: 24.1364191, lon: 121.3347372 }
+            ];
+
+            waypoints = presetWaypoints.map((wp, index) => ({
+                id: index + 1,
+                name: wp.name,
+                lat: wp.lat,
+                lon: wp.lon
+            }));
+            waypointCounter = waypoints.length + 1;
+            updateWaypointsDisplay();
+        }
+
+        function removeWaypoint(waypointId) {
+            waypoints = waypoints.filter(wp => wp.id !== waypointId);
+            updateWaypointsDisplay();
+        }
+
+        function moveWaypoint(waypointId, direction) {
+            const index = waypoints.findIndex(wp => wp.id === waypointId);
+            if (index === -1) return;
+
+            if (direction === 'up' && index > 0) {
+                [waypoints[index], waypoints[index - 1]] = [waypoints[index - 1], waypoints[index]];
+            } else if (direction === 'down' && index < waypoints.length - 1) {
+                [waypoints[index], waypoints[index + 1]] = [waypoints[index + 1], waypoints[index]];
+            }
+            updateWaypointsDisplay();
+        }
+
+        function updateWaypointsDisplay() {
+            const container = document.getElementById('waypointsContainer');
+            container.innerHTML = '';
+            
+            if (waypoints.length === 0) {
+                container.innerHTML = '<p style="color: #7f8c8d; text-align: center; padding: 20px;">尚未添加任何 waypoints</p>';
+                return;
+            }
+            
+            waypoints.forEach((waypoint, index) => {
+                const waypointElement = document.createElement('div');
+                waypointElement.className = 'waypoint-item';
+                waypointElement.draggable = true;
+                waypointElement.dataset.waypointId = waypoint.id;
+                
+                waypointElement.innerHTML = `
+                    <div class="waypoint-number">${index + 1}</div>
+                    <div class="waypoint-info">
+                        <span class="waypoint-name">${waypoint.name}</span>
+                        <span class="waypoint-coords">${waypoint.lat.toFixed(7)}, ${waypoint.lon.toFixed(7)}</span>
+                    </div>
+                    <div class="waypoint-actions">
+                        <button class="waypoint-action-btn move-up" onclick="moveWaypoint(${waypoint.id}, 'up')" ${index === 0 ? 'disabled' : ''}>↑</button>
+                        <button class="waypoint-action-btn move-down" onclick="moveWaypoint(${waypoint.id}, 'down')" ${index === waypoints.length - 1 ? 'disabled' : ''}>↓</button>
+                        <button class="waypoint-action-btn" onclick="removeWaypoint(${waypoint.id})">×</button>
+                    </div>
+                `;
+                
+                container.appendChild(waypointElement);
+            });
+
+            // 添加拖拽功能
+            setupWaypointsDragAndDrop();
+        }
+
+        function setupWaypointsDragAndDrop() {
+            const waypointItems = document.querySelectorAll('.waypoint-item');
+            
+            waypointItems.forEach(item => {
+                item.addEventListener('dragstart', handleWaypointDragStart);
+                item.addEventListener('dragend', handleWaypointDragEnd);
+                item.addEventListener('dragover', handleWaypointDragOver);
+                item.addEventListener('drop', handleWaypointDrop);
+            });
+        }
+
+        function handleWaypointDragStart(e) {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.dataset.waypointId);
+        }
+
+        function handleWaypointDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleWaypointDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleWaypointDrop(e) {
+            e.preventDefault();
+            const draggedId = parseInt(e.dataTransfer.getData('text/plain'));
+            const targetId = parseInt(e.target.closest('.waypoint-item').dataset.waypointId);
+            
+            if (draggedId !== targetId) {
+                const draggedIndex = waypoints.findIndex(wp => wp.id === draggedId);
+                const targetIndex = waypoints.findIndex(wp => wp.id === targetId);
+                
+                if (draggedIndex !== -1 && targetIndex !== -1) {
+                    const draggedWaypoint = waypoints.splice(draggedIndex, 1)[0];
+                    waypoints.splice(targetIndex, 0, draggedWaypoint);
+                    updateWaypointsDisplay();
+                }
+            }
+        }
+
+        function addWayId() {
+            const input = document.getElementById('wayIdInput');
+            const wayId = parseInt(input.value);
+            
+            if (wayId) {
+                addRoute(wayId);
+                input.value = '';
+            }
+        }
+
+        function addRoute(wayId) {
+            const route = {
+                id: routeCounter++,
+                wayId: wayId,
+                description: routeDescriptions[wayId] || `Way ID: ${wayId}`
+            };
+            routes.push(route);
+            updateRouteDisplay();
+        }
+
+        function addPresetRoute(routeNumber, wayId) {
+            const route = {
+                id: routeCounter++,
+                wayId: wayId,
+                description: routeDescriptions[wayId] || `Way ID: ${wayId}`
+            };
+            routes.push(route);
+            updateRouteDisplay();
+        }
+
+        function addAllPresetRoutes() {
+            const presetRoutes = [
+                { wayId: 531491993, description: "大禹嶺 → 屏風山登山口" },
+                { wayId: 918227944, description: "屏風山登山口 → 鐵線吊橋" },
+                { wayId: 968626070, description: "鐵線吊橋 → 屏風山屋" },
+                { wayId: 968626068, description: "屏風山屋 → 屏風山" },
+                { wayId: 1049745494, description: "屏風山 → 鐵線吊橋" },
+                { wayId: 220625142, description: "起點 → 屏風山屋" },
+                { wayId: 220625149, description: "前20個點 → 屏風山屋" },
+                { wayId: 411431051, description: "屏風山屋 → 屏風山" },
+                { wayId: 220625149, description: "屏風山 → 屏風山舊路與新路分岔點" },
+                { wayId: 220625143, description: "屏風山舊路與新路分岔點 → 終點" },
+                { wayId: 410181708, description: "路線10終點 → 屏風南峰營地" }
+            ];
+
+            routes = presetRoutes.map((route, index) => ({
+                id: index + 1,
+                wayId: route.wayId,
+                description: route.description
+            }));
+            routeCounter = routes.length + 1;
+            updateRouteDisplay();
+        }
+
+        function removeRoute(routeId) {
+            routes = routes.filter(route => route.id !== routeId);
+            updateRouteDisplay();
+        }
+
+        function moveRoute(routeId, direction) {
+            const index = routes.findIndex(route => route.id === routeId);
+            if (index === -1) return;
+
+            if (direction === 'up' && index > 0) {
+                [routes[index], routes[index - 1]] = [routes[index - 1], routes[index]];
+            } else if (direction === 'down' && index < routes.length - 1) {
+                [routes[index], routes[index + 1]] = [routes[index + 1], routes[index]];
+            }
+            updateRouteDisplay();
+        }
+
+        function updateRouteDisplay() {
+            const container = document.getElementById('routeOrderContainer');
+            container.innerHTML = '';
+            
+            if (routes.length === 0) {
+                container.innerHTML = '<p style="color: #7f8c8d; text-align: center; padding: 20px;">尚未添加任何路線</p>';
+                return;
+            }
+            
+            routes.forEach((route, index) => {
+                const routeElement = document.createElement('div');
+                routeElement.className = 'route-item';
+                routeElement.draggable = true;
+                routeElement.dataset.routeId = route.id;
+                
+                routeElement.innerHTML = `
+                    <div class="route-number">${index + 1}</div>
+                    <div class="route-info">
+                        <span class="route-way-id">${route.wayId}</span>
+                        <span class="route-description">${route.description}</span>
+                    </div>
+                    <div class="route-actions">
+                        <button class="route-action-btn move-up" onclick="moveRoute(${route.id}, 'up')" ${index === 0 ? 'disabled' : ''}>↑</button>
+                        <button class="route-action-btn move-down" onclick="moveRoute(${route.id}, 'down')" ${index === routes.length - 1 ? 'disabled' : ''}>↓</button>
+                        <button class="route-action-btn" onclick="removeRoute(${route.id})">×</button>
+                    </div>
+                `;
+                
+                container.appendChild(routeElement);
+            });
+
+            // 添加拖拽功能
+            setupDragAndDrop();
+        }
+
+        function setupDragAndDrop() {
+            const routeItems = document.querySelectorAll('.route-item');
+            
+            routeItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+                item.addEventListener('dragover', handleDragOver);
+                item.addEventListener('drop', handleDrop);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.dataset.routeId);
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const draggedId = parseInt(e.dataTransfer.getData('text/plain'));
+            const targetId = parseInt(e.target.closest('.route-item').dataset.routeId);
+            
+            if (draggedId !== targetId) {
+                const draggedIndex = routes.findIndex(route => route.id === draggedId);
+                const targetIndex = routes.findIndex(route => route.id === targetId);
+                
+                if (draggedIndex !== -1 && targetIndex !== -1) {
+                    const draggedRoute = routes.splice(draggedIndex, 1)[0];
+                    routes.splice(targetIndex, 0, draggedRoute);
+                    updateRouteDisplay();
+                }
+            }
+        }
+
+        function validateJson(jsonString) {
+            try {
+                const data = JSON.parse(jsonString);
+                if (!data.waypoints || !Array.isArray(data.waypoints)) {
+                    throw new Error('JSON 必須包含 waypoints 陣列');
+                }
+                return data;
+            } catch (error) {
+                throw new Error(`JSON 格式錯誤: ${error.message}`);
+            }
+        }
+
+        async function generateTrail() {
+            const generateBtn = document.getElementById('generateBtn');
+            const loading = document.getElementById('loading');
+            const outputSection = document.getElementById('outputSection');
+            const outputContent = document.getElementById('outputContent');
+            const resultMessage = document.getElementById('resultMessage');
+
+            // 驗證輸入
+            if (waypoints.length === 0) {
+                alert('請至少添加一個 waypoint');
+                return;
+            }
+
+            if (routes.length === 0) {
+                alert('請至少添加一個路線');
+                return;
+            }
+
+            try {
+                // 構建 JSON 數據
+                const jsonData = {
+                    waypoints: waypoints.map(wp => ({
+                        lat: wp.lat,
+                        lon: wp.lon,
+                        name: wp.name
+                    }))
+                };
+                
+                // 顯示載入狀態
+                generateBtn.disabled = true;
+                loading.style.display = 'block';
+                outputSection.style.display = 'none';
+
+                // 準備請求數據 - 按照路線順序提取 Way IDs
+                const wayIds = routes.map(route => route.wayId);
+                const requestData = {
+                    json_data: jsonData,
+                    way_ids: wayIds
+                };
+
+                // 發送請求到後端
+                const response = await fetch('http://localhost:8000/generate_trail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const result = await response.json();
+
+                // 隱藏載入狀態
+                loading.style.display = 'none';
+                outputSection.style.display = 'block';
+
+                if (result.success) {
+                    outputContent.textContent = result.output;
+                    resultMessage.innerHTML = `
+                        <div class="success-message">
+                            ✅ 路線生成成功！<br>
+                            輸出文件: ${result.output_file}<br>
+                            路線數量: ${result.route_count}<br>
+                            總點數: ${result.total_points}
+                        </div>
+                    `;
+                } else {
+                    outputContent.textContent = result.error;
+                    resultMessage.innerHTML = `
+                        <div class="error-message">
+                            ❌ 生成失敗: ${result.error}
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                loading.style.display = 'none';
+                outputSection.style.display = 'block';
+                outputContent.textContent = `錯誤: ${error.message}`;
+                resultMessage.innerHTML = `
+                    <div class="error-message">
+                        ❌ 請求失敗: ${error.message}
+                    </div>
+                `;
+            } finally {
+                generateBtn.disabled = false;
+            }
+        }
+
+        document.getElementById('trailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateTrail();
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 預設添加所有 waypoints 和路線
+            addAllPresetWaypoints();
+            addAllPresetRoutes();
+        });
+    </script>
+</body>
+</html>

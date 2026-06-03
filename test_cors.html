@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS 測試頁面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>CORS 和 API 連接測試</h1>
+    
+    <div class="test-section">
+        <h2>1. 健康檢查測試</h2>
+        <button onclick="testHealth()">測試健康檢查</button>
+        <div id="healthResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 路線生成 API 測試</h2>
+        <button onclick="testGenerateTrail()">測試路線生成</button>
+        <div id="generateResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 訪問路線生成器</h2>
+        <a href="trail_generator.html" target="_blank">
+            <button>打開路線生成器</button>
+        </a>
+    </div>
+
+    <script>
+        async function testHealth() {
+            const result = document.getElementById('healthResult');
+            try {
+                const response = await fetch('http://localhost:5001/health');
+                const data = await response.json();
+                result.innerHTML = `
+                    <div class="success">
+                        <h3>✅ 健康檢查成功</h3>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="error">
+                        <h3>❌ 健康檢查失敗</h3>
+                        <p>錯誤: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function testGenerateTrail() {
+            const result = document.getElementById('generateResult');
+            try {
+                // 準備測試數據
+                const testData = {
+                    json_data: {
+                        waypoints: [
+                            {
+                                lat: 24.1808178,
+                                lon: 121.3100595,
+                                name: "大禹嶺"
+                            },
+                            {
+                                lat: 24.1797024,
+                                lon: 121.3178096,
+                                name: "屏風山登山口(111.2K)"
+                            }
+                        ]
+                    },
+                    way_ids: [531491993]
+                };
+
+                const response = await fetch('http://localhost:5001/generate_trail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.innerHTML = `
+                        <div class="success">
+                            <h3>✅ 路線生成成功</h3>
+                            <p>路線數量: ${data.route_count}</p>
+                            <p>總點數: ${data.total_points}</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `
+                        <div class="error">
+                            <h3>❌ 路線生成失敗</h3>
+                            <p>錯誤: ${data.error}</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="error">
+                        <h3>❌ 路線生成請求失敗</h3>
+                        <p>錯誤: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
+

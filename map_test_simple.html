@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>地圖測試</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <style>
+    body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+    #map { height: 400px; width: 100%; border: 1px solid #ccc; }
+    .status { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+    .error { background: #ffebee; color: #c62828; }
+    .success { background: #e8f5e8; color: #2e7d32; }
+  </style>
+</head>
+<body>
+  <h1>地圖測試</h1>
+  
+  <div id="status" class="status">檢查中...</div>
+  
+  <button onclick="testMap()">測試地圖</button>
+  <div id="map"></div>
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    function updateStatus(message, type = 'info') {
+      const statusDiv = document.getElementById('status');
+      statusDiv.textContent = message;
+      statusDiv.className = `status ${type}`;
+    }
+    
+    function testMap() {
+      updateStatus('開始測試地圖...');
+      
+      try {
+        // 檢查 Leaflet 是否載入
+        if (typeof L === 'undefined') {
+          updateStatus('❌ Leaflet 庫未載入', 'error');
+          return;
+        }
+        
+        updateStatus('✅ Leaflet 庫已載入', 'success');
+        
+        // 創建地圖
+        const map = L.map('map').setView([23.5, 121], 8);
+        
+        // 添加圖層
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // 添加測試標記
+        L.marker([23.5, 121]).addTo(map)
+          .bindPopup('測試標記')
+          .openPopup();
+        
+        updateStatus('✅ 地圖創建成功！', 'success');
+        
+      } catch (error) {
+        updateStatus(`❌ 地圖創建失敗: ${error.message}`, 'error');
+        console.error('地圖錯誤:', error);
+      }
+    }
+    
+    // 頁面載入時自動測試
+    window.addEventListener('load', () => {
+      updateStatus('頁面載入完成，檢查 Leaflet...');
+      if (typeof L !== 'undefined') {
+        updateStatus('✅ Leaflet 已載入，可以測試地圖', 'success');
+      } else {
+        updateStatus('❌ Leaflet 未載入', 'error');
+      }
+    });
+  </script>
+</body>
+</html>
+

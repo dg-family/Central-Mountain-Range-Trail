@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試所有天數動態行程描述</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .day { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .segments { margin: 10px 0; }
+        .segments li { margin: 5px 0; }
+        .km { color: #666; }
+        .loading { color: #999; font-style: italic; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>測試所有天數動態行程描述 (D1~D30)</h1>
+    <p>這個頁面會從 JSON 檔案動態載入所有天數的行程描述</p>
+    
+    <div id="days-container">
+        <!-- 動態生成所有天數的容器 -->
+    </div>
+
+    <script>
+        // 計算兩點間距離的函數
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 地球半徑（公里）
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                     Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // 載入指定天數的行程描述
+        async function loadDaySegments(dayId) {
+            try {
+                const response = await fetch(`assets/data/D${dayId}.json`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                const segmentsContainer = document.getElementById(`d${dayId}-segments`);
+                if (!segmentsContainer) {
+                    console.warn(`找不到 d${dayId}-segments 元素`);
+                    return;
+                }
+                
+                let segmentsHTML = '';
+                
+                if (data.segments && data.segments.length > 0) {
+                    // 使用 segments 數據
+                    data.segments.forEach(segment => {
+                        if (segment.distance === 0 && segment.time === 0) {
+                            // 預備日
+                            segmentsHTML += `<li class="success">${segment.description}</li>`;
+                        } else {
+                            segmentsHTML += `<li>${segment.from} → <span class="km">(${segment.distance}公里，${segment.time}分鐘)</span> → ${segment.to}</li>`;
+                        }
+                    });
+                } else if (data.waypoints && data.waypoints.length > 1) {
+                    // 備用方案：從 waypoints 動態計算
+                    for (let i = 0; i < data.waypoints.length - 1; i++) {
+                        const current = data.waypoints[i];
+                        const next = data.waypoints[i + 1];
+                        
+                        const distance = calculateDistance(current.lat, current.lon, next.lat, next.lon);
+                        const estimatedTime = Math.round(distance * 60); // 每公里60分鐘估算
+                        
+                        segmentsHTML += `<li>${current.name} → <span class="km">(${distance.toFixed(2)}公里，約${estimatedTime}分鐘)</span> → ${next.name}</li>`;
+                    }
+                } else {
+                    segmentsHTML = '<li class="error">無行程數據</li>';
+                }
+                
+                segmentsContainer.innerHTML = segmentsHTML;
+                
+            } catch (error) {
+                console.error(`載入 D${dayId} 數據時發生錯誤:`, error);
+                const segmentsContainer = document.getElementById(`d${dayId}-segments`);
+                if (segmentsContainer) {
+                    segmentsContainer.innerHTML = `<li class="error">載入失敗: ${error.message}</li>`;
+                }
+            }
+        }
+
+        // 生成所有天數的 HTML 結構
+        function generateDaysHTML() {
+            const container = document.getElementById('days-container');
+            let html = '';
+            
+            for (let dayId = 1; dayId <= 30; dayId++) {
+                html += `
+                    <div id="d${dayId}" class="day">
+                        <h2>D${dayId}</h2>
+                        <ol class="segments" id="d${dayId}-segments">
+                            <li class="loading">載入中...</li>
+                        </ol>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // 初始化頁面
+        function init() {
+            generateDaysHTML();
+            
+            // 載入所有天數的行程描述
+            for (let dayId = 1; dayId <= 30; dayId++) {
+                loadDaySegments(dayId);
+            }
+        }
+
+        // 頁面載入完成後執行
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
+

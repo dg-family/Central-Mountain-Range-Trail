@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D6 路線測試</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+        .info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .route-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .route-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>D6 路線測試</h1>
+    
+    <div class="info">
+        <h3>路線信息</h3>
+        <div id="routeInfo" class="route-info"></div>
+    </div>
+    
+    <div id="map"></div>
+
+    <script>
+        // 初始化地圖
+        const map = L.map('map').setView([24.17, 121.32], 12);
+        
+        // 添加地圖圖層
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 顏色配置
+        const colors = [
+            'red', 'blue', 'green', 'orange', 'purple', 
+            'brown', 'pink', 'cyan', 'magenta', 'lime', 'navy'
+        ];
+
+        // 載入 D6.json 數據
+        async function loadD6Data() {
+            try {
+                const response = await fetch('assets/data/D6.json');
+                const data = await response.json();
+                
+                console.log('D6 數據載入成功:', data);
+                
+                // 顯示路線信息
+                displayRouteInfo(data);
+                
+                // 繪製所有路線
+                drawRoutes(data);
+                
+            } catch (error) {
+                console.error('載入 D6 數據失敗:', error);
+                document.getElementById('routeInfo').innerHTML = `<p style="color: red;">載入失敗: ${error.message}</p>`;
+            }
+        }
+
+        // 顯示路線信息
+        function displayRouteInfo(data) {
+            const routeInfo = document.getElementById('routeInfo');
+            const trackPointsKeys = Object.keys(data).filter(key => key.startsWith('trackPoints'));
+            
+            let infoHTML = '';
+            trackPointsKeys.forEach((key, index) => {
+                const points = data[key] || [];
+                const color = colors[index % colors.length];
+                infoHTML += `
+                    <div class="route-item">
+                        <strong>${key}</strong><br>
+                        點數: ${points.length}<br>
+                        顏色: <span style="color: ${color};">${color}</span>
+                    </div>
+                `;
+            });
+            
+            routeInfo.innerHTML = infoHTML;
+        }
+
+        // 繪製路線
+        function drawRoutes(data) {
+            const trackPointsKeys = Object.keys(data).filter(key => key.startsWith('trackPoints'));
+            const bounds = L.latLngBounds();
+            
+            trackPointsKeys.forEach((key, index) => {
+                const points = data[key] || [];
+                const color = colors[index % colors.length];
+                
+                if (points.length > 1) {
+                    // 繪製路線
+                    const latlngs = points.map(point => [point.lat, point.lon]);
+                    const polyline = L.polyline(latlngs, {
+                        color: color,
+                        weight: 3,
+                        opacity: 0.8
+                    }).addTo(map);
+                    
+                    // 添加起點標記
+                    if (points[0]) {
+                        L.marker([points[0].lat, points[0].lon])
+                            .bindPopup(`${key} 起點`)
+                            .addTo(map);
+                    }
+                    
+                    // 添加終點標記
+                    if (points[points.length - 1]) {
+                        L.marker([points[points.length - 1].lat, points[points.length - 1].lon])
+                            .bindPopup(`${key} 終點`)
+                            .addTo(map);
+                    }
+                    
+                    // 擴展邊界
+                    bounds.extend(latlngs);
+                    
+                    console.log(`已繪製 ${key}: ${points.length} 個點，顏色: ${color}`);
+                } else {
+                    console.log(`${key}: 點數不足，跳過繪製`);
+                }
+            });
+            
+            // 縮放到所有路線範圍
+            if (!bounds.isEmpty()) {
+                map.fitBounds(bounds.pad(0.1));
+                console.log('地圖已縮放到所有路線範圍');
+            }
+        }
+
+        // 載入數據
+        loadD6Data();
+    </script>
+</body>
+</html>
+

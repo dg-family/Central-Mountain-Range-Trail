@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>調試 Segments 載入</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    .error { background: #ffebee; color: #c62828; }
+    .success { background: #e8f5e8; color: #2e7d32; }
+  </style>
+</head>
+<body>
+  <h1>調試 Segments 載入</h1>
+  
+  <div class="debug">
+    <h3>測試 D1 載入</h3>
+    <div id="d1-debug"></div>
+    <div id="d1-segments"></div>
+  </div>
+  
+  <div class="debug">
+    <h3>測試 D7 載入</h3>
+    <div id="d7-debug"></div>
+    <div id="d7-segments"></div>
+  </div>
+  
+  <script>
+    async function testDaySegments(dayId) {
+      const debugDiv = document.getElementById(`d${dayId}-debug`);
+      const segmentsDiv = document.getElementById(`d${dayId}-segments`);
+      
+      try {
+        debugDiv.innerHTML = `<p>開始載入 D${dayId}...</p>`;
+        
+        const response = await fetch(`assets/data/D${dayId}.json`);
+        debugDiv.innerHTML += `<p>響應狀態: ${response.status}</p>`;
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        debugDiv.innerHTML += `<p class="success">JSON 載入成功</p>`;
+        debugDiv.innerHTML += `<p>waypoints 數量: ${data.waypoints ? data.waypoints.length : 0}</p>`;
+        debugDiv.innerHTML += `<p>segments 數量: ${data.segments ? data.segments.length : 0}</p>`;
+        
+        if (data.segments && data.segments.length > 0) {
+          let segmentsHTML = '<h4>Segments 內容:</h4><ul>';
+          let totalTime = 0;
+          
+          data.segments.forEach((segment, index) => {
+            debugDiv.innerHTML += `<p>Segment ${index}: ${JSON.stringify(segment)}</p>`;
+            
+            if (segment.distance === 0 && segment.time === 0) {
+              segmentsHTML += `<li>${segment.description}</li>`;
+            } else {
+              segmentsHTML += `<li>${segment.from} → (${segment.distance}公里，${segment.time}分鐘) → ${segment.to}</li>`;
+              totalTime += segment.time;
+            }
+          });
+          
+          segmentsHTML += '</ul>';
+          segmentsHTML += `<p><strong>總時間: ${totalTime} 分鐘</strong></p>`;
+          
+          segmentsDiv.innerHTML = segmentsHTML;
+          debugDiv.innerHTML += `<p class="success">Segments 顯示成功</p>`;
+        } else {
+          debugDiv.innerHTML += `<p class="error">沒有 segments 數據</p>`;
+        }
+        
+      } catch (error) {
+        debugDiv.innerHTML += `<p class="error">錯誤: ${error.message}</p>`;
+        console.error(`載入 D${dayId} 失敗:`, error);
+      }
+    }
+    
+    // 測試 D1 和 D7
+    testDaySegments(1);
+    testDaySegments(7);
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D6 行程描述測試</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .segments {
+            list-style: decimal;
+        }
+        .segments li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .km {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>D6 行程描述測試</h1>
+    
+    <h2>原始行程描述：</h2>
+    <ol class="segments">
+        <li>大禹嶺 → <span class="km">(0.2公里，5分鐘)</span> → 大禹嶺111.2K登山口</li>
+        <li>→ <span class="km">(2.7公里，80分鐘)</span> → 第一次過塔次基里溪(活水)</li>
+        <li>→ <span class="km">(1.7公里，40分鐘)</span> → 鐵線吊橋</li>
+        <li>→ <span class="km">(0.987公里，40分鐘)</span> → 屏風山屋/松針營地(屏風山告示牌編號040)</li>
+        <li>→ 沿途再次經過塔次基里溪支流(活水) → <span class="km">(0.855公里，40分鐘)</span> → 巨木區</li>
+        <li>→ <span class="km">(2.26公里，180分鐘)</span> → 垂直峭壁裸岩區</li>
+        <li>→ <span class="km">(0.56公里，60分鐘)</span> → 屏風山</li>
+        <li>→ 途經黑水塘營地 、鐘塔 →  <span class="km">(約2.0公里，約150分鐘)</span> → 屏風山南峰(H3183M)</li>
+    </ol>
+    
+    <h2>從 D6.json waypoints 產生的行程描述：</h2>
+    <ol class="segments" id="d6-segments">
+        <!-- 行程描述將由 JavaScript 動態產生 -->
+    </ol>
+
+    <script>
+        // 載入 D6 行程描述函數
+        async function loadD6Segments() {
+            try {
+                const response = await fetch('assets/data/D6.json');
+                const data = await response.json();
+                
+                console.log('D6.json 數據:', data);
+                
+                if (data.waypoints && data.waypoints.length > 1) {
+                    const segmentsContainer = document.getElementById('d6-segments');
+                    if (segmentsContainer) {
+                        let segmentsHTML = '';
+                        
+                        // 從第一個 waypoint 開始，每兩個 waypoints 形成一個行程段
+                        for (let i = 0; i < data.waypoints.length - 1; i++) {
+                            const startPoint = data.waypoints[i];
+                            const endPoint = data.waypoints[i + 1];
+                            
+                            // 計算距離（簡單的直線距離估算）
+                            const distance = calculateDistance(startPoint.lat, startPoint.lon, endPoint.lat, endPoint.lon);
+                            const estimatedTime = Math.round(distance * 30); // 每公里約30分鐘
+                            
+                            segmentsHTML += `<li>${startPoint.name} → <span class="km">(約${distance.toFixed(1)}公里，約${estimatedTime}分鐘)</span> → ${endPoint.name}</li>`;
+                        }
+                        
+                        segmentsContainer.innerHTML = segmentsHTML;
+                        console.log('D6 行程描述已從 waypoints 動態產生');
+                    }
+                }
+            } catch (error) {
+                console.error('載入 D6 waypoints 失敗:', error);
+                document.getElementById('d6-segments').innerHTML = `<li style="color: red;">載入失敗: ${error.message}</li>`;
+            }
+        }
+        
+        // 計算兩點間距離（公里）
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 地球半徑（公里）
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // 載入 D6 的行程描述
+        loadD6Segments();
+    </script>
+</body>
+</html>
+

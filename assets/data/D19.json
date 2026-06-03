@@ -9,5 +9,9 @@
       "time": 0,
       "description": "預備日／機動天"
     }
-  ]
+  ],
+  "metadata": {
+    "total_distance_km": 0,
+    "total_time_min": 0
+  }
 }

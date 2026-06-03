@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試頁面</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        input { margin: 5px; padding: 5px; }
+        button { margin: 5px; padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>路線生成器測試頁面</h1>
+    
+    <div class="test-section">
+        <h2>測試數字輸入</h2>
+        <input type="number" id="testLat" placeholder="緯度" min="-90" max="90">
+        <input type="number" id="testLon" placeholder="經度" min="-180" max="180">
+        <button onclick="testInput()">測試輸入</button>
+        <div id="testResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>測試 API 連接</h2>
+        <button onclick="testAPI()">測試 API</button>
+        <div id="apiResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>訪問完整界面</h2>
+        <a href="http://localhost:8000/trail_generator.html" target="_blank">
+            <button>打開路線生成器</button>
+        </a>
+    </div>
+
+    <script>
+        function testInput() {
+            const lat = document.getElementById('testLat').value;
+            const lon = document.getElementById('testLon').value;
+            const result = document.getElementById('testResult');
+            
+            if (lat && lon) {
+                result.innerHTML = `✅ 輸入成功: 緯度=${lat}, 經度=${lon}`;
+            } else {
+                result.innerHTML = `❌ 請輸入有效的座標`;
+            }
+        }
+
+        async function testAPI() {
+            const result = document.getElementById('apiResult');
+            try {
+                const response = await fetch('http://localhost:5001/health');
+                const data = await response.json();
+                result.innerHTML = `✅ API 正常: ${JSON.stringify(data)}`;
+            } catch (error) {
+                result.innerHTML = `❌ API 錯誤: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

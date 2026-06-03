@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segments 數據測試</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .day-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .segments {
+            list-style: decimal;
+        }
+        .segments li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .km {
+            color: #666;
+            font-size: 0.9em;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .data-info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Segments 數據測試</h1>
+    <p>這個頁面測試從 JSON 檔案中的 segments 數據產生行程描述</p>
+    
+    <div class="day-section">
+        <h2>D1：勝光登山口 → 香菇寮營地</h2>
+        <div class="data-info">使用 segments 數據</div>
+        <ol class="segments" id="d1-segments">
+            <!-- 行程描述將由 JavaScript 動態產生 -->
+        </ol>
+    </div>
+
+    <div class="day-section">
+        <h2>D2：香菇寮營地 → 天空營地</h2>
+        <div class="data-info">使用 segments 數據</div>
+        <ol class="segments" id="d2-segments">
+            <!-- 行程描述將由 JavaScript 動態產生 -->
+        </ol>
+    </div>
+
+    <div class="day-section">
+        <h2>D3：天空營地 → 無明水池</h2>
+        <div class="data-info">使用 segments 數據</div>
+        <ol class="segments" id="d3-segments">
+            <!-- 行程描述將由 JavaScript 動態產生 -->
+        </ol>
+    </div>
+
+    <div class="day-section">
+        <h2>D4：無明水池 → 黑水塘/汪汪水池營地</h2>
+        <div class="data-info">使用 segments 數據</div>
+        <ol class="segments" id="d4-segments">
+            <!-- 行程描述將由 JavaScript 動態產生 -->
+        </ol>
+    </div>
+
+    <div class="day-section">
+        <h2>D5：黑水塘/汪汪水池營地 → 大禹嶺(補給點)</h2>
+        <div class="data-info">使用 segments 數據</div>
+        <ol class="segments" id="d5-segments">
+            <!-- 行程描述將由 JavaScript 動態產生 -->
+        </ol>
+    </div>
+
+    <div class="day-section">
+        <h2>D6：大禹嶺 → 屏風山南峰(H3183M)</h2>
+        <div class="data-info">使用 segments 數據</div>
+        <ol class="segments" id="d6-segments">
+            <!-- 行程描述將由 JavaScript 動態產生 -->
+        </ol>
+    </div>
+
+    <script>
+        // 載入行程描述函數（適用於 D1~D6）
+        async function loadDaySegments(dayId) {
+            try {
+                const response = await fetch(`assets/data/D${dayId}.json`);
+                const data = await response.json();
+                
+                const segmentsContainer = document.getElementById(`d${dayId}-segments`);
+                if (segmentsContainer) {
+                    let segmentsHTML = '';
+                    
+                    // 優先使用 segments 數據，如果沒有則使用 waypoints 動態計算
+                    if (data.segments && data.segments.length > 0) {
+                        // 使用 segments 數據
+                        data.segments.forEach(segment => {
+                            segmentsHTML += `<li>${segment.from} → <span class="km">(${segment.distance}公里，${segment.time}分鐘)</span> → ${segment.to}</li>`;
+                        });
+                        console.log(`D${dayId} 行程描述已從 segments 數據產生`);
+                    } else if (data.waypoints && data.waypoints.length > 1) {
+                        // 使用 waypoints 動態計算（fallback）
+                        for (let i = 0; i < data.waypoints.length - 1; i++) {
+                            const startPoint = data.waypoints[i];
+                            const endPoint = data.waypoints[i + 1];
+                            
+                            // 計算距離（簡單的直線距離估算）
+                            const distance = calculateDistance(startPoint.lat, startPoint.lon, endPoint.lat, endPoint.lon);
+                            const estimatedTime = Math.round(distance * 30); // 每公里約30分鐘
+                            
+                            segmentsHTML += `<li>${startPoint.name} → <span class="km">(約${distance.toFixed(1)}公里，約${estimatedTime}分鐘)</span> → ${endPoint.name}</li>`;
+                        }
+                        console.log(`D${dayId} 行程描述已從 waypoints 動態產生`);
+                    }
+                    
+                    segmentsContainer.innerHTML = segmentsHTML;
+                }
+            } catch (error) {
+                console.error(`載入 D${dayId} 數據失敗:`, error);
+                document.getElementById(`d${dayId}-segments`).innerHTML = `<li style="color: red;">載入失敗: ${error.message}</li>`;
+            }
+        }
+        
+        // 計算兩點間距離（公里）
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 地球半徑（公里）
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // 載入 D1~D6 的行程描述
+        for (let dayId = 1; dayId <= 6; dayId++) {
+            loadDaySegments(dayId);
+        }
+    </script>
+</body>
+</html>
+
