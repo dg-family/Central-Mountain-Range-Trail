@@ -59,10 +59,20 @@
     flex-wrap: wrap;
     gap: var(--spacing-md);
   }
+
+  .content {
+    padding: 0 1.25rem 1rem;
+  }
   
   .segments {
-    padding-left: 1.5rem;
+    margin-left: 0.75rem;
+    padding-left: 2.5rem;
     padding-right: var(--spacing-sm);
+  }
+
+  .footer-line,
+  .map-toolbar {
+    margin-left: 0.75rem;
   }
   
   .menu {
@@ -92,10 +102,6 @@
   .legend {
     gap: var(--spacing-md);
     font-size: var(--text-sm);
-  }
-  
-  .content {
-    padding: 0 var(--spacing-md) var(--spacing-md);
   }
   
   details.day > summary {
@@ -148,18 +154,24 @@
     gap: var(--spacing-sm);
   }
   
+  .content {
+    padding: 0 1rem 0.875rem;
+  }
+
   .segments {
-    padding-left: 1.75rem;
+    margin-left: 1rem;
+    padding-left: 3rem;
     padding-right: var(--spacing-md);
   }
   
   .segments li {
     font-size: var(--text-sm);
-    padding-left: var(--spacing-xs);
+    padding-left: var(--spacing-sm);
   }
-  
-  .content {
-    padding: 0 var(--spacing-md) var(--spacing-md);
+
+  .footer-line,
+  .map-toolbar {
+    margin-left: 1rem;
   }
   
   details.day > summary {
@@ -211,13 +223,19 @@
     height: 240px;
   }
   
+  .content {
+    padding: 0 0.875rem 0.75rem;
+  }
+
   .segments {
-    padding-left: 1.5rem;
+    margin-left: 0.875rem;
+    padding-left: 2.75rem;
     padding-right: var(--spacing-sm);
   }
-  
-  .content {
-    padding: 0 var(--spacing-md) var(--spacing-md);
+
+  .footer-line,
+  .map-toolbar {
+    margin-left: 0.875rem;
   }
   
   details.day > summary {
