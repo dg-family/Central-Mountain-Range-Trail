@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣百岳純徒步一筆書｜96天100座百岳全島極限大縱走</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --bg-dark: #091210;
+      --bg-surface: #101c18;
+      --bg-surface-elevated: #162621;
+      --bg-card: #14221d;
+      --bg-card-hover: #1b2d27;
+      --border-subtle: #233a32;
+      --border-highlight: #3a5c50;
+      --text-main: #edf5f2;
+      --text-muted: #95ad9e;
+      --text-dim: #60796c;
+      --color-primary: #10b981;
+      --color-primary-glow: rgba(16, 185, 129, 0.25);
+      --color-accent: #f59e0b;
+      --color-accent-glow: rgba(245, 158, 11, 0.2);
+      --color-cyan: #06b6d4;
+      --color-purple: #8b5cf6;
+      --color-danger: #ef4444;
+      --color-ok: #10b981;
+      --color-warn: #f59e0b;
+      --color-limit: #f97316;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Global Header */
+    header.epic-header {
+      background: rgba(9, 18, 16, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    nav.epic-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+    nav.epic-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    nav.epic-nav a:hover {
+      color: #fff;
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-subtle);
+    }
+    nav.epic-nav a.active {
+      color: #fff;
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(180deg, #12221c 0%, #0d1915 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-title-area {
+      max-width: 900px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0 0 0.85rem;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin: 0 0 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.15rem 1rem;
+      text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-highlight);
+    }
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-value.primary { color: #34d399; }
+    .stat-value.accent { color: #fbbf24; }
+    .stat-value.cyan { color: #38bdf8; }
+    .stat-value.purple { color: #a78bfa; }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stat-sub {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
+    }
+
+    /* Floating Checklist Bar / Progress */
+    .checklist-progress-bar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .cp-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+      min-width: 280px;
+    }
+    .cp-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .cp-progress-outer {
+      flex: 1;
+      height: 10px;
+      background: #0b1411;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+    .cp-progress-inner {
+      height: 100%;
+      background: linear-gradient(90deg, #059669, #10b981, #34d399);
+      width: 0%;
+      transition: width 0.4s ease;
+      border-radius: 5px;
+    }
+    .cp-stat {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--color-primary);
+      white-space: nowrap;
+    }
+    .cp-actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .btn-action {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-action:hover {
+      background: var(--border-subtle);
+      border-color: var(--border-highlight);
+      color: #fff;
+    }
+    .btn-action.active, .btn-action.primary {
+      background: var(--color-primary);
+      color: #06241b;
+      border-color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* 100 Peaks Drawer / Modal / Collapsible */
+    #peaks-drawer {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-highlight);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+    #peaks-drawer.open {
+      display: block;
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .drawer-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .drawer-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .peaks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 0.6rem;
+      max-height: 480px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+    .peaks-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+    .peaks-grid::-webkit-scrollbar-thumb {
+      background: var(--border-highlight);
+      border-radius: 3px;
+    }
+    .peak-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .peak-item:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-highlight);
+    }
+    .peak-item.checked {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .peak-item input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--color-primary);
+      cursor: pointer;
+    }
+    .peak-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .peak-name-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+    .peak-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    .peak-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .peak-sub-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+    .peak-elev {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .peak-day-link {
+      color: #38bdf8;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Filter & Controls Toolbar */
+    .controls-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.15rem;
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 60px;
+      z-index: 900;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .search-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: #091410;
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 0.65rem 1rem 0.65rem 2.4rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .search-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px var(--color-primary-glow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      pointer-events: none;
+    }
+    .search-clear {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 1rem;
+      display: none;
+    }
+    .toolbar-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Stage Tabs */
+    .stage-tabs {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+      scrollbar-width: thin;
+    }
+    .stage-tabs::-webkit-scrollbar {
+      height: 4px;
+    }
+    .stage-tabs::-webkit-scrollbar-thumb {
+      background: var(--border-highlight);
+      border-radius: 2px;
+    }
+    .stage-tab-btn {
+      background: #0e1a16;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .stage-tab-btn:hover {
+      color: #fff;
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-highlight);
+    }
+    .stage-tab-btn.active {
+      color: #06241b;
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Stage Sections */
+    .stage-group {
+      margin-bottom: 2.75rem;
+    }
+    .stage-group.hidden {
+      display: none;
+    }
+    .stage-header-card {
+      background: linear-gradient(135deg, #162a23, #11201b);
+      border: 1px solid var(--border-highlight);
+      border-left: 5px solid var(--color-primary);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .stage-header-info {
+      flex: 1;
+      min-width: 280px;
+    }
+    .stage-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .stage-name-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #fff;
+      background: #047857;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .stage-range-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    .stage-feature-badge {
+      font-size: 0.75rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+    .stage-card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.4rem;
+    }
+    .stage-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .stage-resupply-pill {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+      font-size: 0.82rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    /* Day Card */
+    .day-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .day-card:hover {
+      border-color: var(--border-highlight);
+    }
+    .day-card.highlight {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+    }
+    .day-card.hidden {
+      display: none;
+    }
+    .day-card summary {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      user-select: none;
+    }
+    .day-card summary::-webkit-details-marker {
+      display: none;
+    }
+    .day-card-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      flex: 1;
+      min-width: 0;
+    }
+    .day-number-badge {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      line-height: 1.2;
+      text-align: center;
+      min-width: 42px;
+    }
+    /* Hours status color */
+    .badge-ok {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .badge-warn {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .badge-limit {
+      background: rgba(249, 115, 22, 0.18);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.5);
+    }
+    .badge-resupply {
+      background: rgba(139, 92, 246, 0.2);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.5);
+    }
+
+    .day-title-block {
+      flex: 1;
+      min-width: 0;
+    }
+    .day-main-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.4rem;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .day-peaks-badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.2rem;
+    }
+    .peak-tag {
+      background: #0f2d24;
+      border: 1px solid #1e5242;
+      color: #6ee7b7;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .peak-tag.climb-type-summit {
+      border-color: #059669;
+    }
+    .peak-tag.climb-type-side {
+      background: #1e2836;
+      border-color: #3b82f6;
+      color: #93c5fd;
+    }
+
+    .day-metrics-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .day-metric-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .day-metric-item strong {
+      color: #fff;
+      font-family: var(--font-mono);
+    }
+    .day-metric-item.camp-item {
+      color: #cbd5e1;
+    }
+
+    .day-card-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+    .details-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+      color: var(--text-dim);
+    }
+    .day-card[open] .details-arrow {
+      transform: rotate(90deg);
+      color: var(--color-primary);
+    }
+
+    /* Day Card Expanded Body */
+    .day-card-body {
+      padding: 0 1.25rem 1.25rem 3.5rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 0.2rem;
+      padding-top: 1rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+    .day-desc-text {
+      margin: 0 0 0.85rem;
+      color: #d1d5db;
+    }
+    .day-meta-box {
+      background: #0a1612;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      font-size: 0.82rem;
+    }
+    .meta-box-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .meta-box-label {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .meta-box-val {
+      font-weight: 600;
+      color: #edf5f2;
+    }
+
+    /* Special Highlight Box for Resupply / Cache */
+    .special-box {
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .special-box.cache {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #a7f3d0;
+    }
+    .special-box.resupply {
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: #ddd6fe;
+    }
+    .special-box.finish {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fef3c7;
+    }
+
+    /* Logistics Section */
+    .logistics-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 3.5rem;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.5rem;
+    }
+    .logistics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .logistics-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.25rem;
+      position: relative;
+    }
+    .logistics-card.highlight {
+      border-color: var(--color-primary);
+      background: linear-gradient(180deg, #162c24 0%, #11201b 100%);
+    }
+    .logistics-num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 0.4rem;
+    }
+    .logistics-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.5rem;
+    }
+    .logistics-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    footer.epic-footer {
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 4rem;
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--color-primary);
+    }
+
+    /* Floating Back to top */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-surface-elevated);
+      color: #fff;
+      border: 1px solid var(--border-highlight);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      z-index: 999;
+      transition: all 0.2s ease;
+    }
+    #back-to-top:hover {
+      background: var(--color-primary);
+      color: #06241b;
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 1.6rem; }
+      .container { padding: 1rem 0.75rem 3rem; }
+      .day-card-body { padding-left: 1.25rem; }
+      .controls-panel { top: 56px; padding: 0.85rem; }
+      .search-row { margin-bottom: 0.75rem; }
+      .day-metrics-row { gap: 0.5rem; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Global Header -->
+  <header class="epic-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <span class="brand-badge">96 DAYS・100 PEAKS</span>
+        <h1 class="brand-title">台灣百岳純徒步一筆書</h1>
+      </div>
+      <nav class="epic-nav">
+        <a href="index.html">行程表</a>
+        <a href="supplies.html">補給點</a>
+        <a href="100peaks.html" class="active">百岳一筆書 (96天)</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-title-area">
+        <span class="hero-tag">★ 台灣高山探險歷史傳奇規劃</span>
+        <h2 class="hero-title">台灣百岳純徒步一筆書<span>・96天終極全島大縱走</span></h2>
+        <p class="hero-subtitle">
+          從台灣最北點<strong>富貴角燈塔</strong>啟程，零車輛接駁、純徒步 1,285 公里，依序登頂 <strong>100 座台灣百岳</strong>，貫穿雪山、中央山脈北中南南段，最終撞線台灣最南點<strong>鵝鑾鼻燈塔</strong>！每日步程嚴格遵循<strong>上河 1.0 標準 ≤ 10 小時</strong>。
+        </p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value primary">96<span style="font-size:1.1rem;font-weight:600"> 天</span></div>
+          <div class="stat-label">全島總行程天數</div>
+          <div class="stat-sub">88天行進 ＋ 8天補給整休</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value accent">100<span style="font-size:1.1rem;font-weight:600"> 座</span></div>
+          <div class="stat-label">百岳完全依序完登</div>
+          <div class="stat-sub">【001】～【100】精準編號</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value cyan">1,285<span style="font-size:1.1rem;font-weight:600"> km</span></div>
+          <div class="stat-label">全島純徒步里程</div>
+          <div class="stat-sub">高山 835km ＋ 公路 450km</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">≤ 10<span style="font-size:1.1rem;font-weight:600"> h</span></div>
+          <div class="stat-label">每日工時上限</div>
+          <div class="stat-sub">上河 1.0 標準（平均 7.4h）</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value purple">8<span style="font-size:1.1rem;font-weight:600"> 處</span></div>
+          <div class="stat-label">戰略補給節點</div>
+          <div class="stat-sub">含八通關戰略藏糧與開箱</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist Progress Bar Card -->
+    <section class="checklist-progress-bar-card">
+      <div class="cp-left">
+        <div class="cp-title">
+          <span>🏔️ 百岳完登進度庫</span>
+        </div>
+        <div class="cp-progress-outer">
+          <div class="cp-progress-inner" id="checklist-progress-bar"></div>
+        </div>
+        <div class="cp-stat" id="checklist-stat-text">0 / 100 座 (0%)</div>
+      </div>
+      <div class="cp-actions">
+        <button class="btn-action primary" id="btn-toggle-drawer">
+          <span>📋 展開百岳清單</span>
+        </button>
+        <a href="#logistics-section" class="btn-action">
+          <span>📦 戰略補給總覽</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 100 Peaks Checklist Drawer -->
+    <section id="peaks-drawer">
+      <div class="drawer-header">
+        <h3 class="drawer-title">百岳依序攀登勾選庫（進度自動保存於瀏覽器 LocalStorage）</h3>
+        <div class="drawer-filters">
+          <button class="btn-action active" data-peak-filter="all">全部 (100)</button>
+          <button class="btn-action" data-peak-filter="done">已完成</button>
+          <button class="btn-action" data-peak-filter="undone">未完成</button>
+          <button class="btn-action" id="btn-reset-peaks" style="color:var(--color-danger)">重置進度</button>
+        </div>
+      </div>
+      <div class="peaks-grid" id="peaks-grid-container">
+        <!-- Peak Cards dynamically generated -->
+      </div>
+    </section>
+
+    <!-- Controls Panel (Sticky) -->
+    <section class="controls-panel">
+      <div class="search-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="route-search-input" class="search-input" placeholder="搜尋百岳名稱 (例: 中央尖)、天數 (例: D25)、營地 (例: 馬布谷)、關鍵地形..." />
+          <button id="search-clear-btn" class="search-clear">✕</button>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn-action" id="btn-expand-all">全部展開</button>
+          <button class="btn-action" id="btn-collapse-all">全部收合</button>
+        </div>
+      </div>
+
+      <!-- Stage Tabs -->
+      <div class="stage-tabs" id="stage-tabs-container">
+        <button class="stage-tab-btn active" data-stage="all">全部天數 (D1~D96)</button>
+        <!-- Dynamic Stage Tab Buttons -->
+      </div>
+    </section>
+
+    <!-- Days Container -->
+    <main id="itinerary-days-container">
+      <!-- Stage Groups & Day Cards dynamically rendered -->
+    </main>
+
+    <!-- Logistics & Resupply Section -->
+    <section class="logistics-section" id="logistics-section">
+      <h3 class="section-title">📦 全程 8 大戰略補給節點 ＆ 八通關藏糧關鍵解析</h3>
+      <p class="section-subtitle">長程大縱走最致命的弱點在於負重極限。透過精密的 8 大定點補給，與在八通關草原預藏馬博/南二段口糧，徹底化解背負 15 天超載的致命難題！</p>
+      
+      <div class="logistics-grid">
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 0 ➔ STAGE 1</div>
+          <div class="logistics-name">東勢區採買 ＆ 小雪山資訊站（D6 / D9）</div>
+          <div class="logistics-desc">
+            在東勢市區（大雪山林道 0K）進行第一階段雪山山脈 11 天口糧最後採買；於 D9 小雪山資訊站（2,560m）適應高度並精細分裝。
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 1 ➔ STAGE 2</div>
+          <div class="logistics-name">武陵農場大整補（D20 抵達 / D21 整休）</div>
+          <div class="logistics-desc">
+            完成雪山西稜、聖稜與武陵四秀 19 座百岳後降入武陵農場，入住賓館大吃高熱量熱食、洗曬衣物，領取北一段、北二段與畢羊口糧。
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 2 ➔ STAGE 3</div>
+          <div class="logistics-name">天祥商圈大補給（D30 抵達 / D31 整休）</div>
+          <div class="logistics-desc">
+            畢羊連走下慈恩踢台8線緩下坡直達天祥商圈（36.5K），於 7-Eleven 與餐廳充分整補，岳王亭吊橋畔露營備戰逆走奇萊東稜。
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 3 ➔ STAGE 4</div>
+          <div class="logistics-name">松雪樓 / 合歡山莊（D40 抵達 / D41 整休）</div>
+          <div class="logistics-desc">
+            奇萊北壁下屏風出大禹嶺、合歡西下華岡單攻白姑後，收齊合歡主東石門入住全台最高松雪樓！享受自助餐與熱水被窩，領取能安與干卓萬深山糧食。
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 4 ➔ STAGE 5</div>
+          <div class="logistics-name">武界部落民宿（D50 抵達 / D51 整休）</div>
+          <div class="logistics-desc">
+            橫渡卡羅樓、能高安東軍水鹿草原、十勝稜線上干卓萬群峰出武界林道，入住民宿大吃烤肉洗去高山泥濘，領取南三段與五八公路物資。
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 5 ➔ STAGE 6</div>
+          <div class="logistics-name">東埔溫泉飯店（D61 抵達 / D62 整休）</div>
+          <div class="logistics-desc">
+            走枯水期五八公路溪床平步30km、六順丹大南三段、巒郡縱走西巒下東埔溫泉，泡湯舒緩雙腿肌肉，**在此打包將背上八通關預藏的 10 天糧食！**
+          </div>
+        </div>
+        <div class="logistics-card highlight">
+          <div class="logistics-num">★ 關鍵戰略核心</div>
+          <div class="logistics-name">八通關草原藏糧 ＆ 開箱自力補給（D64 藏 / D69 開箱）</div>
+          <div class="logistics-desc">
+            <strong>神級解法：</strong>D64 在八通關草原預藏馬博與南二段 10 天糧食；輕裝越嶺圓峰山屋 5 天刷完玉山九峰；D69 回到八通關自力補給開箱取出新鮮口糧與瓦斯，續戰中央山脈最高峰秀姑巒與馬博！徹底解決背負 15 天極度超載危機！
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 6 ➔ STAGE 7</div>
+          <div class="logistics-name">向陽遊樂區 / 利稻部落（D78 抵達 / D79 整休）</div>
+          <div class="logistics-desc">
+            完成馬博橫斷（馬布谷折返）、南二段、新康山布拉克桑山後由向陽下山，在利稻民宿領取最後第七階段「南一段＋雙鬼湖萬山神池」探勘糧食。
+          </div>
+        </div>
+        <div class="logistics-card">
+          <div class="logistics-num">STAGE 7 ➔ 終章</div>
+          <div class="logistics-name">屏東泰武部落（D91 抵達 / D92 慶祝整休）</div>
+          <div class="logistics-desc">
+            在中央山脈最南端【北大武山】完成全島第 100 座百岳歷史大圓滿！下泰武部落慶祝完登，換上公路輕裝鞋，準備最後 85 公里鵝鑾鼻衝刺！
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="epic-footer">
+    <p>台灣百岳純徒步一筆書・96天100座百岳全島極限大縱走規劃</p>
+    <p>上河文化 1.0 標準步程實戰編排 ｜ 每日步程嚴格 ≤ 10 小時 ｜ 全島純徒步零車輛接駁</p>
+    <p style="margin-top:0.8rem">
+      <a href="index.html">返回 29天中央山脈大縱走</a> ｜ <a href="supplies.html">檢視補給清單</a> ｜ <a href="#top">回到頁首</a>
+    </p>
+  </footer>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" title="回到頁首">↑</button>
+
+  <script>
+    // Data injected from backend
+    const ITINERARY_DATA = {"stages": [{"id": "sec-0", "name": "序章", "title": "北端公路起步段：富貴角燈塔 ➔ 大雪山森林遊樂區", "badge": "公路徒步 235km", "days": "D1 ～ D9", "peaks_count": 0, "resupply": "東勢區（大雪山林道 0K）採買整備", "desc": "由台灣極北點富貴角燈塔出發，沿西濱公路南下，經淡水、桃園、新竹、苗栗、台中豐原至東勢，沿大雪山林道（200號林道）一路拔升至海拔 2,560m 小雪山資訊站。"}, {"id": "sec-1", "name": "第一大段", "title": "雪山山脈大橫貫：大雪山 ➔ 雪西 ➔ 翠池 ➔ 聖稜 ➔ 四秀 ➔ 武陵", "badge": "百岳 19 座", "days": "D10 ～ D21", "peaks_count": 19, "resupply": "武陵農場（D20 抵達，D21 補給整休）", "desc": "逆走雪山西稜零折返直通翠池，順登雪劍、志佳陽、雪山主東，沿聖稜線橫掃大霸群峰，由秀霸線接武陵四秀，順降武陵農場。"}, {"id": "sec-2", "name": "第二大段", "title": "中央山脈北段：武陵 ➔ 北一 ➔ 死亡稜線 ➔ 北二 ➔ 鈴畢 ➔ 畢羊 ➔ 天祥", "badge": "百岳 14 座", "days": "D22 ～ D31", "peaks_count": 14, "resupply": "天祥商圈（D30 抵達，D31 補給整休）", "desc": "由勝光上南湖群峰，橫渡險峻中央尖死亡稜線接北二段，於鈴鳴山頂卸重裝單攻閂山，續走鈴畢縱走省下50km公路，畢羊連走下慈恩，沿台8線長下坡直達天祥商圈。"}, {"id": "sec-3", "name": "第三大段", "title": "奇萊東稜 ➔ 屏風 ➔ 合歡北西 ➔ 白姑 ➔ 松雪樓", "badge": "百岳 12 座", "days": "D32 ～ D41", "peaks_count": 12, "resupply": "松雪樓 / 合歡山莊（D40 抵達，D41 補給整休）", "desc": "岳王亭起登逆走奇萊東稜，由奇萊北壁下切屏風山出大禹嶺，合歡北西下華岡紅香部落單攻白姑大山，沿翠峰切回台14甲收齊合歡主東石門，入住松雪樓大休整。"}, {"id": "sec-4", "name": "第四大段", "title": "奇萊主峰 ➔ 能高安東軍 ➔ 干卓萬群峰 ➔ 武界部落", "badge": "百岳 12 座", "days": "D42 ～ D51", "peaks_count": 12, "resupply": "武界部落（D50 抵達，D51 補給整休）", "desc": "松雪樓入奇萊主峰橫渡卡羅樓斷崖，縱走能高安東軍水鹿草原，安東軍下萬大南溪底抓十勝稜線直上牧山池，橫越干卓萬斷崖與卓社十八連峰，出武界林道至武界部落。"}, {"id": "sec-5", "name": "第五大段", "title": "五八公路 ➔ 丹大六順 ➔ 順走南三段 ➔ 郡大西巒 ➔ 東埔溫泉", "badge": "百岳 9 座", "days": "D52 ～ D62", "peaks_count": 9, "resupply": "東埔溫泉（D61 抵達，D62 補給整休）", "desc": "枯水期沿濁水溪床平步30km五八公路至孫海橋，踢丹大林道登六順山直接往丹大山推進（經盧利拉駱山），順走南三段出無雙吊橋，順收郡大山走巒郡連稜下西巒大山出東埔溫泉。"}, {"id": "sec-6", "name": "第六大段", "title": "東埔 ➔ 八通關藏糧 ➔ 玉山九峰 ➔ 八通關取糧 ➔ 馬博 ➔ 南二段 ➔ 新康 ➔ 向陽", "badge": "百岳 26 座", "days": "D63 ～ D79", "peaks_count": 26, "resupply": "八通關自力補給（D69） / 向陽利稻（D78 抵達，D79 補給整休）", "desc": "八通關預藏物資解決負重危機，越嶺圓峰完成玉山九峰（鹿山分日專攻），回八通關開箱自力補給，輕取八通關山連走馬博橫斷（馬布谷折返），續行南二段，新康岔路直轉布新營地單攻新康布拉克桑，出向陽遊樂區。"}, {"id": "sec-7", "name": "第七大段", "title": "南橫三星 ➔ 南一段 ➔ 萬山神池雙鬼湖 ➔ 北大武山 ➔ 泰武登山口", "badge": "百岳 8 座（第100座圓滿）", "days": "D80 ～ D92", "peaks_count": 8, "resupply": "屏東泰武部落（D91 抵達，D92 慶祝整休）", "desc": "公路橫貫收南橫三星，進涇橋登關山縱走南一段至卑南主山，步入中央山脈南南段傳奇探勘：卑南主山南峰 ➔ 萬山神池 ➔ 大鬼湖 ➔ 霧頭山 ➔ 大武地塹，自北稜登頂第100座百岳【北大武山】，下泰武登山口。"}, {"id": "sec-8", "name": "終章", "title": "最南衝刺公路長征：屏東泰武 ➔ 恆春半島 ➔ 鵝鑾鼻燈塔", "badge": "公路長征 85km", "days": "D93 ～ D96", "peaks_count": 0, "resupply": "恆春半島 / 鵝鑾鼻燈塔（D96 終點撞線）", "desc": "由泰武出山走屏東185縣道沿山公路，銜接台1線、台26線穿過車城、恆春、南灣，直奔台灣最南點鵝鑾鼻燈塔，達成全島1,285公里純徒步百岳一筆書完封！"}], "days": [{"day": 1, "stage": "sec-0", "title": "極北出發：富貴角燈塔 ➔ 淡水捷運站", "dist": "30 km", "hours": "7.5 hrs", "camp": "淡水市區旅宿", "peaks": [], "desc": "自台灣本島極北點【富貴角燈塔】正式起步！沿台2線淡金公路南下，經石門洞、三芝，抵達淡水捷運站。公路柏油平路，時速維持約 4 km/h。", "isResupply": false}, {"day": 2, "stage": "sec-0", "title": "淡水 ➔ 關渡大橋 ➔ 八里 ➔ 蘆竹/大園", "dist": "28 km", "hours": "7.0 hrs", "camp": "蘆竹/大園市區旅宿", "peaks": [], "desc": "穿過關渡大橋進入八里，接台15線西濱公路向南推進，抵達桃園大園區。為進入雪山山脈前之公路暖身。", "isResupply": false}, {"day": 3, "stage": "sec-0", "title": "大園 ➔ 觀音 ➔ 新豐 ➔ 新竹市區", "dist": "30 km", "hours": "7.5 hrs", "camp": "新竹市區旅宿", "peaks": [], "desc": "沿台15線與台1線經觀音、新豐紅毛港，抵達新竹市區。維持良好步頻與水分補給。", "isResupply": false}, {"day": 4, "stage": "sec-0", "title": "新竹市 ➔ 竹南 ➔ 頭份 ➔ 苗栗市區", "dist": "28 km", "hours": "7.0 hrs", "camp": "苗栗市區旅宿", "peaks": [], "desc": "沿台1線與台13線南下，經竹南、頭份造橋進入苗栗市區。雙腿逐漸適應長距離負重徒步節奏。", "isResupply": false}, {"day": 5, "stage": "sec-0", "title": "苗栗市 ➔ 銅鑼 ➔ 三義 ➔ 台中后里/豐原", "dist": "28 km", "hours": "7.0 hrs", "camp": "豐原市區旅宿", "peaks": [], "desc": "沿台13線翻越三義丘陵，跨越大安溪與大甲溪，抵達台中山城門戶豐原區。", "isResupply": false}, {"day": 6, "stage": "sec-0", "title": "豐原 ➔ 東勢區（大雪山林道 0K 起點）", "dist": "18 km", "hours": "4.5 hrs", "camp": "東勢區旅宿", "peaks": [], "desc": "沿台3線抵達東勢區（海拔 350m）。下午於東勢大型超市採買第一階段入山物資，最後整裝備戰，早早休息養精蓄銳。", "isResupply": true, "resupplyNote": "東勢採買大整補"}, {"day": 7, "stage": "sec-0", "title": "東勢 ➔ 大雪山林道（200號林道）➔ 橫嶺山隧道 27K", "dist": "27 km", "hours": "7.5 hrs", "camp": "橫嶺山隧道口/鳶嘴登山口（海拔 1,800m）", "peaks": [], "desc": "正式步入大雪山林道（200號林道）長上坡，拔升近 1,500 公尺，氣候逐漸轉為清涼針葉林。", "isResupply": false}, {"day": 8, "stage": "sec-0", "title": "橫嶺山 27K ➔ 35K 收費站 ➔ 43K 鞍馬山莊 ➔ 50K 小雪山資訊站", "dist": "23 km", "hours": "7.0 hrs", "camp": "小雪山資訊站（海拔 2,560m，230林道 0K）", "peaks": [], "desc": "沿林道續爬升至 43K 鞍馬山莊，抵達林道終點 50K 小雪山遊客中心（海拔 2,560m），進入雪霸國家公園轄區。", "isResupply": false}, {"day": 9, "stage": "sec-0", "title": "【小雪山資訊站・裝備整備日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "小雪山資訊站通鋪/宿營", "peaks": [], "desc": "在海拔 2,560m 小雪山資訊站適應高度，最後檢查高山裝備、分裝第一大段（雪山山脈 11 天）口糧，養精蓄銳等待明日清晨入山。", "isResupply": true, "resupplyNote": "小雪山高度適應與分裝"}, {"day": 10, "stage": "sec-1", "title": "小雪山資訊站 ➔ 230林道 ➔ 26K 中雪山工寮", "dist": "26 km", "hours": "6.5 hrs", "camp": "26K 中雪山工寮營地", "peaks": [], "desc": "由小雪山遊客中心 230林道 0K 出發，沿平坦林道推進，過數處乾溪溝崩壁，抵達 26K 中雪山登山口工寮宿。", "isResupply": false}, {"day": 11, "stage": "sec-1", "title": "26K工寮 ➔ 中雪山 ➔ 匹匹達鞍部 ➔ 大雪山", "dist": "14 km", "hours": "8.0 hrs", "camp": "大雪山水池營地", "peaks": [{"num": "001", "name": "中雪山", "elev": 3173, "type": "輕裝來回"}, {"num": "002", "name": "大雪山", "elev": 3530, "type": "順路登頂"}], "desc": "清晨 28.5K 輕裝單攻林相原始的【001】中雪山（4hr）；回 26K 取重裝，沿乾溪溝陡升爬上匹匹達草原，登頂【002】大雪山，宿大雪山水池營地。", "isResupply": false}, {"day": 12, "stage": "sec-1", "title": "大雪山營地 ➔ 頭鷹山 ➔ 火石山 ➔ 翠池山屋", "dist": "12 km", "hours": "8.0 hrs", "camp": "翠池山屋/營地", "peaks": [{"num": "003", "name": "頭鷹山", "elev": 3510, "type": "順路登頂"}, {"num": "004", "name": "火石山", "elev": 3310, "type": "輕裝來回"}], "desc": "經奇峻山峭壁登頂【003】頭鷹山，過弓水營地直達火石下營地，輕裝 1hr 登頂【004】火石山；續行翻越博可爾山支稜，抵達全台最高高山湖泊【翠池山屋】宿。", "isResupply": false}, {"day": 13, "stage": "sec-1", "title": "翠池山屋 ➔ 完美谷 ➔ 大劍山 ➔ 油婆蘭營地", "dist": "9 km", "hours": "6.5 hrs", "camp": "油婆蘭營地/避難山屋", "peaks": [{"num": "005", "name": "大劍山", "elev": 3594, "type": "順路登頂"}], "desc": "翠池南下穿越雪劍連稜碎石坡，過完美谷草原後陡升登頂十峻之一【005】大劍山，之後順稜緩下抵達油婆蘭營地紮營備戰小劍。", "isResupply": false}, {"day": 14, "stage": "sec-1", "title": "油婆蘭營地 ➔ 佳陽山 ➔ 劍山（小劍山）➔ 油婆蘭營地", "dist": "14 km", "hours": "9.5 hrs", "camp": "油婆蘭營地", "peaks": [{"num": "006", "name": "佳陽山", "elev": 3314, "type": "輕裝來回"}, {"num": "007", "name": "劍山（小劍山）", "elev": 3253, "type": "輕裝來回"}], "desc": "雪劍四大鳥山考驗！輕裝穿越布伕奇寒山，過佳陽大崩壁登頂【006】佳陽山，續推至【007】劍山（小劍山），原路折返油婆蘭，上河嚴格控在 9.5 小時完成！", "isResupply": false}, {"day": 15, "stage": "sec-1", "title": "油婆蘭 ➔ 完美谷 ➔ 雪山主南鞍 ➔ 志佳陽大山 ➔ 雪山南稜營地", "dist": "13 km", "hours": "8.0 hrs", "camp": "雪山南稜營地（主南鞍附近）", "peaks": [{"num": "008", "name": "志佳陽大山", "elev": 3345, "type": "輕裝來回"}], "desc": "油婆蘭拔營回翻完美谷至主南鞍，在此卸重裝，輕裝南下單攻【008】志佳陽大山（來回 4.5hr）；返回鞍部取大包，宿雪山南稜營地，避免重複上下翠池。", "isResupply": false}, {"day": 16, "stage": "sec-1", "title": "南稜營地 ➔ 雪山主峰 ➔ 雪山東峰 ➔ 聖稜線 ➔ 雪山北峰 ➔ 雪北山屋", "dist": "11 km", "hours": "7.5 hrs", "camp": "雪山北峰山屋", "peaks": [{"num": "009", "name": "雪山主峰", "elev": 3886, "type": "順路登頂"}, {"num": "010", "name": "雪山東峰", "elev": 3150, "type": "輕裝來回"}, {"num": "011", "name": "雪山北峰", "elev": 3703, "type": "順路登頂"}], "desc": "晨曦中登上台灣第二高峰【009】雪山主峰！三叉路輕裝快速往返【010】雪山東峰（2.5hr）；取包走聖稜線過北稜角與凱蘭特崑山，登頂【011】雪山北峰，夜宿童話般的雪北山屋。", "isResupply": false}, {"day": 17, "stage": "sec-1", "title": "雪北山屋 ➔ 素密達斷崖 ➔ 巴紗拉雲山 ➔ 霸南山屋", "dist": "6 km", "hours": "6.5 hrs", "camp": "霸南山屋", "peaks": [], "desc": "小心橫渡聖稜經典三大斷崖之一【素密達斷崖】，過穆特勒布山側、巴紗拉雲山，緩降抵達位於大霸尖山南面的霸南山屋紮營。", "isResupply": false}, {"day": 18, "stage": "sec-1", "title": "霸南山屋 ➔ 大霸尖山 ➔ 小霸尖山 ➔ 伊澤山 ➔ 加利山 ➔ 霸南山屋", "dist": "15 km", "hours": "7.5 hrs", "camp": "霸南山屋", "peaks": [{"num": "012", "name": "大霸尖山", "elev": 3492, "type": "輕裝來回"}, {"num": "013", "name": "小霸尖山", "elev": 3418, "type": "輕裝來回"}, {"num": "014", "name": "伊澤山", "elev": 3297, "type": "輕裝來回"}, {"num": "015", "name": "加利山", "elev": 3112, "type": "輕裝來回"}], "desc": "大霸群峰四座大豐收日！霸基過風口瞻仰世紀奇峰【012】大霸尖山，攀上【013】小霸尖山，沿大霸草坡連收【014】伊澤山與【015】加利山，黃昏回霸南山屋宿。", "isResupply": false}, {"day": 19, "stage": "sec-1", "title": "霸南山屋 ➔ 秀霸線 ➔ 品田斷崖 ➔ 品田山 ➔ 池有山 ➔ 桃山山屋", "dist": "8 km", "hours": "7.0 hrs", "camp": "桃山山屋", "peaks": [{"num": "016", "name": "品田山", "elev": 3524, "type": "順路登頂"}, {"num": "017", "name": "池有山", "elev": 3303, "type": "順路登頂"}], "desc": "走秀霸線穿巴紗拉雲山廢棄山屋，攀上品田斷崖登上【016】品田山，過池有名樹順登【017】池有山，傍晚推至桃山山屋宿。", "isResupply": false}, {"day": 20, "stage": "sec-1", "title": "桃山山屋 ➔ 喀拉業山 ➔ 桃山 ➔ 陡降出武陵農場", "dist": "12 km", "hours": "7.5 hrs", "camp": "武陵農場賓館/露營區", "peaks": [{"num": "018", "name": "喀拉業山", "elev": 3133, "type": "輕裝來回"}, {"num": "019", "name": "桃山", "elev": 3325, "type": "順路登頂"}], "desc": "清晨輕裝單攻武陵四秀最遠之【018】喀拉業山（4hr），回程登頂金字塔造型的【019】桃山！背上重裝沿桃山步道陡降 1,400m，踏出武陵農場，第一階段雪山山脈 19 座百岳大圓滿！", "isResupply": false}, {"day": 21, "stage": "sec-1", "title": "【武陵農場・第一補給休整日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "武陵農場賓館/民宿", "peaks": [], "desc": "入住武陵賓館，大吃高熱量熱食、洗澡洗曬衣物、收取第二階段（北一段、北二段、畢羊）入山口糧，進行裝備維護與足部護理。", "isResupply": true, "resupplyNote": "武陵農場第一大補給點"}, {"day": 22, "stage": "sec-2", "title": "武陵農場 ➔ 台7甲公路 9km ➔ 勝光登山口 ➔ 雲稜山屋", "dist": "14 km", "hours": "6.5 hrs", "camp": "雲稜山屋", "peaks": [], "desc": "武陵農場出發沿台7甲徒步 9km 至勝光登山口（2hr），背負中央山脈重裝陡升，經勝光山、多加屯山水文站，抵達雲稜山屋宿。", "isResupply": false}, {"day": 23, "stage": "sec-2", "title": "雲稜山屋 ➔ 審馬陣山 ➔ 南湖北山 ➔ 五岩峰 ➔ 南湖圈谷", "dist": "7 km", "hours": "5.5 hrs", "camp": "南湖下圈谷山屋/營地", "peaks": [{"num": "020", "name": "審馬陣山", "elev": 3141, "type": "順路登頂"}, {"num": "021", "name": "南湖北山", "elev": 3536, "type": "順路登頂"}], "desc": "出黑森林登上審馬陣大草原，順訪【020】審馬陣山與蘭陽溪源頭【021】南湖北山，橫渡驚險五岩峰，下抵南湖下圈谷冰河遺跡山屋。", "isResupply": false}, {"day": 24, "stage": "sec-2", "title": "南湖圈谷 ➔ 南湖東峰 ➔ 陶塞峰 ➔ 馬比杉山 ➔ 原路回圈谷", "dist": "13 km", "hours": "8.0 hrs", "camp": "南湖下圈谷山屋/營地", "peaks": [{"num": "022", "name": "南湖大山東峰", "elev": 3632, "type": "輕裝來回"}, {"num": "023", "name": "馬比杉山", "elev": 3211, "type": "輕裝來回"}], "desc": "依使用者精密調配：圈谷出發專心走東峰與馬比杉線，登頂【022】南湖大山東峰，瞻仰陶塞峰巨石，挺進登頂【023】馬比杉山，順走大濁水南溪乾溪溝回圈谷蓄積體力。", "isResupply": false}, {"day": 25, "stage": "sec-2", "title": "南湖圈谷 ➔ 南湖大山主峰 ➔ 南湖南峰 ➔ 巴巴山 ➔ 中央尖溪木屋", "dist": "11 km", "hours": "8.0 hrs", "camp": "中央尖溪木屋/營地", "peaks": [{"num": "024", "name": "南湖大山主峰", "elev": 3742, "type": "順路登頂"}, {"num": "025", "name": "南湖大山南峰", "elev": 3475, "type": "順路登頂"}, {"num": "026", "name": "巴巴山", "elev": 3449, "type": "輕裝來回"}], "desc": "圈谷晨登帝王之尊【024】南湖大山主峰！南稜過南湖池登頂【025】南湖大山南峰，往返【026】巴巴山；隨後一路陡下切入中央尖溪峽谷抵達木屋宿。", "isResupply": false}, {"day": 26, "stage": "sec-2", "title": "中央尖溪 ➔ 中央尖山 ➔ 【橫渡中央尖死亡稜線】➔ 甘薯峰 ➔ 甘薯南峰鞍部", "dist": "10 km", "hours": "8.5 hrs", "camp": "甘薯南峰鞍部營地", "peaks": [{"num": "027", "name": "中央尖山", "elev": 3705, "type": "順路登頂"}, {"num": "028", "name": "甘薯峰", "elev": 3158, "type": "順路登頂"}], "desc": "中央尖溪碎石坡直上主鞍登頂三尖之首【027】中央尖山！隨後進入全島最凶險探勘路段【中央尖死亡稜線】，抓主脊碎裂落石橫渡，順路登頂【028】甘薯峰，下甘薯南峰鞍部營地紮營！", "isResupply": false}, {"day": 27, "stage": "sec-2", "title": "甘薯南峰鞍部 ➔ 鬼門關斷崖 ➔ 無明山 ➔ 無明水池 ➔ 鈴鳴東鞍水池營地", "dist": "8 km", "hours": "7.0 hrs", "camp": "鈴鳴東鞍/水池營地", "peaks": [{"num": "029", "name": "無明山", "elev": 3451, "type": "順路登頂"}], "desc": "攀越幾近垂直的鬼門關斷崖，登上【029】無明山，經無明水池、無明斷崖，穿越松林抵達鈴鳴東鞍水池營地宿。", "isResupply": false}, {"day": 28, "stage": "sec-2", "title": "鈴鳴東鞍 ➔ 先上鈴鳴山頂卸包 ➔ 730林道單攻閂山 ➔ 登頂鈴鳴山 ➔ 鈴鳴南鞍", "dist": "12 km", "hours": "7.5 hrs", "camp": "鈴鳴南鞍營地", "peaks": [{"num": "030", "name": "閂山", "elev": 3168, "type": "輕裝來回"}, {"num": "031", "name": "鈴鳴山", "elev": 3272, "type": "順路登頂"}], "desc": "依真實地形修正：鈴鳴東鞍先爬上鈴鳴山頂卸大包，沿步道下切 730 林道 27.5K，往返 23.2K 輕裝登頂【030】閂山（4hr）；回頂取包正式登頂【031】鈴鳴山，下至鈴鳴南鞍營地宿。", "isResupply": false}, {"day": 29, "stage": "sec-2", "title": "鈴鳴南鞍 ➔ 【鈴畢縱走】➔ 畢祿山 ➔ 鋸齒連峰 ➔ 羊頭山 ➔ 慈恩隧道口", "dist": "11 km", "hours": "8.5 hrs", "camp": "慈恩果園/民宿（台8線 133.1K）", "peaks": [{"num": "032", "name": "畢祿山", "elev": 3371, "type": "順路登頂"}, {"num": "033", "name": "羊頭山", "elev": 3035, "type": "輕裝來回"}], "desc": "鈴鳴南鞍出發走【鈴畢縱走】免踢林道直插主脊登頂【032】畢祿山！橫越鋸齒七連峰，三叉路輕裝來回【033】羊頭山，隨後一路陡降 1,000m 出台8線中橫公路慈恩宿！", "isResupply": false}, {"day": 30, "stage": "sec-2", "title": "慈恩 ➔ 沿台8線長緩下坡徒步 40km ➔ 天祥商圈", "dist": "40 km", "hours": "9.0 hrs", "camp": "天祥活動中心/合流露營區", "peaks": [], "desc": "沿台8線太魯閣峽谷長下坡徒步 40 公里，經新白楊、洛韶、西寶，直達天祥商圈（36.5K）。長下坡時速 4.5km/h，控在 9 小時完成。", "isResupply": false}, {"day": 31, "stage": "sec-2", "title": "【天祥/岳王亭・第二補給休整日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "天祥天主教營地/岳王亭營地", "peaks": [], "desc": "在天祥 7-Eleven、餐廳大補給，領取逆走奇萊東稜物資，於岳王亭吊橋畔露營備戰奇萊東稜！", "isResupply": true, "resupplyNote": "天祥商圈第二大補給點"}, {"day": 32, "stage": "sec-3", "title": "岳王亭起登 ➔ 研海林道下線 ➔ 研海林道 9K 工寮 ➔ 帕托魯山三叉營地", "dist": "12 km", "hours": "8.0 hrs", "camp": "帕托魯山三叉營地", "peaks": [], "desc": "岳王亭吊橋起登逆走奇萊東稜，穿研海林道下線，經 9K 工寮陡升拔升 2,000m 直抵帕托魯山三叉營地宿。", "isResupply": false}, {"day": 33, "stage": "sec-3", "title": "帕托魯三叉 ➔ 帕托魯山 ➔ 沼澤營地 ➔ 立霧主山 ➔ 廣寒宮營地", "dist": "9 km", "hours": "7.5 hrs", "camp": "廣寒宮營地", "peaks": [{"num": "034", "name": "帕托魯山", "elev": 3156, "type": "輕裝來回"}, {"num": "035", "name": "立霧主山", "elev": 3070, "type": "順路登頂"}], "desc": "帕托魯三叉輕裝往返【034】帕托魯山（2.5hr）；拔營經沼澤營地，攀登純白大理石奇峰【035】立霧主山，下抵廣寒宮營地紮營。", "isResupply": false}, {"day": 34, "stage": "sec-3", "title": "廣寒宮 ➔ 平安池補水 ➔ 北鞍三叉 ➔ 太魯閣大山 ➔ 磐石中峰營地", "dist": "9 km", "hours": "8.0 hrs", "camp": "磐石中峰營地", "peaks": [{"num": "036", "name": "太魯閣大山", "elev": 3283, "type": "輕裝來回"}], "desc": "下切深山救命水源平安池大補水，推上太魯閣大山北鞍，輕裝登頂東台盟主【036】太魯閣大山（2.5hr），傍晚抵達水鹿天國磐石中峰營地宿。", "isResupply": false}, {"day": 35, "stage": "sec-3", "title": "磐石中峰 ➔ 磐石山 ➔ 鐵線斷崖 ➔ 奇萊北峰下月形池營地", "dist": "8 km", "hours": "6.5 hrs", "camp": "月形池營地", "peaks": [{"num": "037", "name": "磐石山", "elev": 3106, "type": "順路登頂"}], "desc": "清晨登頂【037】磐石山，小心橫切鐵線斷崖、青蛙石，抵達奇萊北峰下避風的月形池營地宿。", "isResupply": false}, {"day": 36, "stage": "sec-3", "title": "月形池 ➔ 奇萊主山北峰 ➔ 【奇萊北壁下屏風】➔ 屏風山 ➔ 大禹嶺", "dist": "10 km", "hours": "8.5 hrs", "camp": "大禹嶺民宿/旅社", "peaks": [{"num": "038", "name": "奇萊主山北峰", "elev": 3607, "type": "順路登頂"}, {"num": "039", "name": "屏風山", "elev": 3250, "type": "順路登頂"}], "desc": "晨登一等三角點【038】奇萊主山北峰！隨後步入高難度經典【奇萊北壁下屏風】，過大門牙、神奇樹、鐘樓，直攻【039】屏風山，下鐵線吊橋步道出大禹嶺！", "isResupply": false}, {"day": 37, "stage": "sec-3", "title": "大禹嶺 ➔ 小風口 ➔ 合歡北峰 ➔ 合歡西峰 ➔ 【合歡西下華岡】➔ 紅香部落", "dist": "16 km", "hours": "8.5 hrs", "camp": "紅香部落民宿", "peaks": [{"num": "040", "name": "合歡山北峰", "elev": 3422, "type": "順路登頂"}, {"num": "041", "name": "合歡山西峰", "elev": 3145, "type": "順路登頂"}], "desc": "小風口起登登上【040】合歡山北峰，七上八下登頂【041】合歡山西峰；直接走【合歡西下華岡】沿合歡溪攔沙壩出華岡，續走產業道路至紅香部落泡溫泉宿。", "isResupply": false}, {"day": 38, "stage": "sec-3", "title": "紅香部落 ➔ 司晏池營地 ➔ 白姑大山 ➔ 司晏池營地", "dist": "12 km", "hours": "9.0 hrs", "camp": "司晏池營地", "peaks": [{"num": "042", "name": "白姑大山", "elev": 3341, "type": "輕裝來回"}], "desc": "紅香登山口重裝上推至司晏池紮營（4.5hr），輕裝單攻中橫四辣之特辣【042】白姑大山（4.5hr），回司晏池營地宿。", "isResupply": false}, {"day": 39, "stage": "sec-3", "title": "司晏池 ➔ 紅香部落 ➔ 循翠峰農路 ➔ 台14甲翠峰/鳶峰", "dist": "14 km", "hours": "7.0 hrs", "camp": "翠峰/鳶峰民宿或露營", "peaks": [], "desc": "司晏池下回紅香部落（2.5hr），沿翠峰產業林道一路爬升切回台14甲公路翠峰（4.5hr），準備迎向合歡群峰。", "isResupply": false}, {"day": 40, "stage": "sec-3", "title": "翠峰 ➔ 台14甲 ➔ 合歡主峰 ➔ 石門山 ➔ 合歡東峰 ➔ 松雪樓", "dist": "12 km", "hours": "7.0 hrs", "camp": "松雪樓 / 合歡山莊", "peaks": [{"num": "043", "name": "合歡山主峰", "elev": 3417, "type": "順路登頂"}, {"num": "044", "name": "石門山", "elev": 3237, "type": "順路登頂"}, {"num": "045", "name": "合歡山東峰", "elev": 3421, "type": "順路登頂"}], "desc": "沿台14甲公路邊走邊收齊百岳：登頂【043】合歡山主峰、最易登頂之【044】石門山與【045】合歡山東峰，入住台灣最高飯店【松雪樓】享受盛宴！", "isResupply": false}, {"day": 41, "stage": "sec-3", "title": "【松雪樓・第三補給休整日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "松雪樓", "peaks": [], "desc": "在松雪樓享受熱水澡、溫暖被窩與自助餐，領取能高安東軍與干卓萬深山 10 天口糧，調整裝備重裝出發！", "isResupply": true, "resupplyNote": "松雪樓第三大補給點"}, {"day": 42, "stage": "sec-4", "title": "松雪樓 ➔ 奇萊登山口 ➔ 奇萊主山 ➔ 【橫渡卡羅樓斷崖】➔ 天池山莊", "dist": "14 km", "hours": "8.5 hrs", "camp": "天池山莊", "peaks": [{"num": "046", "name": "奇萊主山", "elev": 3560, "type": "順路登頂"}], "desc": "松雪樓出發直接步入奇萊步道，登頂氣勢磅礴之【046】奇萊主山；隨後橫渡險峻卡羅樓斷崖碎石連峰，安全推進抵達五星級天池山莊宿。", "isResupply": false}, {"day": 43, "stage": "sec-4", "title": "天池山莊 ➔ 奇萊南峰 ➔ 南華山 ➔ 光被八表 ➔ 能高主峰 ➔ 台灣池營地", "dist": "13 km", "hours": "8.0 hrs", "camp": "台灣池營地", "peaks": [{"num": "047", "name": "奇萊主山南峰", "elev": 3358, "type": "輕裝來回"}, {"num": "048", "name": "南華山", "elev": 3184, "type": "輕裝來回"}, {"num": "049", "name": "能高山主峰", "elev": 3262, "type": "順路登頂"}], "desc": "清晨輕裝登頂【047】奇萊主山南峰與【048】南華山；回天池背上重裝過光被八表紀念碑，登頂【049】能高山主峰，宿台灣池營地。", "isResupply": false}, {"day": 44, "stage": "sec-4", "title": "台灣池 ➔ 能高南峰 ➔ 光頭山 ➔ 白石池營地", "dist": "10 km", "hours": "6.5 hrs", "camp": "白石池水鹿營地", "peaks": [{"num": "050", "name": "能高山南峰", "elev": 3349, "type": "順路登頂"}, {"num": "051", "name": "光頭山", "elev": 3060, "type": "順路登頂"}], "desc": "攀登能高安東軍最險峻之【050】能高山南峰，過南峰南鞍橫越平緩草原【051】光頭山，下抵水鹿聚集的白石池畔露營。", "isResupply": false}, {"day": 45, "stage": "sec-4", "title": "白石池 ➔ 白石山 ➔ 萬里池 ➔ 屯鹿池 ➔ 安東軍山 ➔ 安東軍三叉營地", "dist": "11 km", "hours": "8.0 hrs", "camp": "安東軍三叉營地", "peaks": [{"num": "052", "name": "白石山", "elev": 3110, "type": "順路登頂"}, {"num": "053", "name": "安東軍山", "elev": 3068, "type": "順路登頂"}], "desc": "登上【052】白石山，下切萬里池、屯鹿池，登上百岳一等三角點【053】安東軍山遠眺群山，夜宿安東軍三叉營地。", "isResupply": false}, {"day": 46, "stage": "sec-4", "title": "安東軍三叉 ➔ 下萬大南溪底 ➔ 【十勝稜線】直攻 ➔ 牧山池營地", "dist": "10 km", "hours": "8.0 hrs", "camp": "牧山池營地", "peaks": [], "desc": "由安東軍三叉下切萬大南溪底（大補水午餐，3.5hr），抓【十勝稜線】無人探勘路段陡升 1,200m，直接推進至干卓萬門戶牧山池營地宿！", "isResupply": false}, {"day": 47, "stage": "sec-4", "title": "牧山池 ➔ 牧山 ➔ 火山 ➔ 回牧山池拔營 ➔ 三叉營地 ➔ 干卓萬斷崖 ➔ 干卓萬山", "dist": "11 km", "hours": "8.0 hrs", "camp": "干卓萬三叉營地", "peaks": [{"num": "054", "name": "牧山", "elev": 3241, "type": "順路登頂"}, {"num": "055", "name": "火山", "elev": 3258, "type": "輕裝來回"}, {"num": "056", "name": "干卓萬山", "elev": 3284, "type": "輕裝來回"}], "desc": "晨登【054】牧山，輕裝往返【055】火山（3.5hr）；回牧山池拔營推至三叉營地紮營，輕裝過干卓萬大斷崖登頂【056】干卓萬山（來回 2.5hr），回三叉營地宿！安全省力！", "isResupply": false}, {"day": 48, "stage": "sec-4", "title": "三叉營地 ➔ 重裝橫越卓社十八連峰 ➔ 卓社大山 ➔ 卓社山下營地", "dist": "9 km", "hours": "8.5 hrs", "camp": "卓社山下營地", "peaks": [{"num": "057", "name": "卓社大山", "elev": 3369, "type": "順路登頂"}], "desc": "重裝橫越干卓萬最嚴酷考驗【卓社十八連峰】，翻越無數假山頭登頂【057】卓社大山，隨後下抵卓社山下營地宿。", "isResupply": false}, {"day": 49, "stage": "sec-4", "title": "卓社山下營地 ➔ 造林大鐵牌 ➔ V-cut 崩壁 ➔ 武界林道廢棄工寮", "dist": "12 km", "hours": "6.5 hrs", "camp": "武界林道栗栖溪上游廢棄工寮", "peaks": [], "desc": "穿過造林大鐵牌，小心通過驚險 V-cut 碎石崩壁，下接廢棄武界林道，踢林道至栗栖溪上游工寮紮營宿。", "isResupply": false}, {"day": 50, "stage": "sec-4", "title": "廢棄工寮 ➔ 武界林道 ➔ 法治村（武界部落）入住民宿", "dist": "13 km", "hours": "5.5 hrs", "camp": "武界部落民宿", "peaks": [], "desc": "踢武界林道下坡出山，抵達被譽為「雲的故鄉」法治村武界部落，入住民宿慶祝第四大段完登！", "isResupply": false}, {"day": 51, "stage": "sec-4", "title": "【武界部落・第四補給休整日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "武界部落民宿", "peaks": [], "desc": "入住武界民宿大修整，洗衣服、享用豐盛原住民料理，領取第五階段（南三段、五八公路）裝備與物資！", "isResupply": true, "resupplyNote": "武界部落第四大補給點"}, {"day": 52, "stage": "sec-5", "title": "武界部落 ➔ 武界一線天 ➔ 【五八公路濁水溪床 30km】➔ 孫海橋（合流坪）", "dist": "30 km", "hours": "7.5 hrs", "camp": "孫海橋合流坪民居/營地", "peaks": [], "desc": "冬季枯水期沿濁水溪溪床平步 30 公里【五八公路】，經一線天、石城谷、巴庫拉斯，抵達丹大林道起點孫海橋（480m）。雙腿在平坦溪床徹底恢復！", "isResupply": false}, {"day": 53, "stage": "sec-5", "title": "孫海橋 ➔ 丹大林道 32km ➔ 六分所（海拔 2,400m）", "dist": "32 km", "hours": "8.0 hrs", "camp": "丹大林道六分所營地", "peaks": [], "desc": "由孫海橋步入丹大林道緩坡推進，經二分所、三分所，一路爬升至海拔 2,400m 的六分所工寮營地宿。", "isResupply": false}, {"day": 54, "stage": "sec-5", "title": "六分所 ➔ 七彩湖 ➔ 六順山 ➔ 宿六順山東南鞍部/關門古道口", "dist": "20 km", "hours": "8.5 hrs", "camp": "六順山東南鞍部/關門古道營地", "peaks": [{"num": "058", "name": "六順山", "elev": 2999, "type": "順路登頂"}], "desc": "踢林道經台電紀念碑抵達七彩湖（4.5hr），背重裝直攻登頂【058】六順山，直接推進至六順山東南鞍部紮營宿（不走回頭路回七彩湖！），無縫銜接丹大主稜！", "isResupply": false}, {"day": 55, "stage": "sec-5", "title": "六順山鞍部 ➔ 翻越主脊 ➔ 丹大山 ➔ 盧利拉駱山 ➔ 丹大溪源營地", "dist": "11 km", "hours": "8.0 hrs", "camp": "丹大溪源營地", "peaks": [{"num": "059", "name": "丹大山", "elev": 3325, "type": "順路登頂"}], "desc": "直接由六順山方向往丹大山推進，翻越中央山脈主脊登頂【059】丹大山，經【盧利拉駱山（3,175m）】下抵五星級水源丹大溪源營地宿。", "isResupply": false}, {"day": 56, "stage": "sec-5", "title": "丹大溪源 ➔ 內嶺爾山 ➔ 義西請馬至山 ➔ 斷稜東西鞍 ➔ 東郡北鞍營地", "dist": "12 km", "hours": "8.0 hrs", "camp": "東郡北鞍營地", "peaks": [{"num": "060", "name": "內嶺爾山", "elev": 3275, "type": "順路登頂"}, {"num": "061", "name": "義西請馬至山", "elev": 3245, "type": "順路登頂"}], "desc": "溪源出發登頂大草原百岳【060】內嶺爾山，續登中央山脈心臟樞紐【061】義西請馬至山；橫渡驚險斷稜東鞍與西鞍，直接推進至東郡北鞍營地宿！", "isResupply": false}, {"day": 57, "stage": "sec-5", "title": "東郡北鞍 ➔ 單攻東巒大山 ➔ 拔營登東郡大山 ➔ 櫧山 ➔ 櫧山北鞍營地", "dist": "11 km", "hours": "7.0 hrs", "camp": "櫧山北鞍營地", "peaks": [{"num": "062", "name": "東巒大山", "elev": 3468, "type": "輕裝來回"}, {"num": "063", "name": "東郡大山", "elev": 3619, "type": "順路登頂"}], "desc": "北鞍營地輕裝單攻大草原【062】東巒大山（2.5hr）；回營拔營登上南三段最高峰【063】東郡大山，經櫧山下至櫧山北鞍營地宿。", "isResupply": false}, {"day": 58, "stage": "sec-5", "title": "櫧山北鞍 ➔ 無雙山 ➔ 亞力士營地 ➔ 無雙吊橋 ➔ 郡大林道 45.3K 望鄉工作站", "dist": "13 km", "hours": "8.0 hrs", "camp": "望鄉工作站（郡大林道 45.3K）", "peaks": [{"num": "064", "name": "無雙山", "elev": 3245, "type": "順路登頂"}], "desc": "登上南三段十巖之首【064】無雙山！一路陡降 1,500m 經亞力士營地，小心跨過歷史悠久無雙吊橋，爬上郡大林道 45.3K 望鄉工作站工寮宿。", "isResupply": false}, {"day": 59, "stage": "sec-5", "title": "望鄉工作站 ➔ 郡大林道 32K 登山口 ➔ 望鄉山 ➔ 郡大山 ➔ 郡大山北鞍營地", "dist": "17 km", "hours": "6.5 hrs", "camp": "郡大山北鞍營地", "peaks": [{"num": "065", "name": "郡大山", "elev": 3265, "type": "順路登頂"}], "desc": "踢郡大林道至 32K 登山口，登頂望鄉山氣象站，順稜登上八秀之一【065】郡大山，於郡大山北鞍營地紮營，準備明日進行巒郡縱走。", "isResupply": false}, {"day": 60, "stage": "sec-5", "title": "【巒郡縱走】郡大山 ➔ 清水山 ➔ 金子山 ➔ 西巒大山 ➔ 巒安堂牡丹園", "dist": "11 km", "hours": "8.0 hrs", "camp": "巒安堂（牡丹園）廢棄工作站", "peaks": [{"num": "066", "name": "西巒大山", "elev": 3081, "type": "順路登頂"}], "desc": "走高難度【巒郡縱走（金子－清水－西巒連稜）】，免繞道公路直通百岳【066】西巒大山，隨後下抵歷史廢墟林業中心【巒安堂】宿營。", "isResupply": false}, {"day": 61, "stage": "sec-5", "title": "巒安堂 ➔ 廢棄人倫林道 ➔ 雙龍部落 ➔ 東埔溫泉", "dist": "21 km", "hours": "7.0 hrs", "camp": "東埔溫泉飯店", "peaks": [], "desc": "由巒安堂出人倫林道下抵雙龍部落（4hr），沿省道走至東埔溫泉入住溫泉飯店（3hr），第五階段南三段圓滿完封！", "isResupply": false}, {"day": 62, "stage": "sec-5", "title": "【東埔溫泉・第五補給休整日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "東埔溫泉飯店", "peaks": [], "desc": "泡溫泉洗滌疲憊，大吃大補！在此分裝第六階段物資，準備將馬博與南二段後半程 10 天糧食背上八通關草原預藏！", "isResupply": true, "resupplyNote": "東埔溫泉第五大補給點"}, {"day": 63, "stage": "sec-6", "title": "東埔出發 ➔ 八通關古道西段 ➔ 父子斷崖 ➔ 雲龍瀑布 ➔ 觀高坪", "dist": "14 km", "hours": "6.0 hrs", "camp": "觀高坪營地", "peaks": [], "desc": "由東埔重裝出發踏上八通關古道西段，經父子斷崖、雲龍瀑布、乙女瀑布，抵達觀高坪營地宿。", "isResupply": false}, {"day": 64, "stage": "sec-6", "title": "觀高坪 ➔ 八通關草原【預藏馬博/南二段後半糧食】➔ 重裝越嶺玉山北鞍 ➔ 圓峰山屋", "dist": "11 km", "hours": "6.5 hrs", "camp": "圓峰山屋/營地", "peaks": [], "desc": "關鍵藏糧日！抵達八通關草原駐在所遺址，將 10 天口糧妥善封裝藏入安全點；不上八通關山，直接翻越玉山北鞍抵達全台最高圓峰山屋宿。", "isResupply": false}, {"day": 65, "stage": "sec-6", "title": "圓峰出發 ➔ 玉山北峰 ➔ 台灣第一峰 玉山主峰 ➔ 玉山東峰 ➔ 回圓峰", "dist": "9 km", "hours": "7.5 hrs", "camp": "圓峰山屋/營地", "peaks": [{"num": "067", "name": "玉山北峰", "elev": 3858, "type": "輕裝來回"}, {"num": "068", "name": "玉山主峰", "elev": 3952, "type": "順路登頂"}, {"num": "069", "name": "玉山東峰", "elev": 3869, "type": "輕裝來回"}], "desc": "圓峰出發拜訪氣象站登頂【067】玉山北峰，登上台灣最高峰【068】玉山主峰（3,952m），攀越十峻之首鐵鍊峭壁【069】玉山東峰，傍晚回圓峰宿。", "isResupply": false}, {"day": 66, "stage": "sec-6", "title": "圓峰 ➔ 玉山西峰 ➔ 玉山前峰 ➔ 玉山南峰 ➔ 東小南山 ➔ 回圓峰", "dist": "14 km", "hours": "8.5 hrs", "camp": "圓峰山屋/營地", "peaks": [{"num": "070", "name": "玉山西峰", "elev": 3518, "type": "輕裝來回"}, {"num": "071", "name": "玉山前峰", "elev": 3239, "type": "輕裝來回"}, {"num": "072", "name": "玉山南峰", "elev": 3844, "type": "輕裝來回"}, {"num": "073", "name": "東小南山", "elev": 3711, "type": "輕裝來回"}], "desc": "單日連收四座玉山！排雲山莊走西峰神祠登【070】玉山西峰，單攻石瀑【071】玉山前峰；下午回圓峰順收【072】玉山南峰與【073】東小南山！", "isResupply": false}, {"day": 67, "stage": "sec-6", "title": "圓峰出發 ➔ 南玉山單攻日 ➔ 回圓峰休整備戰鹿山", "dist": "9 km", "hours": "5.5 hrs", "camp": "圓峰山屋/營地", "peaks": [{"num": "074", "name": "南玉山", "elev": 3383, "type": "輕裝來回"}], "desc": "圓峰出發沿小南山草坡推進，輕裝單攻【074】南玉山（5.5hr），下午回圓峰山屋早早休息，為明日陡降千米之鹿山蓄積全能量！", "isResupply": false}, {"day": 68, "stage": "sec-6", "title": "圓峰出發 ➔ 專心陡降 1,000m 單攻鹿山 ➔ 爬回圓峰山屋", "dist": "10 km", "hours": "8.5 hrs", "camp": "圓峰山屋/營地", "peaks": [{"num": "075", "name": "鹿山", "elev": 2981, "type": "輕裝來回"}], "desc": "玉山最偏遠艱苦百岳！圓峰出發陡降 1,000 公尺單攻【075】鹿山，克服漫長回程爬升重回圓峰，玉山九峰全數完登！", "isResupply": false}, {"day": 69, "stage": "sec-6", "title": "圓峰 ➔ 八通關草原【自力開箱補給！】➔ 登八通關山 ➔ 秀姑坪 ➔ 秀姑巒山 ➔ 馬博山屋", "dist": "14 km", "hours": "8.5 hrs", "camp": "馬博拉斯山屋", "peaks": [{"num": "076", "name": "八通關山", "elev": 3335, "type": "輕裝來回"}, {"num": "077", "name": "秀姑巒山", "elev": 3805, "type": "順路登頂"}], "desc": "神級戰略日！退回八通關自力補給取出預藏口糧與瓦斯！輕裝順路登頂【076】八通關山（2hr）；背重裝東行秀姑坪，登頂中央山脈最高峰【077】秀姑巒山，抵馬博山屋宿！", "isResupply": true, "resupplyNote": "八通關自力補給開箱"}, {"day": 70, "stage": "sec-6", "title": "馬博山屋 ➔ 馬博拉斯山 ➔ 盆駒山 ➔ 烏拉孟斷崖 ➔ 馬利加南山 ➔ 馬利加南東峰山屋", "dist": "13 km", "hours": "8.0 hrs", "camp": "馬利加南東峰山屋", "peaks": [{"num": "078", "name": "馬博拉斯山", "elev": 3765, "type": "順路登頂"}, {"num": "079", "name": "盆駒山", "elev": 3022, "type": "輕裝來回"}, {"num": "080", "name": "馬利加南山", "elev": 3546, "type": "順路登頂"}], "desc": "登頂【078】馬博拉斯山，輕裝來回【079】盆駒山，走過驚險烏拉孟斷崖煙囪地形，登上【080】馬利加南山，抵達東峰山屋宿。", "isResupply": false}, {"day": 71, "stage": "sec-6", "title": "馬利加南東峰 ➔ 塔比拉斷崖 ➔ 馬西山 ➔ 喀西帕南山 ➔ 折返馬布谷營地", "dist": "11 km", "hours": "7.5 hrs", "camp": "五星級馬布谷營地", "peaks": [{"num": "081", "name": "馬西山", "elev": 3443, "type": "順路登頂"}, {"num": "082", "name": "喀西帕南山", "elev": 3276, "type": "順路登頂"}], "desc": "過塔比拉斷崖登頂【081】馬西山，續攻馬博橫斷最後百岳【082】喀西帕南山！依協議不上太平谷，原路折返五星級馬布谷營地大休整！", "isResupply": false}, {"day": 72, "stage": "sec-6", "title": "馬布谷營地 ➔ 翻回秀姑坪 ➔ 順路登頂大水窟山 ➔ 大水窟山屋", "dist": "11 km", "hours": "7.5 hrs", "camp": "大水窟山屋", "peaks": [{"num": "083", "name": "大水窟山", "elev": 3630, "type": "順路登頂"}], "desc": "馬布谷原路翻回秀姑坪，順南二段主稜順路登頂【083】大水窟山，下抵童話般的紅頂大水窟山屋與大水窟池畔宿。", "isResupply": false}, {"day": 73, "stage": "sec-6", "title": "大水窟山屋出發 ➔ 達芬尖山 ➔ 塔芬山 ➔ 塔芬谷山屋", "dist": "10 km", "hours": "7.0 hrs", "camp": "塔芬谷山屋", "peaks": [{"num": "084", "name": "達芬尖山", "elev": 3222, "type": "順路登頂"}, {"num": "085", "name": "塔芬山", "elev": 3090, "type": "順路登頂"}], "desc": "大水窟出發直登三尖之一【084】達芬尖山，過塔芬池登頂【085】塔芬山，陡降至溪谷環抱的塔芬谷山屋宿。", "isResupply": false}, {"day": 74, "stage": "sec-6", "title": "塔芬谷 ➔ 轆轆山 ➔ 經轆轆谷山屋 ➔ 輕裝單攻雲峰 ➔ 夜宿雲峰三叉營地", "dist": "11 km", "hours": "8.0 hrs", "camp": "雲峰三叉營地", "peaks": [{"num": "086", "name": "轆轆山", "elev": 3279, "type": "順路登頂"}, {"num": "087", "name": "雲峰", "elev": 3564, "type": "輕裝來回"}], "desc": "登頂【086】轆轆山，過轆轆谷山屋至雲峰下，輕裝單攻九峨之首【087】雲峰（3.5hr）；夜宿雲峰三叉營地，省去來回折返！", "isResupply": false}, {"day": 75, "stage": "sec-6", "title": "雲峰三叉營地 ➔ 南雙頭山 ➔ 拉庫音溪山屋 ➔ 直轉布新營地", "dist": "10 km", "hours": "7.5 hrs", "camp": "布新營地", "peaks": [{"num": "088", "name": "南雙頭山", "elev": 3356, "type": "順路登頂"}], "desc": "晨登【088】南雙頭山，下切拉庫音溪谷山屋午餐補水，由南二段接新康岔路直轉布新營地紮營，避開所有繞路！", "isResupply": false}, {"day": 76, "stage": "sec-6", "title": "布新營地 ➔ 輕裝單攻來回布拉克桑山 ➔ 取大包拔營 ➔ 桃源營地", "dist": "15 km", "hours": "8.5 hrs", "camp": "桃源營地", "peaks": [{"num": "089", "name": "布拉克桑山", "elev": 3025, "type": "輕裝來回"}], "desc": "布新營地輕裝單攻漫長平緩的【089】布拉克桑山（6hr）；回營拔營背負重裝推進至桃源營地宿營備戰新康。", "isResupply": false}, {"day": 77, "stage": "sec-6", "title": "桃源營地 ➔ 輕裝單攻新康山（天宮堡壘）➔ 拔營回走 ➔ 順登三叉山 ➔ 嘉明湖山屋", "dist": "14 km", "hours": "8.5 hrs", "camp": "嘉明湖山屋", "peaks": [{"num": "090", "name": "新康山", "elev": 3331, "type": "輕裝來回"}, {"num": "091", "name": "三叉山", "elev": 3496, "type": "順路登頂"}], "desc": "輕裝攀上「東台一霸」【090】新康山並攀爬天宮堡壘（6hr）；回桃源拔營往回走，順路登頂一等三角點【091】三叉山，入住嘉明湖山屋宿。", "isResupply": false}, {"day": 78, "stage": "sec-6", "title": "嘉明湖山屋 ➔ 向陽山 ➔ 步道下坡出向陽森林遊樂區", "dist": "10 km", "hours": "4.0 hrs", "camp": "向陽營地/利稻民宿", "peaks": [{"num": "092", "name": "向陽山", "elev": 3603, "type": "順路登頂"}], "desc": "晨登【092】向陽山，過向陽名樹沿向陽步道一路歡樂下坡，出向陽國家森林遊樂區（南橫台20線 130K）！第六階段 26 座百岳歷史大豐收！", "isResupply": false}, {"day": 79, "stage": "sec-6", "title": "【向陽/利稻・第六補給休整日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "向陽營地/利稻部落民宿", "peaks": [], "desc": "在利稻部落享用美食大修整，領取最後「南一段＋雙鬼湖」極限深山探勘物資，整理裝備！", "isResupply": true, "resupplyNote": "向陽/利稻第六大補給點"}, {"day": 80, "stage": "sec-7", "title": "向陽出發 ➔ 南橫公路徒步 10km ➔ 穿過埡口大關山隧道 ➔ 登關山嶺山 ➔ 隧道西口", "dist": "10 km", "hours": "4.5 hrs", "camp": "大關山隧道西口營地", "peaks": [{"num": "093", "name": "關山嶺山", "elev": 3176, "type": "輕裝來回"}], "desc": "沿台20線南橫公路徒步穿過全台公路最高隧道大關山隧道（2,722m），起登單攻南橫三星之【093】關山嶺山，宿大關山隧道西口營地。", "isResupply": false}, {"day": 81, "stage": "sec-7", "title": "隧道西口 ➔ 南橫公路 ➔ 塔關山 ➔ 進涇橋起登 ➔ 庫哈諾辛山 ➔ 庫哈諾辛山屋", "dist": "8 km", "hours": "6.5 hrs", "camp": "庫哈諾辛山屋", "peaks": [{"num": "094", "name": "塔關山", "elev": 3222, "type": "輕裝來回"}, {"num": "095", "name": "庫哈諾辛山", "elev": 3115, "type": "順路登頂"}], "desc": "公路續行輕裝登頂巨木森林【094】塔關山（2.5hr）；徒步至進涇橋重裝陡上，先登頂【095】庫哈諾辛山，抵庫哈諾辛山屋宿。", "isResupply": false}, {"day": 82, "stage": "sec-7", "title": "庫哈諾辛山屋 ➔ 登南台首岳關山 ➔ 順降關山南峰草坡 ➔ 海諾南山下營地", "dist": "8 km", "hours": "6.0 hrs", "camp": "海諾南山下營地", "peaks": [{"num": "096", "name": "關山", "elev": 3668, "type": "順路登頂"}], "desc": "直攻登頂中央山脈南段最高峰【096】關山（3,668m）！順關山南峰大草坡平緩下降，抵達海諾南山下營地宿（不經恐龍塔！安全順暢）。", "isResupply": false}, {"day": 83, "stage": "sec-7", "title": "海諾南營地 ➔ 海諾南山 ➔ 小關山北峰 ➔ 小關山 ➔ 雲馬鞍部營地", "dist": "9 km", "hours": "7.0 hrs", "camp": "雲馬鞍部營地", "peaks": [{"num": "097", "name": "海諾南山", "elev": 3175, "type": "順路登頂"}, {"num": "098", "name": "小關山", "elev": 3249, "type": "順路登頂"}], "desc": "登上【097】海諾南山，經小關山北峰四叉路登頂南一段名山【098】小關山，下抵雲馬鞍部營地宿。", "isResupply": false}, {"day": 84, "stage": "sec-7", "title": "雲馬鞍部 ➔ 馬西巴秀山（石洞營地）➔ 三叉峰 ➔ 卑南主山 ➔ 卑南主山南鞍營地", "dist": "11 km", "hours": "8.0 hrs", "camp": "卑南主山南鞍營地", "peaks": [{"num": "099", "name": "卑南主山", "elev": 3295, "type": "順路登頂"}], "desc": "過馬西巴秀山與石洞營地，在三叉峰卸包登頂南一段盟主【099】卑南主山！取包宿卑南主山南鞍營地，準備步入傳奇南南段！", "isResupply": false}, {"day": 85, "stage": "sec-7", "title": "【南南段探勘】卑南主山南鞍 ➔ 卑南主山南峰 ➔ 見晴山 ➔ 冷杉林營地", "dist": "8 km", "hours": "7.0 hrs", "camp": "見晴原始冷杉林營地", "peaks": [], "desc": "正式進入中央山脈南南段原始荒野！翻越卑南主山南峰、見晴山，在原始冷杉林宿營。", "isResupply": false}, {"day": 86, "stage": "sec-7", "title": "【南南段探勘】穿越密林箭竹 ➔ 抵達魯凱神聖禁地「萬山神池」", "dist": "9 km", "hours": "7.5 hrs", "camp": "萬山神池畔營地（海拔 2,150m）", "peaks": [], "desc": "撥開古老原始密林，抵達魯凱族祖靈守護之神聖禁地【萬山神池】，在平靜池畔露營。", "isResupply": false}, {"day": 87, "stage": "sec-7", "title": "【南南段探勘】萬山神池 ➔ 經藍湖 ➔ 抵達全台最深高山湖「大鬼湖」", "dist": "8 km", "hours": "6.5 hrs", "camp": "大鬼湖畔營地（他羅瑪琳池，2,180m）", "peaks": [], "desc": "穿越藍湖，抵達台灣最深最神秘之高山湖泊【大鬼湖】，湖畔露營，洗滌身心靈。", "isResupply": false}, {"day": 88, "stage": "sec-7", "title": "【南南段探勘】大鬼湖 ➔ 遙拜山 ➔ 拜雲山 ➔ 檜木巨木林營地", "dist": "8 km", "hours": "7.0 hrs", "camp": "巨木林營地", "peaks": [], "desc": "繞過遙拜山與拜雲山，穿梭在數千年紅檜巨木森林中，宿巨木林營地。", "isResupply": false}, {"day": 89, "stage": "sec-7", "title": "【南南段探勘】巨木林 ➔ 登頂百名山霧頭山 ➔ 橫切大武地塹 ➔ 北大武山北稜", "dist": "10 km", "hours": "8.0 hrs", "camp": "北大武山北稜露營地", "peaks": [], "desc": "登頂高難度百名山霧頭山，橫跨中央山脈著名的大武地塹，推進至北大武山北稜紮營備戰完封！", "isResupply": false}, {"day": 90, "stage": "sec-7", "title": "★【歷史性一刻】自北稜攀登登頂【100】北大武山！第100座百岳圓滿完登！➔ 檜谷山莊", "dist": "7 km", "hours": "6.0 hrs", "camp": "檜谷山莊", "peaks": [{"num": "100", "name": "北大武山", "elev": 3092, "type": "順路登頂"}], "desc": "歷史性的一刻！自北大武北稜一舉攀上中央山脈最南端之雲海之王【100】北大武山！完成台灣全島 100 座百岳一筆書完登！順步道下至檜谷山莊慶功宿！", "isResupply": false}, {"day": 91, "stage": "sec-7", "title": "檜谷山莊 ➔ 步道陡降 ➔ 屏東泰武新登山口 ➔ 泰武部落", "dist": "12 km", "hours": "4.0 hrs", "camp": "泰武部落民宿", "peaks": [], "desc": "沿北大武國家步道下坡出泰武新登山口（4km / 2.5hr），徒步下至泰武部落民宿，高山路段正式完封！", "isResupply": false}, {"day": 92, "stage": "sec-7", "title": "【屏東泰武・百岳完登慶祝日 ＆ 預備天】", "dist": "0 km", "hours": "0 hrs", "camp": "泰武部落民宿", "peaks": [], "desc": "在山腳下洗去數十天高山泥濘，慶祝百岳 100 座全數完登！領取最後公路輕裝裝備，備戰最南端衝刺！", "isResupply": true, "resupplyNote": "泰武部落百岳完登大慶祝"}, {"day": 93, "stage": "sec-8", "title": "泰武部落 ➔ 沿 185 縣道沿山公路南下 ➔ 來義 ➔ 枋寮", "dist": "28 km", "hours": "7.0 hrs", "camp": "枋寮市區旅宿", "peaks": [], "desc": "出泰武沿屏東 185 縣道一路南下，經來義、春日抵達枋寮。公路平路，遠眺剛走過的大武山連峰。", "isResupply": false}, {"day": 94, "stage": "sec-8", "title": "枋寮 ➔ 台1線/台26線 ➔ 枋山 ➔ 楓港 ➔ 車城", "dist": "28 km", "hours": "7.0 hrs", "camp": "車城市區旅宿", "peaks": [], "desc": "沿台26線屏鵝公路伴隨台灣海峽蔚藍海岸線南下，經枋山、楓港抵達車城。", "isResupply": false}, {"day": 95, "stage": "sec-8", "title": "車城 ➔ 恆春古城 ➔ 南灣 ➔ 墾丁大街", "dist": "25 km", "hours": "6.5 hrs", "camp": "墾丁大街旅宿", "peaks": [], "desc": "穿過恆春南門古城、南灣海灘，抵達熱鬧的墾丁大街，準備迎接最後明日清晨的終點撞線。", "isResupply": false}, {"day": 96, "stage": "sec-8", "title": "★【全島一筆書終點撞線】墾丁 ➔ 台26線 ➔ 鵝鑾鼻燈塔（台灣最南點）！大完封！", "dist": "10 km", "hours": "2.5 hrs", "camp": "鵝鑾鼻/墾丁旅宿", "peaks": [], "desc": "清晨出發直奔台灣最南端鵝鑾鼻公園，正式觸摸【鵝鑾鼻燈塔】與台灣最南點意象標誌！達成全島 1,285 公里、96 天、100 座百岳純徒步一筆書大完封！", "isResupply": true, "resupplyNote": "鵝鑾鼻燈塔終點撞線完封"}], "peaks": [{"num": "001", "name": "中雪山", "elev": 3173, "type": "輕裝來回", "day": 11, "stage": "sec-1"}, {"num": "002", "name": "大雪山", "elev": 3530, "type": "順路登頂", "day": 11, "stage": "sec-1"}, {"num": "003", "name": "頭鷹山", "elev": 3510, "type": "順路登頂", "day": 12, "stage": "sec-1"}, {"num": "004", "name": "火石山", "elev": 3310, "type": "輕裝來回", "day": 12, "stage": "sec-1"}, {"num": "005", "name": "大劍山", "elev": 3594, "type": "順路登頂", "day": 13, "stage": "sec-1"}, {"num": "006", "name": "佳陽山", "elev": 3314, "type": "輕裝來回", "day": 14, "stage": "sec-1"}, {"num": "007", "name": "劍山（小劍山）", "elev": 3253, "type": "輕裝來回", "day": 14, "stage": "sec-1"}, {"num": "008", "name": "志佳陽大山", "elev": 3345, "type": "輕裝來回", "day": 15, "stage": "sec-1"}, {"num": "009", "name": "雪山主峰", "elev": 3886, "type": "順路登頂", "day": 16, "stage": "sec-1"}, {"num": "010", "name": "雪山東峰", "elev": 3150, "type": "輕裝來回", "day": 16, "stage": "sec-1"}, {"num": "011", "name": "雪山北峰", "elev": 3703, "type": "順路登頂", "day": 16, "stage": "sec-1"}, {"num": "012", "name": "大霸尖山", "elev": 3492, "type": "輕裝來回", "day": 18, "stage": "sec-1"}, {"num": "013", "name": "小霸尖山", "elev": 3418, "type": "輕裝來回", "day": 18, "stage": "sec-1"}, {"num": "014", "name": "伊澤山", "elev": 3297, "type": "輕裝來回", "day": 18, "stage": "sec-1"}, {"num": "015", "name": "加利山", "elev": 3112, "type": "輕裝來回", "day": 18, "stage": "sec-1"}, {"num": "016", "name": "品田山", "elev": 3524, "type": "順路登頂", "day": 19, "stage": "sec-1"}, {"num": "017", "name": "池有山", "elev": 3303, "type": "順路登頂", "day": 19, "stage": "sec-1"}, {"num": "018", "name": "喀拉業山", "elev": 3133, "type": "輕裝來回", "day": 20, "stage": "sec-1"}, {"num": "019", "name": "桃山", "elev": 3325, "type": "順路登頂", "day": 20, "stage": "sec-1"}, {"num": "020", "name": "審馬陣山", "elev": 3141, "type": "順路登頂", "day": 23, "stage": "sec-2"}, {"num": "021", "name": "南湖北山", "elev": 3536, "type": "順路登頂", "day": 23, "stage": "sec-2"}, {"num": "022", "name": "南湖大山東峰", "elev": 3632, "type": "輕裝來回", "day": 24, "stage": "sec-2"}, {"num": "023", "name": "馬比杉山", "elev": 3211, "type": "輕裝來回", "day": 24, "stage": "sec-2"}, {"num": "024", "name": "南湖大山主峰", "elev": 3742, "type": "順路登頂", "day": 25, "stage": "sec-2"}, {"num": "025", "name": "南湖大山南峰", "elev": 3475, "type": "順路登頂", "day": 25, "stage": "sec-2"}, {"num": "026", "name": "巴巴山", "elev": 3449, "type": "輕裝來回", "day": 25, "stage": "sec-2"}, {"num": "027", "name": "中央尖山", "elev": 3705, "type": "順路登頂", "day": 26, "stage": "sec-2"}, {"num": "028", "name": "甘薯峰", "elev": 3158, "type": "順路登頂", "day": 26, "stage": "sec-2"}, {"num": "029", "name": "無明山", "elev": 3451, "type": "順路登頂", "day": 27, "stage": "sec-2"}, {"num": "030", "name": "閂山", "elev": 3168, "type": "輕裝來回", "day": 28, "stage": "sec-2"}, {"num": "031", "name": "鈴鳴山", "elev": 3272, "type": "順路登頂", "day": 28, "stage": "sec-2"}, {"num": "032", "name": "畢祿山", "elev": 3371, "type": "順路登頂", "day": 29, "stage": "sec-2"}, {"num": "033", "name": "羊頭山", "elev": 3035, "type": "輕裝來回", "day": 29, "stage": "sec-2"}, {"num": "034", "name": "帕托魯山", "elev": 3156, "type": "輕裝來回", "day": 33, "stage": "sec-3"}, {"num": "035", "name": "立霧主山", "elev": 3070, "type": "順路登頂", "day": 33, "stage": "sec-3"}, {"num": "036", "name": "太魯閣大山", "elev": 3283, "type": "輕裝來回", "day": 34, "stage": "sec-3"}, {"num": "037", "name": "磐石山", "elev": 3106, "type": "順路登頂", "day": 35, "stage": "sec-3"}, {"num": "038", "name": "奇萊主山北峰", "elev": 3607, "type": "順路登頂", "day": 36, "stage": "sec-3"}, {"num": "039", "name": "屏風山", "elev": 3250, "type": "順路登頂", "day": 36, "stage": "sec-3"}, {"num": "040", "name": "合歡山北峰", "elev": 3422, "type": "順路登頂", "day": 37, "stage": "sec-3"}, {"num": "041", "name": "合歡山西峰", "elev": 3145, "type": "順路登頂", "day": 37, "stage": "sec-3"}, {"num": "042", "name": "白姑大山", "elev": 3341, "type": "輕裝來回", "day": 38, "stage": "sec-3"}, {"num": "043", "name": "合歡山主峰", "elev": 3417, "type": "順路登頂", "day": 40, "stage": "sec-3"}, {"num": "044", "name": "石門山", "elev": 3237, "type": "順路登頂", "day": 40, "stage": "sec-3"}, {"num": "045", "name": "合歡山東峰", "elev": 3421, "type": "順路登頂", "day": 40, "stage": "sec-3"}, {"num": "046", "name": "奇萊主山", "elev": 3560, "type": "順路登頂", "day": 42, "stage": "sec-4"}, {"num": "047", "name": "奇萊主山南峰", "elev": 3358, "type": "輕裝來回", "day": 43, "stage": "sec-4"}, {"num": "048", "name": "南華山", "elev": 3184, "type": "輕裝來回", "day": 43, "stage": "sec-4"}, {"num": "049", "name": "能高山主峰", "elev": 3262, "type": "順路登頂", "day": 43, "stage": "sec-4"}, {"num": "050", "name": "能高山南峰", "elev": 3349, "type": "順路登頂", "day": 44, "stage": "sec-4"}, {"num": "051", "name": "光頭山", "elev": 3060, "type": "順路登頂", "day": 44, "stage": "sec-4"}, {"num": "052", "name": "白石山", "elev": 3110, "type": "順路登頂", "day": 45, "stage": "sec-4"}, {"num": "053", "name": "安東軍山", "elev": 3068, "type": "順路登頂", "day": 45, "stage": "sec-4"}, {"num": "054", "name": "牧山", "elev": 3241, "type": "順路登頂", "day": 47, "stage": "sec-4"}, {"num": "055", "name": "火山", "elev": 3258, "type": "輕裝來回", "day": 47, "stage": "sec-4"}, {"num": "056", "name": "干卓萬山", "elev": 3284, "type": "輕裝來回", "day": 47, "stage": "sec-4"}, {"num": "057", "name": "卓社大山", "elev": 3369, "type": "順路登頂", "day": 48, "stage": "sec-4"}, {"num": "058", "name": "六順山", "elev": 2999, "type": "順路登頂", "day": 54, "stage": "sec-5"}, {"num": "059", "name": "丹大山", "elev": 3325, "type": "順路登頂", "day": 55, "stage": "sec-5"}, {"num": "060", "name": "內嶺爾山", "elev": 3275, "type": "順路登頂", "day": 56, "stage": "sec-5"}, {"num": "061", "name": "義西請馬至山", "elev": 3245, "type": "順路登頂", "day": 56, "stage": "sec-5"}, {"num": "062", "name": "東巒大山", "elev": 3468, "type": "輕裝來回", "day": 57, "stage": "sec-5"}, {"num": "063", "name": "東郡大山", "elev": 3619, "type": "順路登頂", "day": 57, "stage": "sec-5"}, {"num": "064", "name": "無雙山", "elev": 3245, "type": "順路登頂", "day": 58, "stage": "sec-5"}, {"num": "065", "name": "郡大山", "elev": 3265, "type": "順路登頂", "day": 59, "stage": "sec-5"}, {"num": "066", "name": "西巒大山", "elev": 3081, "type": "順路登頂", "day": 60, "stage": "sec-5"}, {"num": "067", "name": "玉山北峰", "elev": 3858, "type": "輕裝來回", "day": 65, "stage": "sec-6"}, {"num": "068", "name": "玉山主峰", "elev": 3952, "type": "順路登頂", "day": 65, "stage": "sec-6"}, {"num": "069", "name": "玉山東峰", "elev": 3869, "type": "輕裝來回", "day": 65, "stage": "sec-6"}, {"num": "070", "name": "玉山西峰", "elev": 3518, "type": "輕裝來回", "day": 66, "stage": "sec-6"}, {"num": "071", "name": "玉山前峰", "elev": 3239, "type": "輕裝來回", "day": 66, "stage": "sec-6"}, {"num": "072", "name": "玉山南峰", "elev": 3844, "type": "輕裝來回", "day": 66, "stage": "sec-6"}, {"num": "073", "name": "東小南山", "elev": 3711, "type": "輕裝來回", "day": 66, "stage": "sec-6"}, {"num": "074", "name": "南玉山", "elev": 3383, "type": "輕裝來回", "day": 67, "stage": "sec-6"}, {"num": "075", "name": "鹿山", "elev": 2981, "type": "輕裝來回", "day": 68, "stage": "sec-6"}, {"num": "076", "name": "八通關山", "elev": 3335, "type": "輕裝來回", "day": 69, "stage": "sec-6"}, {"num": "077", "name": "秀姑巒山", "elev": 3805, "type": "順路登頂", "day": 69, "stage": "sec-6"}, {"num": "078", "name": "馬博拉斯山", "elev": 3765, "type": "順路登頂", "day": 70, "stage": "sec-6"}, {"num": "079", "name": "盆駒山", "elev": 3022, "type": "輕裝來回", "day": 70, "stage": "sec-6"}, {"num": "080", "name": "馬利加南山", "elev": 3546, "type": "順路登頂", "day": 70, "stage": "sec-6"}, {"num": "081", "name": "馬西山", "elev": 3443, "type": "順路登頂", "day": 71, "stage": "sec-6"}, {"num": "082", "name": "喀西帕南山", "elev": 3276, "type": "順路登頂", "day": 71, "stage": "sec-6"}, {"num": "083", "name": "大水窟山", "elev": 3630, "type": "順路登頂", "day": 72, "stage": "sec-6"}, {"num": "084", "name": "達芬尖山", "elev": 3222, "type": "順路登頂", "day": 73, "stage": "sec-6"}, {"num": "085", "name": "塔芬山", "elev": 3090, "type": "順路登頂", "day": 73, "stage": "sec-6"}, {"num": "086", "name": "轆轆山", "elev": 3279, "type": "順路登頂", "day": 74, "stage": "sec-6"}, {"num": "087", "name": "雲峰", "elev": 3564, "type": "輕裝來回", "day": 74, "stage": "sec-6"}, {"num": "088", "name": "南雙頭山", "elev": 3356, "type": "順路登頂", "day": 75, "stage": "sec-6"}, {"num": "089", "name": "布拉克桑山", "elev": 3025, "type": "輕裝來回", "day": 76, "stage": "sec-6"}, {"num": "090", "name": "新康山", "elev": 3331, "type": "輕裝來回", "day": 77, "stage": "sec-6"}, {"num": "091", "name": "三叉山", "elev": 3496, "type": "順路登頂", "day": 77, "stage": "sec-6"}, {"num": "092", "name": "向陽山", "elev": 3603, "type": "順路登頂", "day": 78, "stage": "sec-6"}, {"num": "093", "name": "關山嶺山", "elev": 3176, "type": "輕裝來回", "day": 80, "stage": "sec-7"}, {"num": "094", "name": "塔關山", "elev": 3222, "type": "輕裝來回", "day": 81, "stage": "sec-7"}, {"num": "095", "name": "庫哈諾辛山", "elev": 3115, "type": "順路登頂", "day": 81, "stage": "sec-7"}, {"num": "096", "name": "關山", "elev": 3668, "type": "順路登頂", "day": 82, "stage": "sec-7"}, {"num": "097", "name": "海諾南山", "elev": 3175, "type": "順路登頂", "day": 83, "stage": "sec-7"}, {"num": "098", "name": "小關山", "elev": 3249, "type": "順路登頂", "day": 83, "stage": "sec-7"}, {"num": "099", "name": "卑南主山", "elev": 3295, "type": "順路登頂", "day": 84, "stage": "sec-7"}, {"num": "100", "name": "北大武山", "elev": 3092, "type": "順路登頂", "day": 90, "stage": "sec-7"}]};
+
+    // App State
+    let currentStageFilter = "all";
+    let currentSearchTerm = "";
+    let peakFilter = "all";
+    const STORAGE_KEY = "100peaks_checked_list_v1";
+
+    function getCheckedPeaks() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCheckedPeaks(checkedArray) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedArray));
+      } catch (e) {}
+    }
+
+    // Initialize UI
+    document.addEventListener("DOMContentLoaded", function() {
+      initStageTabs();
+      renderChecklist();
+      renderItinerary();
+      updateChecklistProgress();
+      bindEvents();
+    });
+
+    function initStageTabs() {
+      const container = document.getElementById("stage-tabs-container");
+      ITINERARY_DATA.stages.forEach(st => {
+        const btn = document.createElement("button");
+        btn.className = "stage-tab-btn";
+        btn.dataset.stage = st.id;
+        btn.textContent = `${st.name} (${st.days})`;
+        container.appendChild(btn);
+      });
+    }
+
+    function renderChecklist() {
+      const grid = document.getElementById("peaks-grid-container");
+      grid.innerHTML = "";
+      const checkedPeaks = getCheckedPeaks();
+
+      ITINERARY_DATA.peaks.forEach(peak => {
+        const isChecked = checkedPeaks.includes(peak.num);
+        const item = document.createElement("div");
+        item.className = `peak-item ${isChecked ? 'checked' : ''}`;
+        item.dataset.peakNum = peak.num;
+        item.dataset.stage = peak.stage;
+        item.dataset.day = peak.day;
+        item.dataset.checked = isChecked ? "true" : "false";
+
+        item.innerHTML = `
+          <input type="checkbox" id="chk-peak-${peak.num}" ${isChecked ? 'checked' : ''} />
+          <div class="peak-info">
+            <div class="peak-name-row">
+              <span class="peak-number">#${peak.num}</span>
+              <span class="peak-name">${peak.name}</span>
+            </div>
+            <div class="peak-sub-row">
+              <span class="peak-elev">${peak.elev.toLocaleString()}m・${peak.type}</span>
+              <span class="peak-day-link" data-jump-day="${peak.day}">D${peak.day}</span>
+            </div>
+          </div>
+        `;
+
+        const chk = item.querySelector("input[type='checkbox']");
+        chk.addEventListener("change", function(e) {
+          e.stopPropagation();
+          togglePeakCheck(peak.num, chk.checked);
+        });
+
+        item.addEventListener("click", function(e) {
+          if (e.target.dataset.jumpDay) {
+            e.stopPropagation();
+            jumpToDay(parseInt(e.target.dataset.jumpDay, 10));
+            return;
+          }
+          if (e.target !== chk) {
+            chk.checked = !chk.checked;
+            togglePeakCheck(peak.num, chk.checked);
+          }
+        });
+
+        grid.appendChild(item);
+      });
+    }
+
+    function togglePeakCheck(peakNum, checked) {
+      let checkedList = getCheckedPeaks();
+      if (checked) {
+        if (!checkedList.includes(peakNum)) checkedList.push(peakNum);
+      } else {
+        checkedList = checkedList.filter(id => id !== peakNum);
+      }
+      saveCheckedPeaks(checkedList);
+
+      const item = document.querySelector(`.peak-item[data-peak-num="${peakNum}"]`);
+      if (item) {
+        if (checked) {
+          item.classList.add("checked");
+          item.dataset.checked = "true";
+        } else {
+          item.classList.remove("checked");
+          item.dataset.checked = "false";
+        }
+      }
+
+      updateChecklistProgress();
+      filterChecklistItems();
+    }
+
+    function updateChecklistProgress() {
+      const checkedList = getCheckedPeaks();
+      const count = checkedList.length;
+      const pct = Math.round((count / 100) * 100);
+      const bar = document.getElementById("checklist-progress-bar");
+      const statText = document.getElementById("checklist-stat-text");
+
+      bar.style.width = `${pct}%`;
+      statText.textContent = `${count} / 100 座 (${pct}%)`;
+    }
+
+    function filterChecklistItems() {
+      const items = document.querySelectorAll(".peak-item");
+      items.forEach(item => {
+        const isChecked = item.dataset.checked === "true";
+        if (peakFilter === "all") {
+          item.style.display = "flex";
+        } else if (peakFilter === "done") {
+          item.style.display = isChecked ? "flex" : "none";
+        } else if (peakFilter === "undone") {
+          item.style.display = !isChecked ? "flex" : "none";
+        }
+      });
+    }
+
+    function renderItinerary() {
+      const container = document.getElementById("itinerary-days-container");
+      container.innerHTML = "";
+
+      ITINERARY_DATA.stages.forEach(st => {
+        const stageGroup = document.createElement("section");
+        stageGroup.className = "stage-group";
+        stageGroup.id = `group-${st.id}`;
+        stageGroup.dataset.stageId = st.id;
+
+        // Stage Header Card
+        const stHeader = document.createElement("div");
+        stHeader.className = "stage-header-card";
+        stHeader.innerHTML = `
+          <div class="stage-header-info">
+            <div class="stage-badge-row">
+              <span class="stage-name-badge">${st.name}</span>
+              <span class="stage-range-badge">${st.days}</span>
+              <span class="stage-feature-badge">${st.badge}</span>
+            </div>
+            <h3 class="stage-card-title">${st.title}</h3>
+            <p class="stage-card-desc">${st.desc}</p>
+          </div>
+          ${st.resupply ? `<div class="stage-resupply-pill"><span>📦</span> 補給節點：${st.resupply}</div>` : ''}
+        `;
+        stageGroup.appendChild(stHeader);
+
+        // Days in this stage
+        const stageDays = ITINERARY_DATA.days.filter(d => d.stage === st.id);
+        stageDays.forEach(day => {
+          const card = createDayCard(day);
+          stageGroup.appendChild(card);
+        });
+
+        container.appendChild(stageGroup);
+      });
+    }
+
+    function createDayCard(day) {
+      const card = document.createElement("details");
+      card.className = "day-card";
+      card.id = `day-${day.day}`;
+      card.dataset.day = day.day;
+      card.dataset.stage = day.stage;
+
+      // Determine hours badge class
+      let badgeClass = "badge-ok";
+      const hMatch = day.hours.match(/([0-9.]+)/);
+      const hVal = hMatch ? parseFloat(hMatch[1]) : 0;
+      if (day.isResupply && hVal === 0) {
+        badgeClass = "badge-resupply";
+      } else if (hVal > 9.0) {
+        badgeClass = "badge-limit";
+      } else if (hVal > 7.5) {
+        badgeClass = "badge-warn";
+      }
+
+      // Peaks list html
+      let peaksBadgesHtml = "";
+      if (day.peaks && day.peaks.length > 0) {
+        peaksBadgesHtml = `<div class="day-peaks-badge-list">` + day.peaks.map(p => `
+          <span class="peak-tag ${p.type.includes('輕裝') ? 'climb-type-side' : 'climb-type-summit'}">
+            【${p.num}】${p.name} ${p.elev}m (${p.type})
+          </span>
+        `).join("") + `</div>`;
+      }
+
+      // Special box
+      let specialBoxHtml = "";
+      if (day.day === 64) {
+        specialBoxHtml = `<div class="special-box cache"><strong>★ 關鍵戰略藏糧：</strong>今日抵達八通關草原駐在所遺址，妥善將馬博橫斷與南二段後半程 10 天糧食瓦斯預藏封存！不攻八通關山，直接翻越玉山北鞍推進圓峰！</div>`;
+      } else if (day.day === 69) {
+        specialBoxHtml = `<div class="special-box cache"><strong>★ 神級開箱補給：</strong>回到八通關草原自力補給！取出預藏的新鮮口糧與瓦斯大充能！順路輕裝 2hr 登頂八通關山，續登中央山脈最高峰秀姑巒山！</div>`;
+      } else if (day.day === 90) {
+        specialBoxHtml = `<div class="special-box finish"><strong>★ 歷史性榮耀時刻：</strong>自北大武山北稜登上中央山脈最南端之雲海之王【100】北大武山！全島 100 座百岳圓滿完登！</div>`;
+      } else if (day.day === 96) {
+        specialBoxHtml = `<div class="special-box finish"><strong>★ 全島一筆書終點撞線：</strong>清晨徒步抵達屏東鵝鑾鼻燈塔（台灣最南點）！96天、100座百岳、1,285公里純徒步全島大完封！</div>`;
+      } else if (day.isResupply) {
+        specialBoxHtml = `<div class="special-box resupply"><strong>📦 補給與整備重點：</strong>${day.resupplyNote || '補給、裝備保養與身心修整'}</div>`;
+      }
+
+      card.innerHTML = `
+        <summary>
+          <div class="day-card-left">
+            <span class="day-number-badge ${badgeClass}">D${day.day}</span>
+            <div class="day-title-block">
+              <h4 class="day-main-title">
+                ${day.title}
+                ${day.isResupply ? '<span class="stage-range-badge" style="font-size:0.75rem">📦 補給日</span>' : ''}
+              </h4>
+              <div class="day-metrics-row">
+                <span class="day-metric-item">📏 距離：<strong>${day.dist}</strong></span>
+                <span class="day-metric-item">⏱️ 上河時間：<strong>${day.hours}</strong></span>
+                <span class="day-metric-item camp-item">⛺ 宿營：<strong>${day.camp}</strong></span>
+              </div>
+              ${peaksBadgesHtml}
+            </div>
+          </div>
+          <div class="day-card-right">
+            <span class="details-arrow">▶</span>
+          </div>
+        </summary>
+        <div class="day-card-body">
+          <p class="day-desc-text">${day.desc}</p>
+          <div class="day-meta-box">
+            <div class="meta-box-item">
+              <span class="meta-box-label">今日宿營地</span>
+              <span class="meta-box-val">${day.camp}</span>
+            </div>
+            <div class="meta-box-item">
+              <span class="meta-box-label">步程工時</span>
+              <span class="meta-box-val">${day.hours} (上河1.0標準 ≤ 10h)</span>
+            </div>
+            <div class="meta-box-item">
+              <span class="meta-box-label">當日百岳進帳</span>
+              <span class="meta-box-val">${day.peaks && day.peaks.length > 0 ? day.peaks.map(p => `【${p.num}】${p.name}`).join('、') : '無百岳（行進/整備）'}</span>
+            </div>
+          </div>
+          ${specialBoxHtml}
+        </div>
+      `;
+
+      return card;
+    }
+
+    function bindEvents() {
+      // Stage Tabs Click
+      document.querySelectorAll(".stage-tab-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+          document.querySelectorAll(".stage-tab-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentStageFilter = btn.dataset.stage;
+          filterDays();
+        });
+      });
+
+      // Search input
+      const searchInput = document.getElementById("route-search-input");
+      const searchClear = document.getElementById("search-clear-btn");
+      searchInput.addEventListener("input", function(e) {
+        currentSearchTerm = e.target.value.trim().toLowerCase();
+        searchClear.style.display = currentSearchTerm ? "block" : "none";
+        filterDays();
+      });
+      searchClear.addEventListener("click", function() {
+        searchInput.value = "";
+        currentSearchTerm = "";
+        searchClear.style.display = "none";
+        filterDays();
+      });
+
+      // Expand / Collapse all
+      document.getElementById("btn-expand-all").addEventListener("click", function() {
+        document.querySelectorAll(".day-card:not(.hidden)").forEach(c => c.open = true);
+      });
+      document.getElementById("btn-collapse-all").addEventListener("click", function() {
+        document.querySelectorAll(".day-card").forEach(c => c.open = false);
+      });
+
+      // Toggle Drawer
+      const toggleDrawerBtn = document.getElementById("btn-toggle-drawer");
+      const drawer = document.getElementById("peaks-drawer");
+      toggleDrawerBtn.addEventListener("click", function() {
+        drawer.classList.toggle("open");
+        const isOpen = drawer.classList.contains("open");
+        toggleDrawerBtn.innerHTML = isOpen ? "<span>✕ 關閉百岳清單</span>" : "<span>📋 展開百岳清單</span>";
+      });
+
+      // Peak Filter Buttons in Drawer
+      document.querySelectorAll("[data-peak-filter]").forEach(btn => {
+        btn.addEventListener("click", function() {
+          document.querySelectorAll("[data-peak-filter]").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          peakFilter = btn.dataset.peakFilter;
+          filterChecklistItems();
+        });
+      });
+
+      // Reset Peaks
+      document.getElementById("btn-reset-peaks").addEventListener("click", function() {
+        if (confirm("確定要重置所有已勾選的百岳進度嗎？")) {
+          saveCheckedPeaks([]);
+          renderChecklist();
+          updateChecklistProgress();
+        }
+      });
+
+      // Back to top
+      const backToTop = document.getElementById("back-to-top");
+      window.addEventListener("scroll", function() {
+        if (window.scrollY > 400) {
+          backToTop.style.display = "flex";
+        } else {
+          backToTop.style.display = "none";
+        }
+      });
+      backToTop.addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    function filterDays() {
+      const stageGroups = document.querySelectorAll(".stage-group");
+      stageGroups.forEach(group => {
+        const stageId = group.dataset.stageId;
+        const stageMatch = (currentStageFilter === "all" || currentStageFilter === stageId);
+        
+        let visibleCountInStage = 0;
+        const dayCards = group.querySelectorAll(".day-card");
+        dayCards.forEach(card => {
+          const cardText = card.textContent.toLowerCase();
+          const dayIdStr = `d${card.dataset.day}`;
+          const searchMatch = !currentSearchTerm || 
+                              cardText.includes(currentSearchTerm) || 
+                              dayIdStr === currentSearchTerm;
+
+          if (stageMatch && searchMatch) {
+            card.classList.remove("hidden");
+            visibleCountInStage++;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        if (visibleCountInStage > 0) {
+          group.classList.remove("hidden");
+        } else {
+          group.classList.add("hidden");
+        }
+      });
+    }
+
+    function jumpToDay(dayNum) {
+      // Reset stage filter to all if needed
+      if (currentStageFilter !== "all") {
+        document.querySelector('.stage-tab-btn[data-stage="all"]').click();
+      }
+      // Clear search
+      const searchInput = document.getElementById("route-search-input");
+      if (searchInput.value) {
+        searchInput.value = "";
+        currentSearchTerm = "";
+        document.getElementById("search-clear-btn").style.display = "none";
+        filterDays();
+      }
+
+      setTimeout(() => {
+        const card = document.getElementById(`day-${dayNum}`);
+        if (card) {
+          card.classList.remove("hidden");
+          card.closest(".stage-group").classList.remove("hidden");
+          card.open = true;
+          card.classList.add("highlight");
+          card.scrollIntoView({ behavior: "smooth", block: "center" });
+          setTimeout(() => {
+            card.classList.remove("highlight");
+          }, 3000);
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>
