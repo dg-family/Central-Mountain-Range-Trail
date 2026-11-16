@@ -3,31 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>中央山脈大縱走｜行程表</title>
+  <title>中央山脈大縱走｜29天全行程與物資補給規劃</title>
   <link rel="stylesheet" href="styles/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-gpx@1.7.0/gpx.js"></script>
 </head>
 <body>
-  <header>
-    <div class="bar">
-      <div>
-        <h1>中央山脈大縱走｜行程表</h1>
-        <nav class="menu" aria-label="主選單">
-          <a href="index.html">目錄首頁</a>
-          <a href="central_mountain_range.html" aria-current="page">中央山脈大縱走 (29天)</a>
-          <a href="100peaks.html">百岳一筆書 (96天)</a>
-        </nav>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <span class="brand-badge">TAIWAN EXPEDITION</span>
+        <a href="index.html" class="brand-title">台灣高山極限長征</a>
       </div>
+      <nav class="site-nav" aria-label="全站導覽">
+        <a href="index.html">目錄首頁</a>
+        <a href="central_mountain_range.html" class="active">中央山脈大縱走 (29天)</a>
+        <a href="100peaks.html">百岳一筆書 (96天)</a>
+        <a href="準備清單.html">裝備清單</a>
+      </nav>
     </div>
   </header>
 
   <div class="wrap">
-    <div class="tools">
-      <button id="expandAll">全部展開</button>
-      <button id="collapseAll">全部收合</button>
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <span class="hero-tag">經典南向大縱走 ｜ 29-Day Alpine Expedition</span>
+      <h1 class="hero-title">中央山脈大縱走 29天全行程表</h1>
+      <p class="hero-desc">
+        橫貫台灣屋脊中央山脈脊樑！由宜蘭勝光登山口起登，一路南行貫穿北一段、北二段、奇萊連峰、能高安東軍、丹大東郡、南二段至南一段出藤枝，全長超過 300 公里，囊括 60 餘座台灣百岳，設有 3 大核心物資補給站。
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">29</div>
+          <div class="stat-label">總行程天數</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">60+</div>
+          <div class="stat-label">百岳總數</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">300+</div>
+          <div class="stat-label">縱走里程 (km)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num accent">3</div>
+          <div class="stat-label">主要補給站</div>
+        </div>
+      </div>
     </div>
+
+    <!-- Quick Tools & TOC -->
+    <div class="tools">
+      <button id="expandAll" class="btn-action"><span>📂</span> 全部展開</button>
+      <button id="collapseAll" class="btn-action"><span>📁</span> 全部收合</button>
+      <a href="#supplies" class="btn-action" style="color:var(--color-accent);border-color:rgba(245,158,11,0.4)"><span>📦</span> 補給規劃專區</a>
+    </div>
+
     <div class="toc" aria-label="快速導覽">
       <!-- 目錄 -->
       <a href="#D1">D1</a><a href="#D2">D2</a><a href="#D3">D3</a><a href="#D4">D4</a><a href="#D5">D5</a>
@@ -35,13 +70,15 @@
       <a href="#D11">D11</a><a href="#D12">D12</a><a href="#D13">D13</a><a href="#D14">D14</a><a href="#D15">D15</a>
       <a href="#D16">D16</a><a href="#D17">D17</a><a href="#D18">D18</a><a href="#D19">D19</a><a href="#D20">D20</a>
       <a href="#D21">D21</a><a href="#D22">D22</a><a href="#D23">D23</a><a href="#D24">D24</a><a href="#D25">D25</a>
-      <a href="#D26">D26</a><a href="#D27">D27</a><a href="#D28">D28</a><a href="#D29">D29</a><a href="#supplies" style="font-weight:700;color:var(--accent,#f59e0b)">📦 補給點</a>
+      <a href="#D26">D26</a><a href="#D27">D27</a><a href="#D28">D28</a><a href="#D29">D29</a>
+      <a href="#supplies" class="highlight-supply">📦 補給點</a>
     </div>
+
     <div class="note">
       <div class="legend">
-        <span><span class="swatch" style="background:var(--ok)"></span> ≤ 600 分鐘（≤ 10 小時）</span>
-        <span><span class="swatch" style="background:var(--warn)"></span> 601–720 分鐘（10–12 小時）</span>
-        <span><span class="swatch" style="background:var(--bad)"></span> &gt; 720 分鐘（&gt; 12 小時）</span>
+        <span><span class="swatch" style="background:var(--ok)"></span> ≤ 600 分鐘（≤ 10 小時，安全工時）</span>
+        <span><span class="swatch" style="background:var(--warn)"></span> 601–720 分鐘（10–12 小時，充實長程）</span>
+        <span><span class="swatch" style="background:var(--bad)"></span> &gt; 720 分鐘（&gt; 12 小時，極限推進行程）</span>
       </div>
     </div>
 
@@ -597,24 +634,34 @@
     // 等待頁面完全載入後執行
     window.addEventListener('load', () => {
       console.log('頁面載入完成，開始初始化地圖功能');
-      // 轉換分鐘→小時，並填色進度條（以 600 分鐘 / 10 小時為基準）
+      // 轉換分鐘→小時，並填色進度條與工時標籤
       (() => {
       const DAYS = document.querySelectorAll('details.day');
       DAYS.forEach(d => {
         const mins = +d.dataset.minutes || 0;
+        if (!mins) return;
         const hrs = (mins/60).toFixed(1);
-        const hrsSpan = d.querySelector('.hrs');
-        if(hrsSpan) hrsSpan.textContent = hrs;
-
-        const bar = d.querySelector('.bar > i');
-        const pct = Math.min(100, (mins/600)*100);
-        if(bar){ 
-          bar.style.width = pct + '%'; 
-          
-          // 顏色分類
-          if(mins <= 600) bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--ok');
-          else if(mins <= 720) bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--warn');
-          else bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bad');
+        const sum = d.querySelector('summary');
+        const badgeClass = mins <= 600 ? 'ok' : (mins <= 720 ? 'warn' : 'bad');
+        
+        let meta = d.querySelector('.meta');
+        if (!meta && sum) {
+          meta = document.createElement('div');
+          meta.className = 'meta';
+          meta.innerHTML = `
+            <div class="barbox"><div class="bar"><i style="width:${Math.min(100, (mins/600)*100)}%;background:var(--${badgeClass})"></i></div></div>
+            <span class="duration-badge ${badgeClass}"><span class="hrs">${hrs}</span> hr (${mins}分)</span>
+          `;
+          sum.appendChild(meta);
+        } else {
+          const hrsSpan = d.querySelector('.hrs');
+          if(hrsSpan) hrsSpan.textContent = hrs;
+          const bar = d.querySelector('.bar > i');
+          const pct = Math.min(100, (mins/600)*100);
+          if(bar){ 
+            bar.style.width = pct + '%'; 
+            bar.style.background = `var(--${badgeClass})`;
+          }
         }
       });
 
@@ -1096,6 +1143,43 @@
       });
     })();
     });
+  </script>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">台灣高山極限長征路線庫 ｜ TAIWAN ALPINE EXPEDITION ARCHIVE</p>
+      <p class="footer-sub">嚴謹現地路感考證 ｜ 上河文化 1.0 標準工時排定 ｜ 專業戶外探險資料庫</p>
+      <div class="footer-links">
+        <a href="index.html">目錄首頁</a> ｜ 
+        <a href="central_mountain_range.html">中央山脈大縱走 (29天)</a> ｜ 
+        <a href="#supplies">29天補給規劃</a> ｜ 
+        <a href="100peaks.html">百岳一筆書 (96天)</a> ｜ 
+        <a href="準備清單.html">裝備清單</a> ｜ 
+        <a href="trail.html">路線圖展示</a> ｜ 
+        <a href="https://github.com/dg-family/Central-Mountain-Range-Trail" target="_blank" rel="noopener">GitHub 儲存庫</a>
+      </div>
+      <p class="footer-copy">© 2026 Central Mountain Range Trail &amp; 100 Peaks One-Stroke Project</p>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" title="回到頂端">↑</button>
+
+  <script>
+    // Back to top floating button logic
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          btt.style.display = 'flex';
+        } else {
+          btt.style.display = 'none';
+        }
+      });
+      btt.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   </script>
 
 </body></html>

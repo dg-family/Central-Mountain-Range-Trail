@@ -1,38 +1,68 @@
-/* 中央山脈大縱走 - CSS 變數定義 */
+/* 台灣高山極限長征系列 - CSS 變數定義 (Unified Dark Alpine Design System) */
 
 :root {
-  /* 主要顏色 */
-  --bg: #fafbfc;
-  --card: #ffffff;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --accent: #3b82f6;
-  --border: #e5e7eb;
+  /* 系統字體 */
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* 高山暗綠核心色階 (Dark Alpine Colors) */
+  --bg-dark: #091210;
+  --bg-surface: #101c18;
+  --bg-surface-elevated: #162621;
+  --bg-card: #14221d;
+  --bg-card-hover: #1b2d27;
   
-  /* 狀態顏色 */
-  --ok: #22c55e;
+  /* 邊框色階 */
+  --border-subtle: #233a32;
+  --border-highlight: #3a5c50;
+  --border: var(--border-subtle);
+  --border-light: var(--border-subtle);
+  --border-medium: var(--border-highlight);
+
+  /* 文字色階 */
+  --text-main: #edf5f2;
+  --text-muted: #95ad9e;
+  --text-dim: #60796c;
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-muted);
+
+  /* 品牌與重點顏色 */
+  --color-primary: #10b981;
+  --color-primary-glow: rgba(16, 185, 129, 0.25);
+  --color-accent: #f59e0b;
+  --color-accent-glow: rgba(245, 158, 11, 0.2);
+  --color-cyan: #06b6d4;
+  --color-purple: #8b5cf6;
+  --color-danger: #ef4444;
+
+  /* 狀態顏色 (相容原有系統) */
+  --ok: #10b981;
   --warn: #f59e0b;
   --bad: #ef4444;
   --info: #06b6d4;
   
-  /* 背景色階 */
-  --bg-primary: #ffffff;
-  --bg-secondary: #fafbfc;
-  --bg-tertiary: #fcfdff;
-  --bg-overlay: rgba(255, 255, 255, 0.9);
+  --ok-bg: rgba(16, 185, 129, 0.15);
+  --warn-bg: rgba(245, 158, 11, 0.15);
+  --bad-bg: rgba(239, 68, 68, 0.15);
+  --accent-bg: rgba(16, 185, 129, 0.15);
+  --accent-light: #34d399;
   
-  /* 文字色階 */
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
-  
-  /* 邊框和陰影 */
-  --border-light: #f1f5f9;
-  --border-medium: #e2e8f0;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  
+  /* 原有變數映射 (向下相容) */
+  --bg: var(--bg-dark);
+  --card: var(--bg-card);
+  --ink: var(--text-main);
+  --muted: var(--text-muted);
+  --accent: var(--color-primary);
+  --bg-primary: var(--bg-surface);
+  --bg-secondary: var(--bg-dark);
+  --bg-tertiary: var(--bg-surface-elevated);
+  --bg-overlay: rgba(9, 18, 16, 0.9);
+
+  /* 陰影 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+
   /* 間距 */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -40,55 +70,41 @@
   --spacing-lg: 16px;
   --spacing-xl: 24px;
   --spacing-2xl: 32px;
-  
+
   /* 圓角 */
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 10px;
   --radius-xl: 12px;
-  --radius-2xl: 14px;
-  --radius-full: 999px;
-  
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
   /* 字體大小 */
   --text-xs: 12px;
   --text-sm: 13px;
-  --text-base: 14px;
-  --text-lg: 16px;
-  --text-xl: 18px;
-  --text-2xl: 22px;
+  --text-base: 15px;
+  --text-lg: 17px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
   --text-3xl: 32px;
-  
+
   /* 字體粗細 */
   --font-normal: 400;
   --font-medium: 500;
   --font-semibold: 600;
   --font-bold: 700;
-  
-  /* 過渡動畫 */
+
+  /* 動畫與過渡 */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --transition-slow: 0.3s ease;
-  
-  /* 布局 */
-  --sidebar-width: 220px;
-  --max-width: 1000px;
-  --header-height: 72px;
-  
-  /* Z-index 層級 */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal: 1040;
-  --z-popover: 1050;
-  --z-tooltip: 1060;
-  
-  /* 特殊顏色 */
-  --accent-light: #bfd1ff;
-  --accent-bg: #eef2ff;
-  --ok-light: #a7f3d0;
-  --ok-bg: rgba(34, 197, 94, 0.12);
-  --warn-light: #fde68a;
-  --warn-bg: rgba(245, 158, 11, 0.12);
-  --bad-light: #fca5a5;
-  --bad-bg: rgba(239, 68, 68, 0.12);
+
+  /* 布局設定 */
+  --max-width: 1280px;
+  --header-height: 64px;
+
+  /* 層級 */
+  --z-sticky: 1000;
+  --z-modal: 1050;
+  --z-tooltip: 1100;
 }

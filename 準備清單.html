@@ -1,53 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中央山脈大縱走｜行前準備清單</title>
+<title>長征裝備與行前準備清單｜台灣高山極限長征</title>
+<link rel="stylesheet" href="styles/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green-dark: #2d5a27;
-    --green: #4a8c3f;
-    --green-light: #7ab648;
-    --brown: #8b5e3c;
-    --beige: #f5f0e8;
-    --beige-dark: #e8e0d0;
-    --white: #ffffff;
-    --text: #2c2c2c;
-    --text-muted: #7a7a7a;
-    --shadow: 0 2px 12px rgba(0,0,0,0.10);
-    --radius: 12px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    font-family: -apple-system, "PingFang TC", "Helvetica Neue", sans-serif;
-    background: var(--beige);
-    color: var(--text);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-sans);
     min-height: 100vh;
   }
 
-  /* ── Header ── */
-  header {
-    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
-    color: white;
-    padding: 28px 24px 20px;
+  /* ── Prep Hero Banner ── */
+  .prep-hero {
+    background: linear-gradient(135deg, #10211a 0%, #0d1915 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    max-width: 680px;
+    margin: 1.5rem auto 1rem;
+    padding: 24px 24px 20px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   }
-  header::before {
+  .prep-hero::before {
     content: "⛰";
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 72px;
-    opacity: 0.18;
+    opacity: 0.12;
     pointer-events: none;
   }
-  header h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
-  header p  { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+  .prep-hero h2 { font-size: 22px; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; margin: 0; }
+  .prep-hero p  { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
   /* ── Progress ── */
   .progress-wrap {
@@ -57,17 +49,19 @@
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    opacity: 0.9;
+    color: var(--text-muted);
     margin-bottom: 6px;
+    font-family: var(--font-mono);
   }
   .progress-bar-bg {
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
     border-radius: 99px;
     height: 8px;
     overflow: hidden;
+    border: 1px solid var(--border-subtle);
   }
   .progress-bar-fill {
-    background: var(--green-light);
+    background: var(--color-primary);
     height: 100%;
     border-radius: 99px;
     transition: width 0.4s ease;
@@ -75,8 +69,12 @@
 
   /* ── Category Tabs ── */
   .tabs-wrap {
-    background: var(--white);
-    border-bottom: 1px solid var(--beige-dark);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-bottom: none;
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: 10px 10px 0 0;
     padding: 0 16px;
     display: flex;
     gap: 4px;
@@ -90,66 +88,70 @@
     background: none;
     cursor: pointer;
     font-size: 13px;
+    font-weight: 500;
     color: var(--text-muted);
     white-space: nowrap;
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
   }
   .tab-btn.active {
-    color: var(--green-dark);
-    font-weight: 600;
-    border-bottom-color: var(--green);
+    color: #ffffff;
+    font-weight: 700;
+    border-bottom-color: var(--color-primary);
   }
-  .tab-btn:hover:not(.active) { color: var(--text); }
+  .tab-btn:hover:not(.active) { color: #ffffff; }
 
   /* ── Main ── */
-  main { max-width: 640px; margin: 0 auto; padding: 20px 16px 100px; }
+  main.prep-main { max-width: 680px; margin: 0 auto; padding: 0 0 120px; }
 
   /* ── Add Task ── */
   .add-box {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
     padding: 16px;
     margin-bottom: 20px;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   }
   .add-box input[type="text"] {
     flex: 1;
     min-width: 160px;
-    border: 1.5px solid var(--beige-dark);
+    border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 9px 12px;
     font-size: 14px;
-    color: var(--text);
+    background: var(--bg-surface);
+    color: var(--text-main);
     outline: none;
     transition: border-color 0.2s;
   }
-  .add-box input[type="text"]:focus { border-color: var(--green); }
-  .add-box select {
-    border: 1.5px solid var(--beige-dark);
+  .add-box input[type="text"]:focus { border-color: var(--color-primary); }
+  .add-box select,
+  .priority-select {
+    border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 9px 10px;
     font-size: 13px;
-    color: var(--text);
-    background: var(--white);
+    color: var(--text-main);
+    background: var(--bg-surface);
     outline: none;
     cursor: pointer;
   }
   .add-box button {
-    background: var(--green);
-    color: white;
+    background: var(--color-primary);
+    color: #06241b;
     border: none;
     border-radius: 8px;
     padding: 9px 18px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: background 0.2s;
   }
-  .add-box button:hover { background: var(--green-dark); }
+  .add-box button:hover { background: #34d399; }
 
   /* ── Category Section ── */
   .category-section { margin-bottom: 24px; }
@@ -161,25 +163,30 @@
     padding: 0 4px;
   }
   .category-icon { font-size: 18px; }
-  .category-title { font-size: 15px; font-weight: 700; color: var(--green-dark); }
+  .category-title { font-size: 15px; font-weight: 700; color: #ffffff; }
   .category-count {
     margin-left: auto;
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--text-dim);
+    font-family: var(--font-mono);
   }
 
   /* ── Task Item ── */
   .task-item {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     padding: 13px 14px;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity 0.2s, transform 0.2s, border-color 0.2s;
     animation: fadeIn 0.25s ease;
+  }
+  .task-item:hover {
+    border-color: var(--border-highlight);
   }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
@@ -192,24 +199,27 @@
     width: 22px; height: 22px;
     min-width: 22px;
     border-radius: 50%;
-    border: 2px solid var(--beige-dark);
-    background: var(--white);
+    border: 2px solid var(--border-subtle);
+    background: var(--bg-surface);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     font-size: 13px;
+    color: #fff;
     transition: all 0.2s;
   }
   .check-btn.checked {
-    background: var(--green);
-    border-color: var(--green);
-    color: white;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #06241b;
+    font-weight: 800;
   }
-  .check-btn:hover { border-color: var(--green); }
+  .check-btn:hover { border-color: var(--color-primary); }
 
   .task-text {
     flex: 1;
     font-size: 14px;
     line-height: 1.4;
+    color: var(--text-main);
   }
 
   .priority-badge {
@@ -219,27 +229,27 @@
     font-weight: 600;
     flex-shrink: 0;
   }
-  .priority-high   { background: #fde8e8; color: #c0392b; }
-  .priority-medium { background: #fef3e0; color: #d68910; }
-  .priority-low    { background: #e8f5e9; color: var(--green-dark); }
+  .priority-high   { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+  .priority-medium { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .priority-low    { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
 
   .delete-btn {
     background: none;
     border: none;
     cursor: pointer;
-    color: #ccc;
+    color: var(--text-dim);
     font-size: 16px;
-    padding: 0 2px;
+    padding: 0 4px;
     transition: color 0.2s;
     line-height: 1;
   }
-  .delete-btn:hover { color: #e74c3c; }
+  .delete-btn:hover { color: #f87171; }
 
   /* ── Empty state ── */
   .empty-state {
     text-align: center;
     padding: 32px 0;
-    color: var(--text-muted);
+    color: var(--text-dim);
     font-size: 14px;
   }
   .empty-state span { font-size: 36px; display: block; margin-bottom: 8px; }
@@ -248,8 +258,10 @@
   .stats-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    background: var(--white);
-    border-top: 1px solid var(--beige-dark);
+    background: rgba(16, 28, 24, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-subtle);
     padding: 10px 20px;
     display: flex;
     justify-content: center;
@@ -257,65 +269,71 @@
     font-size: 12px;
     color: var(--text-muted);
     z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
   }
-  .stat-item strong { color: var(--green-dark); font-size: 18px; display: block; text-align: center; }
-
-  /* Priority selector */
-  .priority-select {
-    border: 1.5px solid var(--beige-dark);
-    border-radius: 8px;
-    padding: 9px 10px;
-    font-size: 13px;
-    color: var(--text);
-    background: var(--white);
-    outline: none;
-    cursor: pointer;
-  }
+  .stat-item strong { color: var(--color-primary); font-size: 18px; display: block; text-align: center; font-family: var(--font-mono); }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🏔 中央山脈大縱走</h1>
-  <p>行前準備清單</p>
-  <div class="progress-wrap">
-    <div class="progress-label">
-      <span id="progressLabel">完成進度</span>
-      <span id="progressPct">0%</span>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-group">
+      <span class="brand-badge">TAIWAN EXPEDITION</span>
+      <a href="index.html" class="brand-title">台灣高山極限長征</a>
     </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
-    </div>
+    <nav class="site-nav" aria-label="全站導覽">
+      <a href="index.html">目錄首頁</a>
+      <a href="central_mountain_range.html">中央山脈大縱走 (29天)</a>
+      <a href="100peaks.html">百岳一筆書 (96天)</a>
+      <a href="準備清單.html" class="active">裝備清單</a>
+    </nav>
   </div>
 </header>
 
-<div class="tabs-wrap" id="tabsWrap">
-  <button class="tab-btn active" onclick="setFilter('all')" id="tab-all">全部</button>
-  <button class="tab-btn" onclick="setFilter('未完成')" id="tab-todo">未完成</button>
-  <button class="tab-btn" onclick="setFilter('已完成')" id="tab-done">已完成</button>
-</div>
-
-<main>
-  <div class="add-box">
-    <input type="text" id="newTaskInput" placeholder="新增待辦事項…" onkeydown="if(event.key==='Enter')addTask()">
-    <select id="newTaskCat">
-      <option value="裝備準備">🎒 裝備</option>
-      <option value="體能訓練">💪 體能</option>
-      <option value="路線規劃">🗺 路線</option>
-      <option value="補給規劃">🍱 補給</option>
-      <option value="證件申請">📋 證件</option>
-      <option value="緊急應變">🚨 緊急應變</option>
-    </select>
-    <select class="priority-select" id="newTaskPriority">
-      <option value="high">🔴 重要</option>
-      <option value="medium" selected>🟡 一般</option>
-      <option value="low">🟢 低</option>
-    </select>
-    <button onclick="addTask()">＋ 新增</button>
+<div class="wrap" style="padding-bottom:1rem;">
+  <div class="prep-hero">
+    <h2>🏔 長征裝備與行前準備清單</h2>
+    <p>中央山脈大縱走 ＆ 百岳一筆書行前裝備檢查與自主管理</p>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progressLabel">完成進度</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
   </div>
 
-  <div id="taskContainer"></div>
-</main>
+  <div class="tabs-wrap" id="tabsWrap">
+    <button class="tab-btn active" onclick="setFilter('all')" id="tab-all">全部</button>
+    <button class="tab-btn" onclick="setFilter('未完成')" id="tab-todo">未完成</button>
+    <button class="tab-btn" onclick="setFilter('已完成')" id="tab-done">已完成</button>
+  </div>
+
+  <main class="prep-main">
+    <div class="add-box">
+      <input type="text" id="newTaskInput" placeholder="新增待辦事項…" onkeydown="if(event.key==='Enter')addTask()">
+      <select id="newTaskCat">
+        <option value="裝備準備">🎒 裝備</option>
+        <option value="體能訓練">💪 體能</option>
+        <option value="路線規劃">🗺 路線</option>
+        <option value="補給規劃">🍱 補給</option>
+        <option value="證件申請">📋 證件</option>
+        <option value="緊急應變">🚨 緊急應變</option>
+      </select>
+      <select class="priority-select" id="newTaskPriority">
+        <option value="high">🔴 重要</option>
+        <option value="medium" selected>🟡 一般</option>
+        <option value="low">🟢 低</option>
+      </select>
+      <button onclick="addTask()">＋ 新增</button>
+    </div>
+
+    <div id="taskContainer"></div>
+  </main>
+</div>
 
 <div class="stats-bar">
   <div class="stat-item"><strong id="statTotal">0</strong>總項目</div>
@@ -474,5 +492,23 @@ function escHtml(s) {
 
 render();
 </script>
+
+<footer class="site-footer" style="margin-bottom:60px;">
+  <div class="footer-inner">
+    <p class="footer-title">台灣高山極限長征路線庫 ｜ TAIWAN ALPINE EXPEDITION ARCHIVE</p>
+    <p class="footer-sub">嚴謹現地路感考證 ｜ 上河文化 1.0 標準工時排定 ｜ 專業戶外探險資料庫</p>
+    <div class="footer-links">
+      <a href="index.html">目錄首頁</a> ｜ 
+      <a href="central_mountain_range.html">中央山脈大縱走 (29天)</a> ｜ 
+      <a href="central_mountain_range.html#supplies">29天補給規劃</a> ｜ 
+      <a href="100peaks.html">百岳一筆書 (96天)</a> ｜ 
+      <a href="準備清單.html">裝備清單</a> ｜ 
+      <a href="trail.html">路線圖展示</a> ｜ 
+      <a href="https://github.com/dg-family/Central-Mountain-Range-Trail" target="_blank" rel="noopener">GitHub 儲存庫</a>
+    </div>
+    <p class="footer-copy">© 2026 Central Mountain Range Trail &amp; 100 Peaks One-Stroke Project</p>
+  </div>
+</footer>
+
 </body>
 </html>
