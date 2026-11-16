@@ -2,1017 +2,581 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>中央山脈大縱走｜行程表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣高山極限長征路線庫｜目錄總覽</title>
   <link rel="stylesheet" href="styles/main.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-gpx@1.7.0/gpx.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --bg-dark: #091210;
+      --bg-surface: #101c18;
+      --bg-surface-elevated: #162621;
+      --bg-card: #14221d;
+      --bg-card-hover: #1b2d27;
+      --border-subtle: #233a32;
+      --border-highlight: #3a5c50;
+      --text-main: #edf5f2;
+      --text-muted: #95ad9e;
+      --text-dim: #60796c;
+      --color-primary: #10b981;
+      --color-accent: #f59e0b;
+      --color-cyan: #06b6d4;
+      --color-purple: #8b5cf6;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Global Header */
+    header.portal-header {
+      background: rgba(9, 18, 16, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    nav.portal-nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    nav.portal-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    nav.portal-nav a:hover {
+      color: #fff;
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-subtle);
+    }
+    nav.portal-nav a.active {
+      color: #fff;
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* Hero */
+    .portal-hero {
+      text-align: center;
+      padding: 2.5rem 1rem 3.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .portal-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.25rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .portal-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0 0 1rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .portal-title span {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .portal-lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Featured Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      background: linear-gradient(180deg, #13241e 0%, #0d1915 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: all 0.25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-highlight);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+    .project-card.featured-card {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: linear-gradient(180deg, #162c24 0%, #0e1c17 100%);
+    }
+    .project-card.featured-card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-top {
+      margin-bottom: 1.5rem;
+    }
+    .card-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .tag-classic {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+    }
+    .tag-epic {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+    }
+    .project-heading {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.75rem;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Key Metrics Pills */
+    .metrics-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.25rem 0;
+    }
+    .metric-pill {
+      background: #091410;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.82rem;
+      color: #d1d5db;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .metric-pill strong {
+      color: #fff;
+      font-family: var(--font-mono);
+    }
+
+    /* Card Actions */
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .btn-portal-primary {
+      background: var(--color-primary);
+      color: #06241b;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .btn-portal-primary:hover {
+      background: #34d399;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .btn-portal-sub {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+    .btn-portal-sub:hover {
+      background: var(--border-subtle);
+      border-color: var(--border-highlight);
+      color: #fff;
+    }
+
+    /* Comparison Table Section */
+    .comparison-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0 0 1.5rem;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table.comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    table.comparison-table th,
+    table.comparison-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    table.comparison-table th {
+      background: #0d1a15;
+      color: #fff;
+      font-weight: 700;
+    }
+    table.comparison-table td {
+      color: #d1d5db;
+    }
+    table.comparison-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Resource Links Box */
+    .resource-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+    .resource-info {
+      flex: 1;
+      min-width: 260px;
+    }
+    .resource-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.35rem;
+    }
+    .resource-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    /* Footer */
+    footer.portal-footer {
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 4rem;
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--color-primary);
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="bar">
-      <div>
-        <h1>中央山脈大縱走｜行程表</h1>
-        <nav class="menu" aria-label="主選單">
-          <a href="index.html" aria-current="page">行程表</a>
-          <a href="supplies.html">補給點</a>
-          <a href="100peaks.html">百岳一筆書 (96天)</a>
-        </nav>
+
+  <!-- Top Global Header -->
+  <header class="portal-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <span class="brand-badge">EXPEDITION PORTAL</span>
+        <h1 class="brand-title">台灣高山極限長征路線庫</h1>
       </div>
+      <nav class="portal-nav">
+        <a href="index.html" class="active">目錄首頁</a>
+        <a href="central_mountain_range.html">中央山脈大縱走 (29天)</a>
+        <a href="100peaks.html">百岳一筆書 (96天)</a>
+        <a href="supplies.html">補給點</a>
+      </nav>
     </div>
   </header>
 
-  <div class="wrap">
-    <div class="tools">
-      <button id="expandAll">全部展開</button>
-      <button id="collapseAll">全部收合</button>
-    </div>
-    <div class="toc" aria-label="快速導覽">
-      <!-- 目錄 -->
-      <a href="#D1">D1</a><a href="#D2">D2</a><a href="#D3">D3</a><a href="#D4">D4</a><a href="#D5">D5</a>
-      <a href="#D6">D6</a><a href="#D7">D7</a><a href="#D8">D8</a><a href="#D9">D9</a><a href="#D10">D10</a>
-      <a href="#D11">D11</a><a href="#D12">D12</a><a href="#D13">D13</a><a href="#D14">D14</a><a href="#D15">D15</a>
-      <a href="#D16">D16</a><a href="#D17">D17</a><a href="#D18">D18</a><a href="#D19">D19</a><a href="#D20">D20</a>
-      <a href="#D21">D21</a><a href="#D22">D22</a><a href="#D23">D23</a><a href="#D24">D24</a><a href="#D25">D25</a>
-      <a href="#D26">D26</a><a href="#D27">D27</a><a href="#D28">D28</a><a href="#D29">D29</a>
-    </div>
-    <div class="note">
-      <div class="legend">
-        <span><span class="swatch" style="background:var(--ok)"></span> ≤ 600 分鐘（≤ 10 小時）</span>
-        <span><span class="swatch" style="background:var(--warn)"></span> 601–720 分鐘（10–12 小時）</span>
-        <span><span class="swatch" style="background:var(--bad)"></span> &gt; 720 分鐘（&gt; 12 小時）</span>
-      </div>
-    </div>
+  <div class="container">
 
-    <!-- ===== D1 ~ D29 ===== -->
-    <section>
-    <span id="D1" class="anchor"></span>
-    <details class="day" data-minutes="715">
-      <summary>
-        <div class="summary-title"><h2>D1：勝光登山口 → 香菇寮營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d1-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：715 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
+    <!-- Hero Area -->
+    <section class="portal-hero">
+      <span class="portal-tag">Taiwan Alpine Expedition Archive</span>
+      <h2 class="portal-title">台灣高山長征全紀錄<span>・路線目錄總覽</span></h2>
+      <p class="portal-lead">
+        從高懸三千公尺脊樑的<strong>「中央山脈全段大縱走」</strong>，到全島零接駁純徒步完登 100 座百岳的<strong>「台灣百岳純徒步一筆書」</strong>—— 彙整最嚴密的地形閱讀、上河工時分析、補給策略與互動檢索系統。
+      </p>
     </section>
 
-    <section>
-    <span id="D2" class="anchor"></span>
-    <details class="day" data-minutes="590">
-      <summary>
-        <div class="summary-title"><h2>D2：香菇寮營地 → 天空營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d2-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：590 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
+    <!-- Featured Projects Grid -->
+    <section class="projects-grid">
+
+      <!-- Project 1: 中央山脈大縱走 (29天) -->
+      <article class="project-card">
+        <div class="card-top">
+          <span class="card-tag tag-classic">經典高山脊樑縱走</span>
+          <h3 class="project-heading">中央山脈大縱走（29天）</h3>
+          <p class="project-desc">
+            橫貫台灣屋脊的經典高山縱走路線！由宜蘭勝光登山口起登，一路南下貫通南湖群峰、北二段、奇萊連峰、能高安東軍、丹大六順、南三段、馬博橫斷、南二段、南一段至高雄藤枝。全段深入台灣最高峻之脊樑山脈，涵蓋逾 60 座精華百岳。
+          </p>
+          <div class="metrics-pills">
+            <span class="metric-pill">⏱️ 總天數：<strong>29 天</strong></span>
+            <span class="metric-pill">📏 總里程：<strong>約 300+ km</strong></span>
+            <span class="metric-pill">📦 補給點：<strong>5 處主要站點</strong></span>
+            <span class="metric-pill">🏔️ 地形：<strong>北一段至南一段主脊</strong></span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="central_mountain_range.html" class="btn-portal-primary">
+            <span>📋 進入 29天行程表</span>
+            <span>➔</span>
+          </a>
+          <a href="supplies.html" class="btn-portal-sub">
+            <span>📦 查看補給點規劃</span>
+          </a>
+          <a href="trail.html" class="btn-portal-sub">
+            <span>🗺️ 檢視路線地圖</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 2: 台灣百岳純徒步一筆書 (96天) -->
+      <article class="project-card featured-card">
+        <div class="card-top">
+          <span class="card-tag tag-epic">★ 世界級全島純徒步</span>
+          <h3 class="project-heading">台灣百岳純徒步一筆書（96天）</h3>
+          <p class="project-desc">
+            全島零車輛接駁、純靠雙腳一筆畫成！由極北點富貴角燈塔出發，橫掃雪山西稜、聖稜、四秀、北一死亡稜線、北二、鈴畢、東稜、白姑、合歡、能安、十勝稜線干卓萬、五八公路濁水溪床、南三段、玉山九峰、馬博、南二、新康、南一段、萬山神池雙鬼湖，登頂第 100 座北大武山，直奔鵝鑾鼻燈塔完封！
+          </p>
+          <div class="metrics-pills">
+            <span class="metric-pill">⏱️ 總天數：<strong>96 天</strong> (88行進+8休整)</span>
+            <span class="metric-pill">🏔️ 完登百岳：<strong>整整 100 座</strong> (001~100)</span>
+            <span class="metric-pill">📏 總里程：<strong>1,285 km</strong> (高山835+公路450)</span>
+            <span class="metric-pill">⏱️ 工時上限：<strong>上河 1.0 每日 ≤ 10h</strong></span>
+            <span class="metric-pill">📦 戰略補給：<strong>8 處</strong> (含八通關藏糧)</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="100peaks.html" class="btn-portal-primary">
+            <span>🏔️ 進入 96天百岳一筆書專頁</span>
+            <span>➔</span>
+          </a>
+          <a href="100peaks.html#peaks-drawer" class="btn-portal-sub">
+            <span>📋 百岳 100 座互動清單</span>
+          </a>
+          <a href="100peaks.html#logistics-section" class="btn-portal-sub">
+            <span>📦 八通關戰略藏糧解析</span>
+          </a>
+        </div>
+      </article>
+
     </section>
 
-    <section>
-    <span id="D3" class="anchor"></span>
-    <details class="day" data-minutes="665">
-      <summary>
-        <div class="summary-title"><h2>D3：天空營地 → 無明水池</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d3-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：665 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
+    <!-- Comparison Table Section -->
+    <section class="comparison-section">
+      <h3 class="section-title">⚖️ 兩大縱走計畫規格全景對照</h3>
+      <p class="section-subtitle">兩大路線皆具備頂尖難度與專業探險價值，其定位、百岳涵蓋與物流後勤策略差異如下：</p>
+      
+      <div class="table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th style="width: 18%;">比較項目</th>
+              <th style="width: 41%;">【經典】中央山脈大縱走（29天）</th>
+              <th style="width: 41%;">【史詩】台灣百岳純徒步一筆書（96天）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>目標核心</strong></td>
+              <td>橫貫台灣屋脊中央山脈主脊線條</td>
+              <td>串聯全島 100 座百岳並以純徒步貫通南北兩極點</td>
+            </tr>
+            <tr>
+              <td><strong>起訖端點</strong></td>
+              <td>宜蘭勝光登山口 ➔ 高雄藤枝林道</td>
+              <td>新北富貴角燈塔（極北） ➔ 屏東鵝鑾鼻燈塔（極南）</td>
+            </tr>
+            <tr>
+              <td><strong>百岳涵蓋</strong></td>
+              <td>約 60 餘座（中央山脈主脊百岳）</td>
+              <td><strong>整整 100 座</strong>（雪山山脈、玉山、合歡、白姑全數收齊）</td>
+            </tr>
+            <tr>
+              <td><strong>總里程 / 天數</strong></td>
+              <td>約 300+ 公里 ｜ 29 天</td>
+              <td><strong>1,285 公里</strong> ｜ 96 天（扣除序章終章為 83 天高山段）</td>
+            </tr>
+            <tr>
+              <td><strong>交通接駁方式</strong></td>
+              <td>起終點採車輛接駁入山與下山</td>
+              <td><strong>100% 純人力雙腿徒步，零車輛接駁</strong></td>
+            </tr>
+            <tr>
+              <td><strong>戰略關鍵亮點</strong></td>
+              <td>大禹嶺、七彩湖、南橫等定點補給</td>
+              <td>鈴畢縱走、十勝稜線、五八公路溪床、<strong>八通關草原預藏糧食</strong></td>
+            </tr>
+            <tr>
+              <td><strong>每日步程標準</strong></td>
+              <td>部分單日超過 11～12 小時高強度推行</td>
+              <td><strong>嚴格符合上河 1.0 標準，每日活動工時 ≤ 10 小時</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
     </section>
 
-    <section>
-    <span id="D4" class="anchor"></span>
-    <details class="day" data-minutes="665">
-      <summary>
-        <div class="summary-title"><h2>D4：無明水池 → 黑水塘/汪汪水池營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d4-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：665 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
+    <!-- Resources Box -->
+    <section class="resource-box">
+      <div class="resource-info">
+        <h4 class="resource-title">🎒 行前準備與裝備支援工具</h4>
+        <p class="resource-desc">檢視長程大縱走的裝備清單、補給物資配置與混合版本等高線路線圖。</p>
       </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D5" class="anchor"></span>
-    <details class="day" data-minutes="685">
-      <summary>
-        <div class="summary-title"><h2>D5：黑水塘/汪汪水池營地 → 大禹嶺(補給點)</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d5-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：685 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
+      <div class="resource-links">
+        <a href="supplies.html" class="btn-portal-sub">📦 補給點清單</a>
+        <a href="準備清單.html" class="btn-portal-sub">📝 裝備準備清單</a>
+        <a href="trail.html" class="btn-portal-sub">🗺️ 路線圖展示</a>
       </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D6" class="anchor"></span>
-    <details class="day" data-minutes="340">
-      <summary>
-        <div class="summary-title"><h2>D6：松雪樓／奇萊登山口 → 奇萊山屋營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d6-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：340 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D7" class="anchor"></span>
-    <details class="day" data-minutes="690">
-      <summary>
-        <div class="summary-title"><h2>D7：奇萊山屋營地 → 光被八表紀念碑</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d7-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：690 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D8" class="anchor"></span>
-    <details class="day" data-minutes="645">
-      <summary>
-        <div class="summary-title"><h2>D8：光被八表紀念碑 → 南峰岔路口</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d8-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：645 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D9" class="anchor"></span>
-    <details class="day" data-minutes="628">
-      <summary>
-        <div class="summary-title"><h2>D9：南峰岔路口 → 屯鹿妹池</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d9-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：628 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D10" class="anchor"></span>
-    <details class="day" data-minutes="553">
-      <summary>
-        <div class="summary-title"><h2>D10：屯鹿妹池 → MIT鞍部鋪箭竹營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d10-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：553 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D11" class="anchor"></span>
-    <details class="day" data-minutes="335">
-      <summary>
-        <div class="summary-title"><h2>D11：MIT鞍部鋪箭竹營地 → 凹谷避風營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d11-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：335 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D12" class="anchor"></span>
-    <details class="day" data-minutes="780">
-      <summary>
-        <div class="summary-title"><h2>D12：凹谷避風營地 → 台電豪華工寮(補給點)</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d12-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：780 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D13" class="anchor"></span>
-    <details class="day" data-minutes="0">
-      <summary>
-        <div class="summary-title"><h2>D13：預備日</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d13-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">預備日／機動天</div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D14" class="anchor"></span>
-    <details class="day" data-minutes="610">
-      <summary>
-        <div class="summary-title"><h2>D14：台電豪華工寮 → 2761最低鞍部營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d14-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：610 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D15" class="anchor"></span>
-    <details class="day" data-minutes="650">
-      <summary>
-        <div class="summary-title"><h2>D15：2761最低鞍部營地 → 2603公尺鞍部</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d15-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：650 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D16" class="anchor"></span>
-    <details class="day" data-minutes="685">
-      <summary>
-        <div class="summary-title"><h2>D16：2603公尺鞍部 → 太平溪源營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d16-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：685 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D17" class="anchor"></span>
-    <details class="day" data-minutes="370">
-      <summary>
-        <div class="summary-title"><h2>D17：太平溪源營地 → 東鞍營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d17-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：370 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D18" class="anchor"></span>
-    <details class="day" data-minutes="555">
-      <summary>
-        <div class="summary-title"><h2>D18：東鞍營地 → 嘆息灣</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d18-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：555 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D19" class="anchor"></span>
-    <details class="day" data-minutes="0">
-      <summary>
-        <div class="summary-title"><h2>D19：預備日</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d19-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">預備日／機動天</div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D20" class="anchor"></span>
-    <details class="day" data-minutes="665">
-      <summary>
-        <div class="summary-title"><h2>D20：嘆息灣 → 馬博拉斯山屋</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d20-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：665 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D21" class="anchor"></span>
-    <details class="day" data-minutes="610">
-      <summary>
-        <div class="summary-title"><h2>D21：馬博拉斯山屋 → 大水窟山屋</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d21-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：610 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D22" class="anchor"></span>
-    <details class="day" data-minutes="520">
-      <summary>
-        <div class="summary-title"><h2>D22：大水窟山屋 → 達芬谷山屋</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d22-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：520 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D23" class="anchor"></span>
-    <details class="day" data-minutes="523">
-      <summary>
-        <div class="summary-title"><h2>D23：達芬谷山屋 → 轆轆谷山屋</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d23-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：523 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D24" class="anchor"></span>
-    <details class="day" data-minutes="550">
-      <summary>
-        <div class="summary-title"><h2>D24：轆轆谷山屋 → 拉庫音溪山屋</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d24-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：550 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D25" class="anchor"></span>
-    <details class="day" data-minutes="705">
-      <summary>
-        <div class="summary-title"><h2>D25：拉庫音溪山屋 → 向陽森林遊樂區 (補給點)</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d25-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：705 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D26" class="anchor"></span>
-    <details class="day" data-minutes="740">
-      <summary>
-        <div class="summary-title"><h2>D26：進涇橋 → 海諾南山下營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d26-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：740 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D27" class="anchor"></span>
-    <details class="day" data-minutes="465">
-      <summary>
-        <div class="summary-title"><h2>D27：海諾南山下營地 → 雲水山營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d27-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：465 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D28" class="anchor"></span>
-    <details class="day" data-minutes="590">
-      <summary>
-        <div class="summary-title"><h2>D28：雲水山(營地/看天池) → 三叉峰下營地</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d28-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：590 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
-    </section>
-
-    <section>
-    <span id="D29" class="anchor"></span>
-    <details class="day" data-minutes="674">
-      <summary>
-        <div class="summary-title"><h2>D29：三叉峰下營地(營地/看天池) → 石山林道登山口 7K特生中心</h2></div>
-      </summary>
-      <div class="content">
-        <ol class="segments" id="d29-segments">
-          <!-- 行程描述將由 JavaScript 動態產生 -->
-        </ol>
-        <div class="footer-line">本日合計：674 分鐘</div>
-        <div class="map-toolbar"><button type="button">地圖</button></div>
-      </div>
-    <div class="map-wrap"><div class="map" style="display: none;"></div></div></details>
     </section>
 
   </div>
 
-  <script>
-    // 等待頁面完全載入後執行
-    window.addEventListener('load', () => {
-      console.log('頁面載入完成，開始初始化地圖功能');
-      // 轉換分鐘→小時，並填色進度條（以 600 分鐘 / 10 小時為基準）
-      (() => {
-      const DAYS = document.querySelectorAll('details.day');
-      DAYS.forEach(d => {
-        const mins = +d.dataset.minutes || 0;
-        const hrs = (mins/60).toFixed(1);
-        const hrsSpan = d.querySelector('.hrs');
-        if(hrsSpan) hrsSpan.textContent = hrs;
+  <footer class="portal-footer">
+    <p>台灣高山極限長征路線庫 ｜ 中央山脈大縱走 ＆ 台灣百岳純徒步一筆書</p>
+    <p>嚴謹現地路感考證 ｜ 上河文化 1.0 標準工時排定 ｜ 專業戶外探險資料庫</p>
+    <p style="margin-top:0.8rem">
+      <a href="index.html">目錄首頁</a> ｜ 
+      <a href="central_mountain_range.html">中央山脈大縱走 (29天)</a> ｜ 
+      <a href="100peaks.html">百岳一筆書 (96天)</a> ｜ 
+      <a href="supplies.html">補給點清單</a> ｜ 
+      <a href="https://github.com/dg-family/Central-Mountain-Range-Trail" target="_blank" rel="noopener">GitHub 儲存庫</a>
+    </p>
+  </footer>
 
-        const bar = d.querySelector('.bar > i');
-        const pct = Math.min(100, (mins/600)*100);
-        if(bar){ 
-          bar.style.width = pct + '%'; 
-          
-          // 顏色分類
-          if(mins <= 600) bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--ok');
-          else if(mins <= 720) bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--warn');
-          else bar.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bad');
-        }
-      });
-
-      // 展開/收合全部
-      document.getElementById('expandAll').addEventListener('click', () => DAYS.forEach(d => d.open = true));
-      document.getElementById('collapseAll').addEventListener('click', () => DAYS.forEach((d,i) => { d.open = (i===0); }));
-      
-      function formatSegmentKm(distance) {
-        const d = Number(distance);
-        if (!Number.isFinite(d)) return '—';
-        if (d === 0) return '0';
-        if (d < 0.1) return d.toFixed(2);
-        if (d < 10) return String(parseFloat(d.toFixed(2)));
-        return String(parseFloat(d.toFixed(1)));
-      }
-
-      function renderSegmentLi(segment) {
-        if (segment.distance === 0 && segment.time === 0) {
-          return `<li>${segment.description}</li>`;
-        }
-        if (segment.from === segment.to && segment.description) {
-          return `<li>${segment.description}</li>`;
-        }
-        const km = formatSegmentKm(segment.distance);
-        const time = segment.time ?? 0;
-        if (Number(segment.distance) === 0 && time > 0 && segment.description) {
-          return `<li>${segment.description}</li>`;
-        }
-        return `<li>${segment.from} → <span class="km">(${km}公里，${time}分鐘)</span> → ${segment.to}</li>`;
-      }
-
-      // 載入行程描述函數（適用於 D1~D29）
-      async function loadDaySegments(dayId) {
-        try {
-          const response = await fetch(`assets/data/D${dayId}.json`);
-          const data = await response.json();
-          
-          const segmentsContainer = document.getElementById(`d${dayId}-segments`);
-          if (segmentsContainer) {
-            let segmentsHTML = '';
-            let totalTime = 0;
-            let firstFrom = '';
-            let lastTo = '';
-            
-            // 優先使用 segments 數據，如果沒有則使用 waypoints 動態計算
-            if (data.segments && data.segments.length > 0) {
-              // 使用 segments 數據
-              data.segments.forEach((segment, index) => {
-                if (index === 0) {
-                  firstFrom = segment.from;
-                }
-                if (index === data.segments.length - 1) {
-                  lastTo = segment.to;
-                }
-                
-                segmentsHTML += renderSegmentLi(segment);
-                if (!(segment.distance === 0 && segment.time === 0)) {
-                  totalTime += segment.time || 0;
-                }
-              });
-              console.log(`D${dayId} 行程描述已從 segments 數據產生，總時間：${totalTime}分鐘`);
-            } else if (data.waypoints && data.waypoints.length > 1) {
-              // 使用 waypoints 動態計算（fallback）
-              firstFrom = data.waypoints[0].name;
-              lastTo = data.waypoints[data.waypoints.length - 1].name;
-              
-              for (let i = 0; i < data.waypoints.length - 1; i++) {
-                const startPoint = data.waypoints[i];
-                const endPoint = data.waypoints[i + 1];
-                
-                // 計算距離（簡單的直線距離估算）
-                const distance = calculateDistance(startPoint.lat, startPoint.lon, endPoint.lat, endPoint.lon);
-                const estimatedTime = Math.round(distance * 30); // 每公里約30分鐘
-                
-                segmentsHTML += `<li>${startPoint.name} → <span class="km">(約${distance.toFixed(1)}公里，約${estimatedTime}分鐘)</span> → ${endPoint.name}</li>`;
-                totalTime += estimatedTime;
-              }
-              console.log(`D${dayId} 行程描述已從 waypoints 動態產生，總時間：${totalTime}分鐘`);
-            }
-            
-            segmentsContainer.innerHTML = segmentsHTML;
-            
-            // 更新本日合計時間
-            const footerLine = document.querySelector(`#D${dayId} .footer-line`);
-            if (footerLine) {
-              footerLine.textContent = `本日合計：${totalTime} 分鐘`;
-            }
-            
-            // 更新標題
-            if (firstFrom && lastTo) {
-              // 找到對應的標題元素
-              const titleElement = document.querySelector(`span[id="D${dayId}"]`).closest('section').querySelector('.summary-title h2');
-              if (titleElement) {
-                const newTitle = `D${dayId}：${firstFrom} → ${lastTo}`;
-                titleElement.textContent = newTitle;
-                console.log(`D${dayId} 標題已更新: "${newTitle}"`);
-              } else {
-                console.log(`D${dayId} 找不到標題元素`);
-              }
-            } else {
-              console.log(`D${dayId} 無法獲取起點或終點: firstFrom="${firstFrom}", lastTo="${lastTo}"`);
-            }
-          }
-        } catch (error) {
-          console.error(`載入 D${dayId} 數據失敗:`, error);
-        }
-      }
-      
-      // 計算兩點間距離（公里）
-      function calculateDistance(lat1, lon1, lat2, lon2) {
-        const R = 6371; // 地球半徑（公里）
-        const dLat = (lat2 - lat1) * Math.PI / 180;
-        const dLon = (lon2 - lon1) * Math.PI / 180;
-        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                  Math.sin(dLon/2) * Math.sin(dLon/2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return R * c;
-      }
-
-      // 載入 D1~D29 的行程描述
-      for (let dayId = 1; dayId <= 29; dayId++) {
-        loadDaySegments(dayId);
-      }
-
-      // 目錄點擊平滑捲動（利用 CSS scroll-margin-top 搭配 sticky header）
-      document.querySelectorAll('.toc a').forEach(a=>{
-        a.addEventListener('click', e=>{
-          e.preventDefault();
-          const id = a.getAttribute('href');
-          const el = document.querySelector(id);
-          if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
-        });
-      });
-
-      // 動態插入地圖按鈕與 Leaflet 地圖容器（OSM）
-      DAYS.forEach(d => {
-        const content = d.querySelector('.content');
-        if(!content) return;
-        
-        // 檢查是否已經存在地圖按鈕
-        const existingToolbar = content.querySelector('.map-toolbar');
-        let btn;
-        
-        if(existingToolbar) {
-          // 如果已存在，使用現有的按鈕
-          btn = existingToolbar.querySelector('button');
-        } else {
-          // 如果不存在，創建新的按鈕
-          const toolbar = document.createElement('div');
-          toolbar.className = 'map-toolbar';
-          btn = document.createElement('button');
-          btn.type = 'button';
-          btn.textContent = '地圖';
-          toolbar.appendChild(btn);
-          content.appendChild(toolbar);
-        }
-
-        // 檢查是否已經存在地圖容器
-        let wrap = d.querySelector('.map-wrap');
-        let mapDiv = d.querySelector('.map');
-        
-        if(!wrap) {
-          wrap = document.createElement('div');
-          wrap.className = 'map-wrap';
-          mapDiv = document.createElement('div');
-          mapDiv.className = 'map';
-          mapDiv.style.display = 'none';
-          wrap.appendChild(mapDiv);
-          d.appendChild(wrap);
-        }
-
-        const items = d.querySelectorAll('.segments li');
-        
-        // 檢查按鈕是否已經有事件監聽器
-        if(btn.hasAttribute('data-map-initialized')) return;
-        btn.setAttribute('data-map-initialized', 'true');
-        
-        // 為每個 details 元素創建獨立的變數
-        let mapInstance = null;
-        let nameToMarker = {};
-        let gpxAdded = false;
-        let wantedName = null;
-        
-        // 為按鈕添加事件監聽器
-        btn.addEventListener('click', async () => {
-          console.log('地圖按鈕被點擊');
-          const isHidden = mapDiv.style.display === 'none';
-          mapDiv.style.display = isHidden ? 'block' : 'none';
-          
-          // 如果地圖已經顯示，隱藏地圖
-          if(!isHidden) {
-            mapDiv.style.display = 'none';
-            return;
-          }
-          
-          console.log('開始初始化地圖');
-          
-          // 確保地圖容器有正確的尺寸
-          mapDiv.style.height = '480px';
-          mapDiv.style.width = '100%';
-          
-          if(!mapInstance){
-            // 檢查Leaflet庫是否已載入
-            if(typeof L === 'undefined') {
-              console.error('Leaflet庫未載入');
-              mapDiv.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">地圖庫載入失敗，請重新整理頁面</div>';
-              return;
-            }
-            
-            try {
-              mapInstance = L.map(mapDiv, { 
-                zoomControl: true, 
-                maxBoundsViscosity: 0.0, 
-                updateWhenIdle: true,
-                center: [23.5, 121], // 台灣中心座標
-                zoom: 8,
-                dragging: true,
-                touchZoom: true,
-                scrollWheelZoom: true,
-                doubleClickZoom: true,
-                boxZoom: true
-              });
-              
-              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors', 
-                maxZoom: 19, 
-                updateWhenIdle: true, 
-                keepBuffer: 1
-              }).addTo(mapInstance);
-              
-              // 強制重新計算地圖尺寸
-              setTimeout(() => {
-                if(mapInstance) {
-                  mapInstance.invalidateSize();
-                  // 測試地圖互動性
-                  console.log('地圖初始化完成，測試互動性...');
-                  console.log('縮放等級:', mapInstance.getZoom());
-                  console.log('地圖中心:', mapInstance.getCenter());
-                }
-              }, 100);
-            } catch(e) {
-              console.error('地圖初始化失敗:', e);
-              mapDiv.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">地圖載入失敗</div>';
-              return;
-            }
-          }
-          
-          // 每次點擊都重新載入資料
-          const summaryTitle = d.querySelector('.summary-title h2')?.textContent;
-          console.log(`summary-title 內容: "${summaryTitle}"`);
-          const dayId = summaryTitle?.match(/^D(\d+)/)?.[1];
-          console.log(`提取的 dayId: "${dayId}"`);
-          if(dayId) {
-            // 清除之前的資料
-            if(mapInstance) {
-              mapInstance.eachLayer((layer) => {
-                // Keep tile layer; clear all previous vector/marker overlays.
-                if (layer instanceof L.Marker || layer instanceof L.Path) {
-                  mapInstance.removeLayer(layer);
-                }
-              });
-            }
-            nameToMarker = {};
-            gpxAdded = false;
-            
-            // 使用簡單的標記點方法，避免GPX問題
-              getRouteData(dayId).then(routeData => {
-                console.log(`getRouteData 返回的原始數據 (D${dayId}):`, routeData);
-                if(routeData) {
-                try {
-                  console.log(`載入路線數據 (D${dayId}):`, {
-                    hasWaypoints: !!routeData.waypoints,
-                    waypointsCount: routeData.waypoints?.length || 0,
-                    trackPointsKeys: Object.keys(routeData).filter(key => key.startsWith('trackPoints'))
-                  });
-                  
-                  // 只為主要地標點添加標記
-                  if (routeData.waypoints) {
-                    // 驗證 waypoints 座標
-                    const validWaypoints = routeData.waypoints.filter(point => 
-                      point && typeof point.lat === 'number' && typeof point.lon === 'number' && 
-                      !isNaN(point.lat) && !isNaN(point.lon) && point.name
-                    );
-                    
-                    console.log(`D${dayId} 添加 waypoints:`, validWaypoints.length);
-                    validWaypoints.forEach(point => {
-                      const marker = L.marker([point.lat, point.lon])
-                        .bindPopup(point.name)
-                        .addTo(mapInstance);
-                      nameToMarker[point.name.toLowerCase()] = marker;
-                    });
-                  } else {
-                    console.log(`D${dayId} 沒有 waypoints 資料`);
-                  }
-                  
-                  // 繪製多段獨立的路線（不顯示中間節點標記）
-                  const polylines = [];
-                  
-                  // 動態處理 trackPoints1…n；若無則使用單一 trackPoints
-                  const numberedKeys = Object.keys(routeData)
-                    .filter(k => /^trackPoints\d+$/.test(k))
-                    .sort((a, b) => parseInt(a.slice(11), 10) - parseInt(b.slice(11), 10));
-                  let trackSegments = [];
-                  if (numberedKeys.length > 0) {
-                    trackSegments = numberedKeys.map(name => ({ name, color: 'red' }));
-                  } else if (routeData.trackPoints && routeData.trackPoints.length > 0) {
-                    trackSegments = [{ name: 'trackPoints', color: 'red' }];
-                  }
-                  
-                  trackSegments.forEach(segment => {
-                    if (routeData[segment.name]) {
-                      console.log(`處理路線段 ${segment.name}: ${routeData[segment.name].length} 個原始點`);
-                      
-                      // 驗證座標數據
-                      const validPoints = routeData[segment.name].filter((p, index) => {
-                        if (!p) {
-                          console.log(`點 ${index}: null 或 undefined`);
-                          return false;
-                        }
-                        if (typeof p.lat !== 'number' || typeof p.lon !== 'number') {
-                          console.log(`點 ${index}: 座標類型錯誤 lat=${typeof p.lat}, lon=${typeof p.lon}`);
-                          return false;
-                        }
-                        if (isNaN(p.lat) || isNaN(p.lon)) {
-                          console.log(`點 ${index}: 座標為 NaN lat=${p.lat}, lon=${p.lon}`);
-                          return false;
-                        }
-                        return true;
-                      });
-                      
-                      if (validPoints.length > 0) {
-                        const route = validPoints.map(p => [p.lat, p.lon]);
-                        const polyline = L.polyline(route, { 
-                          color: segment.color, 
-                          weight: 3 
-                        }).addTo(mapInstance);
-                        polylines.push(polyline);
-
-                        console.log(`已繪製路線段: ${segment.name} (${segment.color}) - ${validPoints.length} 個有效點`);
-                      } else {
-                        console.log(`D${dayId} 路線段 ${segment.name} 沒有有效座標`);
-                      }
-                    } else {
-                      console.log(`D${dayId} 缺少路線段: ${segment.name}`);
-                    }
-                  });
-
-                  // 縮放到所有路線範圍
-                  if (polylines.length > 0) {
-                    try {
-                      const bounds = L.latLngBounds([]);
-                      polylines.forEach(polyline => {
-                        const polylineBounds = polyline.getBounds();
-                        if (polylineBounds) {
-                          // 檢查邊界是否有效（有西南和東北角）
-                          const sw = polylineBounds.getSouthWest();
-                          const ne = polylineBounds.getNorthEast();
-                          if (sw && ne && sw.lat !== ne.lat && sw.lng !== ne.lng) {
-                            bounds.extend(polylineBounds);
-                          }
-                        }
-                      });
-                      
-                      // 檢查最終邊界是否有效
-                      const finalSw = bounds.getSouthWest();
-                      const finalNe = bounds.getNorthEast();
-                      if (finalSw && finalNe && finalSw.lat !== finalNe.lat && finalSw.lng !== finalNe.lng) {
-                        mapInstance.fitBounds(bounds.pad(0.4)); // 增加邊界範圍
-                        console.log(`地圖已縮放到路線範圍`);
-                      } else {
-                        console.log(`無法計算有效的邊界範圍`);
-                      }
-                    } catch (error) {
-                      console.error('邊界計算失敗:', error);
-                    }
-                  }
-                  
-                  gpxAdded = true;
-                  console.log(`路線載入完成 (D${dayId})`);
-                  console.log(`gpxAdded 設置為: ${gpxAdded}`);
-                  console.log(`地圖實例狀態:`, {
-                    zoom: mapInstance.getZoom(),
-                    center: mapInstance.getCenter(),
-                    bounds: mapInstance.getBounds()
-                  });
-                  
-                  if(wantedName){ 
-                    focusByName(wantedName); 
-                    wantedName = null; 
-                  }
-                } catch(e) { 
-                  console.error(`路線載入失敗 (D${dayId}):`, e);
-                }
-              }
-            });
-          }
-          
-          // 確保地圖正確顯示
-          setTimeout(() => {
-            if(mapInstance) {
-              mapInstance.invalidateSize();
-            }
-          }, 200);
-        });
-
-        // 點選清單項目 → 導向地圖上的標記
-        items.forEach(li => {
-          li.addEventListener('click', () => {
-            const candidate = extractNameFromItem(li.textContent || '');
-            wantedName = candidate;
-            // 展開地圖
-            mapDiv.style.display = 'block';
-            if(!mapInstance){ btn.click(); return; }
-            if(!gpxAdded){ btn.click(); return; }
-            focusByName(candidate);
-          });
-        });
-
-        function extractNameFromItem(raw){
-          const parts = raw.trim().split('→').map(s=>s.trim()).filter(Boolean);
-          const last = parts[parts.length-1] || raw;
-          return last.replace(/\(.*?\)/g,'').replace(/\s+/g,' ').trim().toLowerCase();
-        }
-
-        function focusByName(nameLc){
-          // 清除舊高亮
-          items.forEach(el => el.classList.remove('active'));
-          // 嘗試直接匹配名稱（包含）
-          const keys = Object.keys(nameToMarker);
-          const match = keys.find(k => nameLc.includes(k) || k.includes(nameLc));
-          if(match){
-            const marker = nameToMarker[match];
-            mapInstance.setView(marker.getLatLng(), Math.max(mapInstance.getZoom(), 11)); // 降低縮放等級
-            marker.openPopup();
-            // 高亮對應的 li
-            const hit = Array.from(items).find(el => (el.textContent||'').toLowerCase().includes(match));
-            if(hit) hit.classList.add('active');
-          }
-        }
-
-        // 路線數據函數
-        async function getRouteData(dayId) {
-          console.log(`getRouteData 被調用，dayId: ${dayId}, 類型: ${typeof dayId}`);
-          // D1~D29 都使用各自的 JSON 檔案（包含 waypoints）
-          const dayNum = parseInt(dayId);
-          console.log(`dayId: "${dayId}", dayNum: ${dayNum}`);
-          if (dayNum >= 1 && dayNum <= 30) {
-            try {
-              console.log(`嘗試載入 assets/data/D${dayId}.json`);
-              const response = await fetch(`assets/data/D${dayId}.json`);
-              console.log(`fetch 響應狀態: ${response.status} ${response.statusText}`);
-              if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-              }
-              const data = await response.json();
-              console.log(`D${dayId} 資料載入成功:`, {
-                waypoints: data.waypoints?.length || 0,
-                trackPoints: Object.keys(data).filter(key => key.startsWith('trackPoints')).length
-              });
-              return data;
-            } catch (error) {
-              console.error(`D${dayId} 整合資料載入失敗:`, error);
-              return {
-                waypoints: [],
-                trackPoints: []
-              };
-            }
-          }
-          
-          console.log(`dayId ${dayId} 不在 1-30 範圍內，返回空資料`);
-          // 其他情況返回空資料
-          return {
-            waypoints: [],
-            trackPoints: []
-          };
-        }
-       
-      });
-    })();
-    });
-  </script>
-
-</body></html>
+</body>
+</html>
